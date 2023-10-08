@@ -40,9 +40,11 @@ button.addEventListener("click", async () => {
         const newMessage = document.createElement("div")
         newMessage.innerHTML = `
             <div>
-                <strong>Action:</strong> ${data.action}
+                <strong>Message: </strong> ${exampleState.userMessage}
                 <br>
-                <strong>Message:</strong> ${data.completion}
+                <strong>Response:</strong> ${data.completion}
+                <br>
+                <strong>Action:</strong> ${data.action}
             </div>
         `
 

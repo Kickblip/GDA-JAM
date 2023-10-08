@@ -24,7 +24,7 @@ const exampleState = {
 }
 
 app.post("/chat", async (req, res) => {
-    const model = new OpenAI({ temperature: 0, modelName: "gpt-3.5-turbo" })
+    const model = new OpenAI({ temperature: 0.8, modelName: "gpt-3.5-turbo" })
 
     const targetCharacter = req.body.npc
     const personality = characters[targetCharacter].personality
@@ -32,7 +32,7 @@ app.post("/chat", async (req, res) => {
     const template = `
         {personality}
         ========
-        Here are the previous messages between you and the player:
+        Here are the previous messages between you and the player (if empty, this is the first message):
         {chatHistory}
         ========
         These are the items you have:
@@ -47,8 +47,10 @@ app.post("/chat", async (req, res) => {
         Here's the user's message:
         {userMessage}
         ========
-        These are the actions you can take, you must choose one:
-        {availableActions}
+        You are able to take actions depending on the situation.
+        If you are still deciding what the trade should be, select "do_nothing".
+        If you and the player have offered items to trade and are bartering, select "propose_trade".
+        If you think you and the player have come to an agreement, select "end_conversation".
         ========
         ONLY RESPOND IN THIS FORMAT:
         #message="(your text response to the player)"#

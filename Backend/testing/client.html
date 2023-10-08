@@ -3,14 +3,19 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>API Client</title>
+        <title>API Client Testing</title>
     </head>
     <body>
-        <h1>Hello World</h1>
+        <h1>API Testing</h1>
+        <p>NPC Items: cloth rucksack, apple core, tunnel map</p>
+        <p>Player Items: silver coin, bottle cap, doll fabric</p>
 
-        <button id="requestButton">Request Data from Server</button>
-        <p id="message">Server response will appear here</p>
-        <p id="completion">Server response will appear here</p>
+        <label for="userMessage">Your Message:</label>
+        <input type="text" id="userMessage" />
+
+        <button id="requestButton">send</button>
+
+        <div id="chatHistory"></div>
 
         <script src="client.js"></script>
     </body>

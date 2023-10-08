@@ -1,12 +1,12 @@
 const button = document.getElementById("requestButton")
-const responseDisplay = document.getElementById("message")
-const completionDisplay = document.getElementById("completion")
+const userMessageInput = document.getElementById("userMessage")
+const chatHistoryContainer = document.getElementById("chatHistory")
 
 const rootURL = "http://localhost:3000"
 
 const exampleState = {
     npc: "thatch",
-    userMessage: "I'd like to trade for your rucksack",
+    userMessage: userMessageInput.value,
     chatHistory: [],
     npcItems: ["cloth_rucksack", "apple_core", "tunnel_map"],
     playerItems: ["silver_coin", "bottle_cap", "doll_fabric"],
@@ -15,6 +15,10 @@ const exampleState = {
 }
 
 button.addEventListener("click", async () => {
+    exampleState.userMessage = userMessageInput.value
+
+    userMessageInput.value = ""
+
     try {
         const res = await fetch(`${rootURL}/chat`, {
             method: "POST",
@@ -28,14 +32,22 @@ button.addEventListener("click", async () => {
 
         console.log(data)
 
-        responseDisplay.innerHTML = `
-          <div><strong>Action:</strong> ${data.action}</div>
+        exampleState.chatHistory.push({
+            userMessage: exampleState.userMessage,
+            npcMessage: data.completion,
+        })
 
+        const newMessage = document.createElement("div")
+        newMessage.innerHTML = `
+            <div>
+                <strong>Action:</strong> ${data.action}
+                <br>
+                <strong>Message:</strong> ${data.completion}
+            </div>
         `
-        completionDisplay.innerHTML = `
-        <div><strong>Message:</strong> ${data.completion}</div>
-        `
+
+        chatHistoryContainer.appendChild(newMessage)
     } catch (error) {
-        responseDisplay.textContent = "Error fetching data"
+        console.log(error)
     }
 })

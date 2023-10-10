@@ -58,7 +58,25 @@ app.post("/chat", async (req, res) => {
         
         `
 
-    const prompt = new PromptTemplate({
+    const tradeArrayTemplate = `
+        A player and and NPC are trading in a video game. You are given an array that represents the current trade and the most recent interaction between the player and the npc. It is your job to create an updated array based on how the interaction went. The trade array might not need to be changed and that is okay.
+        ========
+        Here is the previous trade array:
+        {currentTrade}
+        ========
+        Here is the previous interaction between the player and the npc:
+        {userMessage}
+        {npcMessage}
+        ========
+        You MUST preserve the format of the trade. The trade is formatted as follows:
+        You MUST preserve the format of the trade and you can ONLY respond in this format:
+
+        #userOffer=[<items user wants to trade>]#
+        #npcOffer=[<items npc wants to trade>]#
+
+        `
+
+    const QAprompt = new PromptTemplate({
         template,
         inputVariables: [
             "personality",
@@ -71,17 +89,22 @@ app.post("/chat", async (req, res) => {
         ],
     })
 
-    const chain = new LLMChain({ llm: model, prompt })
+    const QAchain = new LLMChain({ llm: model, QAprompt })
 
-    const result = await chain.call({
+    const sanitizedQuestion = req.body.userMessage.trim().replaceAll("\n", " ")
+
+    const result = await QAchain.call({
         personality: personality,
         chatHistory: req.body.chatHistory,
         npcItems: req.body.npcItems,
         playerItems: req.body.playerItems,
         currentTrade: req.body.currentTrade,
-        userMessage: req.body.userMessage,
+        userMessage: sanitizedQuestion,
         availableActions: req.body.availableActions,
     })
+
+    console.log(req.body.chatHistory)
+
     console.log(result)
 
     const messageMatch = result.text.match(/#message="([^"]+)"#/)
@@ -92,9 +115,33 @@ app.post("/chat", async (req, res) => {
         action: actionMatch ? actionMatch[1] : null,
     }
 
+    const tradePrompt = new PromptTemplate({
+        tradeArrayTemplate,
+        inputVariables: ["currentTrade", "userMessage", "npcMessage"],
+    })
+
+    const tradeChain = new LLMChain({ llm: model, tradePrompt })
+
+    const updatedTrade = await tradeChain.call({
+        currentTrade: req.body.currentTrade,
+        userMessage: sanitizedQuestion,
+        npcMessage: parsedResult.message,
+    })
+
+    console.log(updatedTrade)
+
+    const npcOfferMatch = updatedTrade.text.match(/#npcOffer=\[(.+)\]#/)
+    const userOfferMatch = updatedTrade.text.match(/#userOffer=\[(.+)\]#/)
+
+    const tradeMatch = {
+        userOffer: userOfferMatch ? userOfferMatch[1].split(", ") : [],
+        npcOffer: npcOfferMatch ? npcOfferMatch[1].split(", ") : [],
+    }
+
     res.json({
         completion: parsedResult.message,
         action: parsedResult.action,
+        updatedTrade: tradeMatch,
     })
 })
 

@@ -10,11 +10,12 @@ const exampleState = {
     chatHistory: [],
     npcItems: ["cloth_rucksack", "apple_core", "tunnel_map"],
     playerItems: ["silver_coin", "bottle_cap", "doll_fabric"],
-    currentTrade: [],
+    currentTrade: { userOffer: [], npcOffer: [] },
     availableActions: ["do_nothing", "propose_trade", "end_conversation"],
 }
 
 button.addEventListener("click", async () => {
+    console.log(exampleState.chatHistory)
     exampleState.userMessage = userMessageInput.value
 
     userMessageInput.value = ""
@@ -37,6 +38,8 @@ button.addEventListener("click", async () => {
             npcMessage: data.completion,
         })
 
+        exampleState.currentTrade = data.updatedTrade
+
         const newMessage = document.createElement("div")
         newMessage.innerHTML = `
             <div>
@@ -45,6 +48,8 @@ button.addEventListener("click", async () => {
                 <strong>Response:</strong> ${data.completion}
                 <br>
                 <strong>Action:</strong> ${data.action}
+                <br>
+                <strong>New Trade Array:</strong> ${data.updatedTrade}
             </div>
         `
 

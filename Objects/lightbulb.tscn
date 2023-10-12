@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dx5r7frbvplub"]
+
+[ext_resource type="Texture2D" uid="uid://dv6lqpy553sjb" path="res://Sprites/lightbulb.png" id="1_hkg6a"]
+[ext_resource type="Texture2D" uid="uid://dkomc8vu4md6d" path="res://Sprites/light2.png" id="2_20it7"]
+
+[node name="lightbulb" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_hkg6a")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(5, 8)
+color = Color(0.929412, 0.917647, 0.615686, 1)
+blend_mode = 2
+texture = ExtResource("2_20it7")

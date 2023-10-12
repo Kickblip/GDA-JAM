@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://cf5xwk5aelcaj"]
+
+[ext_resource type="Texture2D" uid="uid://m26f8kqajdxe" path="res://Sprites/metal_can_fire.png" id="1_07oeu"]
+[ext_resource type="Texture2D" uid="uid://bhtcd4wqjp7mg" path="res://Sprites/particle_fire.png" id="2_rn25y"]
+[ext_resource type="Texture2D" uid="uid://dkomc8vu4md6d" path="res://Sprites/light2.png" id="3_5vcs0"]
+
+[sub_resource type="Gradient" id="Gradient_656id"]
+offsets = PackedFloat32Array(0.013245, 0.152318, 0.576159, 1)
+colors = PackedColorArray(1, 0, 0, 0, 1, 1, 0, 0.862745, 0.862745, 0.313726, 0, 0.670588, 1, 0, 0, 0)
+
+[node name="metal_can" type="Node2D"]
+z_index = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1, 0)
+texture = ExtResource("1_07oeu")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+z_index = -1
+texture_filter = 1
+position = Vector2(0, -3)
+amount = 16
+texture = ExtResource("2_rn25y")
+emission_shape = 3
+emission_rect_extents = Vector2(4, 1)
+gravity = Vector2(0, -10)
+angle_max = 360.0
+color_ramp = SubResource("Gradient_656id")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -3)
+color = Color(1, 0.564706, 0.396078, 1)
+blend_mode = 2
+texture = ExtResource("3_5vcs0")

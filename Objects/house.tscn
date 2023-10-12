@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbro4e1t30oja"]
+
+[ext_resource type="Texture2D" uid="uid://v5u5sx8f5beg" path="res://Sprites/house_box.png" id="1_rk1ti"]
+
+[node name="house" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_rk1ti")

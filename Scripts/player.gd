@@ -9,6 +9,8 @@ var dir = 1
 var lastHVel = 0
 var checkLanding = false
 var update = false
+var canMove = true;
+var hVel;
 
 @onready var sprite = $Sprite
 
@@ -16,7 +18,8 @@ func _ready():
 	sprite.play("idle_right")
 
 func _process(delta): 
-	var hVel = 0-int(Input.is_action_pressed("left"))+int(Input.is_action_pressed("right"))
+	if canMove:
+		hVel = 0-int(Input.is_action_pressed("left"))+int(Input.is_action_pressed("right"))
 	
 	#would like to convert a lot of these if statements into something better, but OK for now
 	if (hVel != lastHVel) || update: 
@@ -46,7 +49,7 @@ func _process(delta):
 		lastHVel = hVel
 	
 	if hVel != 0:
-		if abs(velocity.x) < maxSpeed:
+		if abs(velocity.x) < maxSpeed && canMove:
 			velocity.x += (hVel * accel)*delta
 	else:	
 		velocity.x = lerp(velocity.x,0.0,decel*delta)

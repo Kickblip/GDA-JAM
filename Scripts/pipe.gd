@@ -1,18 +1,26 @@
 extends Node2D
 #pipe object basically acts as gateway for player to access world map
 
-var interactDistance = 50;
+var interactDistance = 60;
 var player;
+var levelSelect;
 
 func _ready():
 	player = get_node("/root/level_home/player")
+	levelSelect = get_node("/root/level_home/CanvasLayer/ui_level_select")
 
 func _process(delta):
 	if position.distance_to(player.position) < interactDistance:
 		material.set_shader_parameter("line_thickness",1)
 		if Input.is_action_just_pressed("interact"):
-			#open world menu here
-			#could either do this as an overlay in the current scene so we don't have any latency loading a new map scene
-			var worldMenu = true
+			#open level menu
+			player.canMove = false
+			levelSelect.visible = true
+		if levelSelect.visible:
+			if Input.is_action_just_pressed("escape"):
+				#close level menu
+				levelSelect.visible = false
+				player.canMove = true
+			
 	else:
 		material.set_shader_parameter("line_thickness",0)

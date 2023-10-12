@@ -1,7 +1,7 @@
 extends Camera2D
 
 var target = null
-var lerpFactor = 0.02
+var lerpFactor = 4.8;
 
 func _ready():
 	target = get_node("/root/level_home/player")
@@ -9,4 +9,4 @@ func _ready():
 
 func _process(delta):
 	if target != null:
-		position = position.lerp(target.position,lerpFactor)
+		position = position.lerp(target.position,lerpFactor*delta)

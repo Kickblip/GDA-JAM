@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://sgnhpcdhgkfh"]
+
+[node name="ui_level_select" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 548.0
+offset_top = 36.0
+offset_right = 1405.0
+offset_bottom = 171.0
+theme_override_font_sizes/font_size = 96
+text = " Level Select Menu"
+horizontal_alignment = 1

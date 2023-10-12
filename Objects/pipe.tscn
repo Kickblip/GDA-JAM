@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://ct5lnys0b1cr"]
+
+[ext_resource type="Texture2D" uid="uid://c16gwm8kunl6r" path="res://Sprites/sewer_pipe.png" id="1_d8px6"]
+[ext_resource type="Shader" path="res://Shaders/outline.gdshader" id="1_n2afp"]
+[ext_resource type="Texture2D" uid="uid://dfpvn85e7pfy1" path="res://Sprites/sewer_pipe_shadow.png" id="2_d7oq5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ua5lx"]
+shader = ExtResource("1_n2afp")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 1.0
+
+[sub_resource type="Gradient" id="Gradient_3r8ph"]
+colors = PackedColorArray(0.141176, 0.321569, 0.45098, 1, 1, 1, 1, 0)
+
+[node name="pipe" type="Node2D"]
+z_index = 1
+material = SubResource("ShaderMaterial_ua5lx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+use_parent_material = true
+texture = ExtResource("1_d8px6")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(-4, 15)
+amount = 1
+lifetime = 0.5
+speed_scale = 0.5
+gravity = Vector2(0, 400)
+scale_amount_min = 2.0
+scale_amount_max = 2.0
+color_ramp = SubResource("Gradient_3r8ph")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.454902)
+z_index = -1
+texture_filter = 1
+position = Vector2(0, 7)
+texture = ExtResource("2_d7oq5")

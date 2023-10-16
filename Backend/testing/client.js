@@ -49,7 +49,7 @@ button.addEventListener("click", async () => {
                 <br>
                 <strong>Action:</strong> ${data.action}
                 <br>
-                <strong>New Trade Array:</strong> ${data.updatedTrade}
+                <strong>New Trade Array:</strong> userOffer:(${data.updatedTrade.userOffer}) npcOffer:(${data.updatedTrade.npcOffer})
             </div>
         `
 

@@ -68,16 +68,17 @@ app.post("/chat", async (req, res) => {
         {userMessage}
         {npcMessage}
         ========
-        You MUST preserve the format of the trade. The trade is formatted as follows:
+        You MUST preserve the format of the trade. The trade is formatted as follows.
+        If the user or npc is offering nothing, fill their array with the string "empty".
         You MUST preserve the format of the trade and you can ONLY respond in this format:
 
-        #userOffer=[<items user wants to trade>]#
-        #npcOffer=[<items npc wants to trade>]#
+        #userOffer=[(items user wants to trade)]#
+        #npcOffer=[(items npc wants to trade)]#
 
         `
 
     const QAprompt = new PromptTemplate({
-        template,
+        template: template,
         inputVariables: [
             "personality",
             "chatHistory",
@@ -89,7 +90,7 @@ app.post("/chat", async (req, res) => {
         ],
     })
 
-    const QAchain = new LLMChain({ llm: model, QAprompt })
+    const QAchain = new LLMChain({ llm: model, prompt: QAprompt })
 
     const sanitizedQuestion = req.body.userMessage.trim().replaceAll("\n", " ")
 
@@ -116,11 +117,11 @@ app.post("/chat", async (req, res) => {
     }
 
     const tradePrompt = new PromptTemplate({
-        tradeArrayTemplate,
+        template: tradeArrayTemplate,
         inputVariables: ["currentTrade", "userMessage", "npcMessage"],
     })
 
-    const tradeChain = new LLMChain({ llm: model, tradePrompt })
+    const tradeChain = new LLMChain({ llm: model, prompt: tradePrompt })
 
     const updatedTrade = await tradeChain.call({
         currentTrade: req.body.currentTrade,
@@ -137,6 +138,8 @@ app.post("/chat", async (req, res) => {
         userOffer: userOfferMatch ? userOfferMatch[1].split(", ") : [],
         npcOffer: npcOfferMatch ? npcOfferMatch[1].split(", ") : [],
     }
+
+    console.log(tradeMatch)
 
     res.json({
         completion: parsedResult.message,

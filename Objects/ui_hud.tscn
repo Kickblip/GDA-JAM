@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://dg8mlgymg55mv"]
+
+[node name="ui_hud" type="Control"]
+layout_mode = 3
+anchors_preset = 0

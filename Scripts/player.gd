@@ -1,10 +1,19 @@
 extends CharacterBody2D
 
+#movement variables
 var accel = 480 #horizontal acceleration
 var decel = 12 #horizontal deceleration
 var maxSpeed = 150 #maximum horizontal speed
 var gravity = 480 #rate at which player falls
 var terminalVelocity = 500 #maximum fall speed
+var terminalVelocityChange = terminalVelocity #will change if player is on wall
+
+#player attributes
+var hp = 100
+var damage = 10 #damage done to enemies each hit
+var attackSpeed = 1 #seconds in between each attack
+var currentWeapon = null
+
 var dir = 1
 var lastHVel = 0
 var checkLanding = false
@@ -12,7 +21,19 @@ var update = false
 var canMove = true;
 var hVel;
 
+var walljump = false
+var onWall = false
+var wallDirection = 0
+
 @onready var sprite = $Sprite
+
+@onready var rightray = $Rright
+@onready var leftray = $Rleft
+
+func _update_weapon(weapon): #ran in instantiation and equpping a new weapon
+	damage = weapon.damage
+	attackSpeed = weapon.attackSpeed
+	currentWeapon = weapon
 
 func _ready():
 	sprite.play("idle_right")
@@ -49,16 +70,54 @@ func _process(delta):
 		lastHVel = hVel
 	
 	if hVel != 0:
-		if abs(velocity.x) < maxSpeed && canMove:
-			velocity.x += (hVel * accel)*delta
-	else:	
-		velocity.x = lerp(velocity.x,0.0,decel*delta)
-		
-	if velocity.y < terminalVelocity:
+		if canMove:
+			if (velocity.x < maxSpeed && hVel == 1) || (velocity.x > -maxSpeed && hVel == -1):
+				velocity.x += (hVel * accel)*delta
+	else: #not holding any keys
+		if is_on_floor():
+			velocity.x = lerp(velocity.x,0.0,decel*delta)
+		else:
+			velocity.x = lerp(velocity.x,0.0,(decel/5)*delta)
+	
+	#check direction of colliding wall
+	if !is_on_floor() && velocity.y > -100:
+		if rightray.is_colliding():
+			if !onWall:
+				onWall = true
+				velocity.y = 0
+				wallDirection = 1
+		elif leftray.is_colliding():
+			if !onWall:
+				onWall = true
+				velocity.y = 0
+				wallDirection = -1
+		else:
+			onWall = false
+	else:
+		onWall = false
+
+	if onWall:
+		terminalVelocityChange = 50
+	else:
+		terminalVelocityChange = terminalVelocity
+
+	if velocity.y < terminalVelocityChange:
 		velocity.y += gravity*delta
+	if Input.is_action_just_pressed("jump"):
+		if is_on_floor():
+			velocity.y += -200
+		elif onWall:
+			if wallDirection == 1:
+				dir = -1
+				update = true
+				velocity.x += -200
+			else:
+				dir = 1
+				update = true
+				velocity.x += 200
+			velocity.y -= 200
 		
-	if Input.is_action_just_pressed("jump") && is_on_floor():
-		velocity.y = -200
+	print(hVel)
 		
 	if !is_on_floor():
 		if !checkLanding: #happens on jump
@@ -68,7 +127,7 @@ func _process(delta):
 		if checkLanding: #happens on land
 			checkLanding = false
 			update = true
-		
+	
 	move_and_slide()
 
 func _on_sprite_animation_finished():

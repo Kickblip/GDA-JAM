@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-#movement variables
+#-----movement variables
 var accel = 480 #horizontal acceleration
 var decel = 12 #horizontal deceleration
 var maxSpeed = 150 #maximum horizontal speed
@@ -8,22 +8,23 @@ var gravity = 480 #rate at which player falls
 var terminalVelocity = 500 #maximum fall speed
 var terminalVelocityChange = terminalVelocity #will change if player is on wall
 
-#player attributes
+#-----player attributes
 var hp = 100
 var damage = 10 #damage done to enemies each hit
 var attackSpeed = 1 #seconds in between each attack
 var currentWeapon = null
 
-var dir = 1
-var lastHVel = 0
-var checkLanding = false
-var update = false
-var canMove = true;
-var hVel;
+#-----other variables
+var dir = 1 #saves the last direction the player moved in
+var checkLanding = false #is set to true when in air, and set back to false when landed
+var update = false #setting to true will update direction and animations regardless of velocity for that frame
+var canMove = true; #whether player can move or not
 
-var walljump = false
-var onWall = false
-var wallDirection = 0
+var hVel; #-1 for moving left, 0 for none, and 1 for moving right
+var lastHVel = 0 #the hVel from the previous frame
+
+var onWall = false #whether the player is wall jumping or not
+var wallDirection = 0 #current touching wall (-1 for left, 0 for none, 1 for right)
 
 @onready var sprite = $Sprite
 
@@ -109,28 +110,25 @@ func _process(delta):
 		elif onWall:
 			if wallDirection == 1:
 				dir = -1
-				update = true
 				velocity.x += -200
 			else:
 				dir = 1
-				update = true
 				velocity.x += 200
+			update = true
 			velocity.y -= 200
-		
-	print(hVel)
 		
 	if !is_on_floor():
 		if !checkLanding: #happens on jump
 			update = true
 			checkLanding = true
-	else: #player has landed
-		if checkLanding: #happens on land
+	else: 
+		if checkLanding: #player has landed (can play sounds here)
 			checkLanding = false
 			update = true
 	
 	move_and_slide()
 
-func _on_sprite_animation_finished():
+func _on_sprite_animation_finished(): #go from transition animation to regular looped animation
 	if sprite.animation == "transition_toIdle_right":
 		sprite.play("idle_right")
 	elif sprite.animation == "transition_toIdle_left":

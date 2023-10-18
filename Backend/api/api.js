@@ -59,10 +59,16 @@ app.post("/chat", async (req, res) => {
         `
 
     const tradeArrayTemplate = `
-        A player and and NPC are trading in a video game. You are given an array that represents the current trade and the most recent interaction between the player and the npc. It is your job to create an updated array based on how the interaction went. The trade array might not need to be changed and that is okay.
+        A player and and NPC are trading in a video game. You are given an array that represents the current trade and the most recent interaction between the player and the npc. It is your job to create an updated array based on how the interaction went. The trade array might not need to be changed and that is okay.  You are also given a list of the npc's items and players items to help make your selections.
         ========
         Here is the previous trade array:
         {currentTrade}
+        ========
+        Here are the npc's items:
+        {npcItems}
+        ========
+        Here are the player's items:
+        {playerItems}
         ========
         Here is the previous interaction between the player and the npc:
         {userMessage}
@@ -118,7 +124,7 @@ app.post("/chat", async (req, res) => {
 
     const tradePrompt = new PromptTemplate({
         template: tradeArrayTemplate,
-        inputVariables: ["currentTrade", "userMessage", "npcMessage"],
+        inputVariables: ["currentTrade", "userMessage", "npcMessage", "npcItems", "playerItems"],
     })
 
     const tradeChain = new LLMChain({ llm: model, prompt: tradePrompt })
@@ -127,12 +133,14 @@ app.post("/chat", async (req, res) => {
         currentTrade: req.body.currentTrade,
         userMessage: sanitizedQuestion,
         npcMessage: parsedResult.message,
+        npcItems: req.body.npcItems,
+        playerItems: req.body.playerItems,
     })
 
     console.log(updatedTrade)
 
-    const npcOfferMatch = updatedTrade.text.match(/#npcOffer=\[(.+)\]#/)
-    const userOfferMatch = updatedTrade.text.match(/#userOffer=\[(.+)\]#/)
+    const npcOfferMatch = updatedTrade.text.match(/#npcOffer=(.+?)#/)
+    const userOfferMatch = updatedTrade.text.match(/#userOffer=(.+?)#/)
 
     const tradeMatch = {
         userOffer: userOfferMatch ? userOfferMatch[1].split(", ") : [],

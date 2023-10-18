@@ -23,6 +23,8 @@ var canMove = true; #whether player can move or not
 var hVel; #-1 for moving left, 0 for none, and 1 for moving right
 var lastHVel = 0 #the hVel from the previous frame
 
+var vVel = 0
+
 var onWall = false #whether the player is wall jumping or not
 var wallDirection = 0 #current touching wall (-1 for left, 0 for none, 1 for right)
 
@@ -42,6 +44,8 @@ func _ready():
 func _process(delta): 
 	if canMove:
 		hVel = 0-int(Input.is_action_pressed("left"))+int(Input.is_action_pressed("right"))
+	else:
+		hVel = 0
 	
 	#would like to convert a lot of these if statements into something better, but OK for now
 	if (hVel != lastHVel) || update: 
@@ -53,22 +57,39 @@ func _process(delta):
 		if is_on_floor():
 			if hVel == -1: #moving left
 				sprite.play("transition_toMove_left")
-				#sprite.speed_scale = clamp(abs(velocity.x)/maxSpeed,0.5,1)
 			elif hVel == 1: #moving right
-				#sprite.speed_scale = clamp(abs(velocity.x)/maxSpeed,0.5,1)
 				sprite.play("transition_toMove_right")
 			else:
-				#sprite.speed_scale = 1
 				if dir == -1:
 					sprite.play("transition_toIdle_left")
 				else:
 					sprite.play("transition_toIdle_right")
-		else:
+		elif !onWall:
 			if dir == -1:
-				sprite.play("air_left")
+				if velocity.y < 0:
+					sprite.play("air_up_left")
+				else:
+					sprite.play("air_down_left")
 			else:
-				sprite.play("air_right")
+				if velocity.y < 0:
+					sprite.play("air_up_right")
+				else:
+					sprite.play("air_down_right")
 		lastHVel = hVel
+	
+	#check transition between going up and down
+	if velocity.y < 0:
+		if vVel != -1:
+			vVel = -1
+			update = true
+	elif velocity.y == 0:
+		if vVel != 0:
+			vVel = 0
+			update = true
+	else:
+		if vVel != 1:
+			vVel = 1
+			update = true
 	
 	if hVel != 0:
 		if canMove:
@@ -85,11 +106,13 @@ func _process(delta):
 		if rightray.is_colliding():
 			if !onWall:
 				onWall = true
+				sprite.play("wall_right")
 				velocity.y = 0
 				wallDirection = 1
 		elif leftray.is_colliding():
 			if !onWall:
 				onWall = true
+				sprite.play("wall_left")
 				velocity.y = 0
 				wallDirection = -1
 		else:
@@ -114,6 +137,7 @@ func _process(delta):
 			else:
 				dir = 1
 				velocity.x += 200
+			onWall = false
 			update = true
 			velocity.y -= 200
 		

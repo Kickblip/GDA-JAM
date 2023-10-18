@@ -4,6 +4,10 @@ extends Node
 #for example: player inventory data, NPC reputation etc.
 
 
+func sin_range(mi, ma, t):
+	var halfRange = (ma - mi) / 2;
+	return mi + halfRange + sin(t) * halfRange;
+
 
 #inventory will be broken down into three dictionaries as seen below
 #make sure an object is defined in all three arrays to establish a new item

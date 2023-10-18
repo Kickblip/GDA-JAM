@@ -43,7 +43,6 @@ func _ready():
 	sprite.play("idle_right")
 
 func _process(delta): 
-	
 	#if Input.is_action_just_pressed("escape"):
 	#	hp -= 10
 		
@@ -123,9 +122,13 @@ func _process(delta):
 				velocity.y = 0
 				wallDirection = -1
 		else:
-			onWall = false
+			if onWall:
+				onWall = false
+				update = true
 	else:
-		onWall = false
+		if onWall:
+			onWall = false
+			update = true
 
 	if onWall:
 		terminalVelocityChange = 50

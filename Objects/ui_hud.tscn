@@ -1,5 +1,30 @@
-[gd_scene format=3 uid="uid://dg8mlgymg55mv"]
+[gd_scene load_steps=4 format=3 uid="uid://dg8mlgymg55mv"]
+
+[ext_resource type="Texture2D" uid="uid://yff2ewmyf3to" path="res://Sprites/health_bracket.png" id="1_mwd0r"]
+[ext_resource type="Texture2D" uid="uid://d7r6ixrbghpd" path="res://Sprites/heart.png" id="2_i602i"]
+[ext_resource type="Script" path="res://Objects/Heart.gd" id="3_v4sff"]
 
 [node name="ui_hud" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+
+[node name="Bracket" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1800, 962)
+scale = Vector2(10, 10)
+texture = ExtResource("1_mwd0r")
+
+[node name="Heart" type="Sprite2D" parent="."]
+clip_children = 2
+texture_filter = 1
+position = Vector2(1805, 982)
+scale = Vector2(10, 10)
+texture = ExtResource("2_i602i")
+script = ExtResource("3_v4sff")
+
+[node name="Blackout" type="ColorRect" parent="Heart"]
+offset_left = -7.50002
+offset_top = -6.0
+offset_right = 7.49998
+offset_bottom = -6.0
+color = Color(0.121569, 0.176471, 0.211765, 1)

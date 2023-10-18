@@ -1,16 +1,26 @@
-[gd_scene load_steps=3 format=3 uid="uid://dx5r7frbvplub"]
+[gd_scene load_steps=4 format=3 uid="uid://dx5r7frbvplub"]
 
-[ext_resource type="Texture2D" uid="uid://dv6lqpy553sjb" path="res://Sprites/lightbulb.png" id="1_hkg6a"]
+[ext_resource type="Texture2D" uid="uid://brka7f4r6rsv2" path="res://Sprites/flashlight.png" id="1_irku3"]
 [ext_resource type="Texture2D" uid="uid://dkomc8vu4md6d" path="res://Sprites/light2.png" id="2_20it7"]
+[ext_resource type="Texture2D" uid="uid://cdgkxunnpyk3e" path="res://Sprites/spotlight.png" id="2_1543k"]
 
 [node name="lightbulb" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("1_hkg6a")
+texture = ExtResource("1_irku3")
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(5, 8)
-color = Color(0.929412, 0.917647, 0.615686, 1)
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+position = Vector2(3.8147e-06, 11)
+scale = Vector2(1, 1)
+color = Color(0.929412, 0.92549, 0.807843, 1)
 blend_mode = 2
 texture = ExtResource("2_20it7")
+texture_scale = 0.5
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(122, -11)
+rotation = -1.74533
+color = Color(0.929412, 0.92549, 0.807843, 1)
+blend_mode = 2
+texture = ExtResource("2_1543k")

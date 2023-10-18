@@ -9,7 +9,8 @@ var terminalVelocity = 500 #maximum fall speed
 var terminalVelocityChange = terminalVelocity #will change if player is on wall
 
 #-----player attributes
-var hp = 100
+var hpMax = 100.0
+var hp = hpMax
 var damage = 10 #damage done to enemies each hit
 var attackSpeed = 1 #seconds in between each attack
 var currentWeapon = null
@@ -42,6 +43,12 @@ func _ready():
 	sprite.play("idle_right")
 
 func _process(delta): 
+	
+	#if Input.is_action_just_pressed("escape"):
+	#	hp -= 10
+		
+	print(hp)
+	
 	if canMove:
 		hVel = 0-int(Input.is_action_pressed("left"))+int(Input.is_action_pressed("right"))
 	else:

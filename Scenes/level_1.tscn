@@ -1,16 +1,29 @@
-[gd_scene load_steps=6 format=3 uid="uid://da236sjk3i0d7"]
+[gd_scene load_steps=9 format=3 uid="uid://da236sjk3i0d7"]
 
 [ext_resource type="Script" path="res://Scripts/camera.gd" id="1_bra2u"]
 [ext_resource type="PackedScene" uid="uid://dwpd2db14eq0y" path="res://Objects/player.tscn" id="2_oxfjw"]
 [ext_resource type="PackedScene" uid="uid://sgnhpcdhgkfh" path="res://Objects/ui_level_select.tscn" id="3_y6ym0"]
 [ext_resource type="PackedScene" uid="uid://d33mivdhnrmys" path="res://Objects/ui_inventory.tscn" id="4_cq2aw"]
 [ext_resource type="PackedScene" uid="uid://dg8mlgymg55mv" path="res://Objects/ui_hud.tscn" id="5_d23pt"]
+[ext_resource type="Texture2D" uid="uid://bphyin01ogel4" path="res://Sprites/city_background.png" id="6_2hmqn"]
+[ext_resource type="Script" path="res://Scenes/parallax.gd" id="7_0doch"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6osho"]
+size = Vector2(1969, 20)
 
 [node name="level_1" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)
 script = ExtResource("1_bra2u")
+
+[node name="ColorRect" type="ColorRect" parent="Camera2D"]
+offset_left = -271.0
+offset_top = -158.0
+offset_right = -171.0
+offset_bottom = -58.0
+scale = Vector2(5.96175, 4.66005)
+color = Color(0.368627, 0.494118, 0.545098, 1)
 
 [node name="player" parent="." instance=ExtResource("2_oxfjw")]
 z_index = 100
@@ -27,3 +40,20 @@ visible = false
 
 [node name="Darkness" type="CanvasModulate" parent="."]
 color = Color(0.188235, 0.188235, 0.188235, 1)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+blend_mode = 2
+height = 1.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(357, 290)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(241.5, 0)
+shape = SubResource("RectangleShape2D_6osho")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.666667)
+position = Vector2(358, 24)
+texture = ExtResource("6_2hmqn")
+script = ExtResource("7_0doch")

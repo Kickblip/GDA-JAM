@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://7sbf4gja6vrb"]
+[gd_scene load_steps=26 format=3 uid="uid://7sbf4gja6vrb"]
 
 [ext_resource type="Texture2D" uid="uid://djy176mdb4a1v" path="res://Sprites/sewer_lower.png" id="1_h7wvq"]
 [ext_resource type="Texture2D" uid="uid://d0kxkw3ag27b5" path="res://Sprites/sewer_upper.png" id="2_huskn"]
@@ -138,7 +138,7 @@ noise = SubResource("FastNoiseLite_33d0u")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5k0qd"]
 shader = ExtResource("7_v2kty")
 shader_parameter/scale = Vector2(13.2695, 1.04)
-shader_parameter/y_zoom = 0.943874
+shader_parameter/y_zoom = 3.36359
 shader_parameter/water_color = Color(0.121569, 0.443137, 0.4, 0.443137)
 shader_parameter/distortion_scale = Vector2(0.02, 0.5)
 shader_parameter/intensity = 0.01
@@ -153,6 +153,9 @@ shader_parameter/noise = SubResource("NoiseTexture2D_x2hca")
 shader = ExtResource("11_gposw")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3io8d"]
+size = Vector2(62, 4)
 
 [node name="level_home" type="Node2D"]
 
@@ -212,5 +215,19 @@ visible = false
 [node name="ui_inventory" parent="CanvasLayer" instance=ExtResource("15_kw0wy")]
 
 [node name="ui_hud" parent="CanvasLayer" instance=ExtResource("16_tju2s")]
+
+[node name="OneWayCollision" type="StaticBody2D" parent="."]
+position = Vector2(442, 242)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OneWayCollision"]
+shape = SubResource("RectangleShape2D_3io8d")
+one_way_collision = true
+
+[node name="ColorRect" type="ColorRect" parent="OneWayCollision/CollisionShape2D"]
+offset_left = -31.0
+offset_top = -2.0
+offset_right = 9.0
+offset_bottom = 38.0
+scale = Vector2(1.5485, 0.116385)
 
 [connection signal="item_rect_changed" from="Water" to="Water" method="_on_item_rect_changed"]

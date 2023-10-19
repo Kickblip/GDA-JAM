@@ -23,3 +23,7 @@ func _process(delta):
 			background.size.x += 500*delta
 		if !open:
 			open = true
+
+
+func _on_button_pressed():
+	get_tree().change_scene_to_file("res://Scenes/level_1.tscn")

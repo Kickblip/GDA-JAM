@@ -45,8 +45,6 @@ func _ready():
 func _process(delta): 
 	#if Input.is_action_just_pressed("escape"):
 	#	hp -= 10
-		
-	print(hp)
 	
 	if canMove:
 		hVel = 0-int(Input.is_action_pressed("left"))+int(Input.is_action_pressed("right"))

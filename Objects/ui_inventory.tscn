@@ -1,9 +1,49 @@
-[gd_scene format=3 uid="uid://d33mivdhnrmys"]
+[gd_scene load_steps=4 format=3 uid="uid://d33mivdhnrmys"]
+
+[ext_resource type="Script" path="res://Objects/ui_inventory.gd" id="1_15w7r"]
+[ext_resource type="Texture2D" uid="uid://deualvwtvq2e8" path="res://Sprites/nineslice_stone_right.png" id="2_72c8q"]
+[ext_resource type="Theme" uid="uid://5gr038ghhdfr" path="res://Fonts/theme.tres" id="3_v3ftu"]
 
 [node name="ui_inventory" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -750.0
+offset_right = -750.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_15w7r")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+modulate = Color(0.392157, 0.392157, 0.431373, 0.862745)
+texture_filter = 1
+layout_mode = 0
+offset_right = 150.0
+offset_bottom = 216.0
+scale = Vector2(5, 5)
+texture = ExtResource("2_72c8q")
+region_rect = Rect2(20, 0, 76, 64)
+patch_margin_right = 45
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 157.0
+offset_top = 36.0
+offset_right = 559.0
+offset_bottom = 157.0
+theme = ExtResource("3_v3ftu")
+theme_override_font_sizes/font_size = 86
+text = "Inventory
+"
+horizontal_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 110.0
+offset_top = 137.0
+offset_right = 610.0
+offset_bottom = 140.0
+
+[node name="Items" type="Node2D" parent="."]

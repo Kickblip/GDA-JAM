@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://5gr038ghhdfr"]
+
+[ext_resource type="FontFile" uid="uid://c8qm8d01r26mn" path="res://Fonts/Pixellari.ttf" id="1_1hbdw"]
+
+[resource]
+default_font = ExtResource("1_1hbdw")

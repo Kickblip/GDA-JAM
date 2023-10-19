@@ -1,15 +1,40 @@
-[gd_scene format=3 uid="uid://sgnhpcdhgkfh"]
+[gd_scene load_steps=4 format=3 uid="uid://sgnhpcdhgkfh"]
+
+[ext_resource type="Texture2D" uid="uid://c64c2knmk3yx4" path="res://Sprites/nineslice_stone.png" id="1_322m5"]
+[ext_resource type="Script" path="res://Objects/ui_level_select.gd" id="1_lkjbp"]
+[ext_resource type="Theme" uid="uid://5gr038ghhdfr" path="res://Fonts/theme.tres" id="1_w1ps2"]
 
 [node name="ui_level_select" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+script = ExtResource("1_lkjbp")
 
 [node name="Label" type="Label" parent="."]
+z_index = 1
 layout_mode = 0
-offset_left = 548.0
-offset_top = 36.0
-offset_right = 1405.0
-offset_bottom = 171.0
+offset_left = 527.0
+offset_top = 158.0
+offset_right = 1384.0
+offset_bottom = 293.0
+theme = ExtResource("1_w1ps2")
 theme_override_font_sizes/font_size = 96
-text = " Level Select Menu"
+text = "Select Level"
 horizontal_alignment = 1
+
+[node name="Background" type="NinePatchRect" parent="."]
+modulate = Color(0.392157, 0.392157, 0.431373, 0.862745)
+texture_filter = 1
+layout_mode = 0
+offset_left = 800.0
+offset_top = 42.0
+offset_right = 1100.0
+offset_bottom = 242.0
+scale = Vector2(5, 5)
+pivot_offset = Vector2(150, 0)
+texture = ExtResource("1_322m5")
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2

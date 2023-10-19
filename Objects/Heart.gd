@@ -16,7 +16,6 @@ func _ready():
 	
 func _process(delta):
 	_return_player()
-	print(player.hp/player.hpMax)
 	healthFactor = 1-(player.hp/player.hpMax)
 	blackout.size.y = healthFactor*11
 	

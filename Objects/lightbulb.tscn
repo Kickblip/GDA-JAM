@@ -12,7 +12,6 @@ texture = ExtResource("1_irku3")
 
 [node name="PointLight2D2" type="PointLight2D" parent="."]
 position = Vector2(3.8147e-06, 11)
-scale = Vector2(1, 1)
 color = Color(0.929412, 0.92549, 0.807843, 1)
 blend_mode = 2
 texture = ExtResource("2_20it7")

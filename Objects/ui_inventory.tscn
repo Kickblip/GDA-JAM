@@ -41,6 +41,7 @@ text = "Inventory
 horizontal_alignment = 1
 
 [node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
 offset_left = 110.0
 offset_top = 137.0
 offset_right = 610.0

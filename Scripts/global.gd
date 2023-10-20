@@ -3,7 +3,6 @@ extends Node
 #this script will handle a lot of logic that needs to persist between levels
 #for example: player inventory data, NPC reputation etc.
 
-
 func sin_range(mi, ma, t):
 	var halfRange = (ma - mi) / 2;
 	return mi + halfRange + sin(t) * halfRange;
@@ -20,3 +19,10 @@ var inventory = [
 	["test",10,"res://Sprites/Items/testitem.png",11],
 	["test",10,"res://Sprites/Items/testitem.png",1]
 ]
+
+func _process(delta):
+	if Input.is_action_just_pressed("fullscreen"):
+		if DisplayServer.window_get_mode() != 3:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+		else:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)

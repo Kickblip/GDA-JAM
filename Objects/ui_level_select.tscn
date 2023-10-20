@@ -38,3 +38,15 @@ patch_margin_right = 32
 patch_margin_bottom = 32
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 648.0
+offset_top = 645.0
+offset_right = 1194.0
+offset_bottom = 800.0
+theme = ExtResource("1_w1ps2")
+theme_override_font_sizes/font_size = 146
+text = "LEVEL 1"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -336,8 +336,7 @@ position = Vector2(0, 9)
 shape = SubResource("RectangleShape2D_ne8tl")
 
 [node name="PlayerLight" type="PointLight2D" parent="."]
-position = Vector2(0, 9)
-energy = 0.5
+position = Vector2(-307, -140)
 blend_mode = 2
 texture = ExtResource("6_6axe2")
 texture_scale = 0.2

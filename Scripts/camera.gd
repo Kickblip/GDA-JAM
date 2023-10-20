@@ -4,7 +4,7 @@ var target = null
 var lerpFactor = 4.8;
 
 func _ready():
-	target = get_node("/root/level_home/player")
+	target = get_node("../player")
 	print("player found: " + str(target))
 	if target != null:
 		position = target.position

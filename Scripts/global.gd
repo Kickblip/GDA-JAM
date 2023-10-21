@@ -12,12 +12,12 @@ func sin_range(mi, ma, t):
 
 var inventory = [
 	#name  value           spritepath           count
-	["test",10,"res://Sprites/Items/testitem.png",10],
-	["test",10,"res://Sprites/Items/testitem.png",1],
-	["test",10,"res://Sprites/Items/testitem.png",15],
-	["test",10,"res://Sprites/Items/testitem.png",1],
-	["test",10,"res://Sprites/Items/testitem.png",11],
-	["test",10,"res://Sprites/Items/testitem.png",1]
+	["Test Item",5,"res://Sprites/Items/testitem.png",10],
+	["Test Item",10,"res://Sprites/Items/testitem.png",1],
+	["Test Item",1,"res://Sprites/Items/testitem.png",15],
+	["Test Item",3,"res://Sprites/Items/testitem.png",1],
+	["Test Item",10,"res://Sprites/Items/testitem.png",11],
+	["Test Item",9,"res://Sprites/Items/testitem.png",1]
 ]
 
 func _process(delta):

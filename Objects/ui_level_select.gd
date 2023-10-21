@@ -18,9 +18,9 @@ func _process(delta):
 			modulate.a = 0
 	else:
 		if modulate.a < 1:
-			modulate.a += 2*delta
+			modulate.a += 4*delta
 		if background.size.x < targetWidth:
-			background.size.x += 500*delta
+			background.size.x += 1000*delta
 		if !open:
 			open = true
 

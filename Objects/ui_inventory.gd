@@ -33,8 +33,8 @@ func _update_items():
 			items.add_child(node)
 			node.get_node("Sprite2D").texture = load(item[2])
 			node.position = startPos
-			node.scale = node.scale*3
 			node.get_node("Count").text = "x" + str(item[3])
+			node.get_node("Info").text = item[0] + "\n" + str(item[1]) + " Value"
 			rowCount += 1
 			startPos.x += 40*3
 			if rowCount == 5:

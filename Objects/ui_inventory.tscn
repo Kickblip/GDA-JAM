@@ -13,6 +13,7 @@ offset_left = -750.0
 offset_right = -750.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_15w7r")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
@@ -46,5 +47,8 @@ offset_left = 110.0
 offset_top = 137.0
 offset_right = 610.0
 offset_bottom = 140.0
+mouse_filter = 2
 
-[node name="Items" type="Node2D" parent="."]
+[node name="Items" type="Control" parent="."]
+anchors_preset = 0
+mouse_filter = 2

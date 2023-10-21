@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://ct5lnys0b1cr"]
+[gd_scene load_steps=7 format=3 uid="uid://ct5lnys0b1cr"]
 
 [ext_resource type="Texture2D" uid="uid://c16gwm8kunl6r" path="res://Sprites/sewer_pipe.png" id="1_d8px6"]
 [ext_resource type="Shader" path="res://Shaders/outline.gdshader" id="1_n2afp"]
+[ext_resource type="Script" path="res://Scripts/pipe.gd" id="2_7sq44"]
 [ext_resource type="Texture2D" uid="uid://dfpvn85e7pfy1" path="res://Sprites/sewer_pipe_shadow.png" id="2_d7oq5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ua5lx"]
@@ -15,6 +16,7 @@ colors = PackedColorArray(0.141176, 0.321569, 0.45098, 1, 1, 1, 1, 0)
 [node name="pipe" type="Node2D"]
 z_index = 1
 material = SubResource("ShaderMaterial_ua5lx")
+script = ExtResource("2_7sq44")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1

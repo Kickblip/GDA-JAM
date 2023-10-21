@@ -6,8 +6,8 @@ var player;
 var levelSelect;
 
 func _ready():
-	player = get_node("/root/level_home/player")
-	levelSelect = get_node("/root/level_home/CanvasLayer/ui_level_select")
+	player = get_node("../player")
+	levelSelect = get_node("../CanvasLayer/ui_level_select")
 
 func _process(delta):
 	if position.distance_to(player.position) < interactDistance:

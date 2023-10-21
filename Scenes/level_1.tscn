@@ -124,11 +124,6 @@ texture_region_size = Vector2i(24, 24)
 3:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:3/0/physics_layer_0/angular_velocity = 0.0
 3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)
-4:3/0 = 0
-4:3/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_4yqx7")
-4:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-4:3/0/physics_layer_0/angular_velocity = 0.0
-4:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)
 5:3/0 = 0
 5:3/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_4yqx7")
 5:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -165,6 +160,36 @@ texture_region_size = Vector2i(24, 24)
 3:0/0 = 0
 3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:0/0/physics_layer_0/angular_velocity = 0.0
+2:4/0 = 0
+2:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:4/0/physics_layer_0/angular_velocity = 0.0
+3:4/0 = 0
+3:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:4/0/physics_layer_0/angular_velocity = 0.0
+4:4/0 = 0
+4:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:4/0/physics_layer_0/angular_velocity = 0.0
+5:4/0 = 0
+5:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+5:4/0/physics_layer_0/angular_velocity = 0.0
+2:5/0 = 0
+2:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:5/0/physics_layer_0/angular_velocity = 0.0
+2:2/0 = 0
+2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:2/0/physics_layer_0/angular_velocity = 0.0
+4:3/0 = 0
+4:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:3/0/physics_layer_0/angular_velocity = 0.0
+5:2/0 = 0
+5:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+5:2/0/physics_layer_0/angular_velocity = 0.0
+4:2/0 = 0
+4:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:2/0/physics_layer_0/angular_velocity = 0.0
+3:2/0 = 0
+3:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:2/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_08amv"]
 tile_size = Vector2i(24, 24)
@@ -179,13 +204,13 @@ zoom = Vector2(4, 4)
 script = ExtResource("1_bra2u")
 
 [node name="ColorRect" type="ColorRect" parent="Camera2D"]
-z_index = -5
+z_index = -100
 offset_left = -271.0
 offset_top = -158.0
 offset_right = -171.0
 offset_bottom = -58.0
 scale = Vector2(5.96175, 4.66005)
-color = Color(0.478431, 0.435294, 0.368627, 1)
+color = Color(0.368627, 0.462745, 0.458824, 1)
 
 [node name="player" parent="." instance=ExtResource("2_oxfjw")]
 z_index = 100
@@ -210,30 +235,6 @@ blend_mode = 2
 shadow_enabled = true
 shadow_filter = 2
 
-[node name="City1" type="TextureRect" parent="."]
-visible = false
-offset_left = -522.0
-offset_top = -221.0
-offset_right = 1478.0
-offset_bottom = 291.0
-pivot_offset = Vector2(1000, 0)
-texture = ExtResource("6_pwd3d")
-stretch_mode = 1
-script = ExtResource("7_0doch")
-
-[node name="City2" type="TextureRect" parent="."]
-modulate = Color(1, 1, 1, 0.470588)
-z_index = -1
-offset_left = -522.0
-offset_top = -221.0
-offset_right = 1478.0
-offset_bottom = 291.0
-pivot_offset = Vector2(1000, 0)
-texture = ExtResource("8_6khn0")
-stretch_mode = 1
-script = ExtResource("7_0doch")
-moveFactor = 1.1
-
 [node name="TileLower" type="TileMap" parent="."]
 texture_filter = 1
 tile_set = SubResource("TileSet_08amv")
@@ -242,3 +243,30 @@ layer_0/tile_data = PackedInt32Array(786440, 0, 5, 786441, 0, 5, 786442, 0, 5, 7
 
 [node name="pipe" parent="." instance=ExtResource("9_lxu6d")]
 position = Vector2(282, 467)
+
+[node name="City1" type="Node2D" parent="."]
+z_index = -5
+position = Vector2(0, -223.1)
+script = ExtResource("7_0doch")
+
+[node name="image" type="TextureRect" parent="City1"]
+offset_left = -1024.0
+offset_top = -415.9
+offset_right = 1024.0
+offset_bottom = 608.1
+texture = ExtResource("6_pwd3d")
+stretch_mode = 1
+
+[node name="City2" type="Node2D" parent="."]
+script = ExtResource("7_0doch")
+moveFactor = 1.1
+
+[node name="image" type="TextureRect" parent="City2"]
+modulate = Color(1, 1, 1, 0.490196)
+z_index = -10
+offset_left = -1024.0
+offset_top = -512.0
+offset_right = 1024.0
+offset_bottom = 512.0
+texture = ExtResource("8_6khn0")
+stretch_mode = 1

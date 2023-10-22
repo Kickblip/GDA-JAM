@@ -15,9 +15,7 @@ const exampleState = {
 }
 
 button.addEventListener("click", async () => {
-    console.log(exampleState.chatHistory)
     exampleState.userMessage = userMessageInput.value
-
     userMessageInput.value = ""
 
     try {
@@ -29,27 +27,46 @@ button.addEventListener("click", async () => {
             body: JSON.stringify(exampleState),
         })
 
-        const data = await res.json()
+        let chunks = []
+        const reader = res.body.getReader()
+        let decoder = new TextDecoder()
 
-        console.log(data)
+        while (true) {
+            const { done, value } = await reader.read()
+
+            if (done) {
+                break
+            }
+
+            chunks.push(value)
+        }
+
+        let fullResponse = decoder.decode(Buffer.concat(chunks))
+        let splitResponse = fullResponse.split("#END_OF_CHAT_MESSAGE#")
+
+        const chatMessage = splitResponse[0]
+        const followUpData = JSON.parse(splitResponse[1])
 
         exampleState.chatHistory.push({
             userMessage: exampleState.userMessage,
-            npcMessage: data.completion,
+            npcMessage: chatMessage,
         })
 
-        exampleState.currentTrade = data.updatedTrade
+        exampleState.currentTrade = {
+            userOffer: followUpData.userOffer,
+            npcOffer: followUpData.npcOffer,
+        }
 
         const newMessage = document.createElement("div")
         newMessage.innerHTML = `
             <div>
                 <strong>Message: </strong> ${exampleState.userMessage}
                 <br>
-                <strong>Response:</strong> ${data.completion}
+                <strong>Response:</strong> ${chatMessage}
                 <br>
-                <strong>Action:</strong> ${data.action}
+                <strong>Action:</strong> ${followUpData.action}
                 <br>
-                <strong>New Trade Array:</strong> userOffer:(${data.updatedTrade.userOffer}) npcOffer:(${data.updatedTrade.npcOffer})
+                <strong>New Trade Array:</strong> userOffer:(${followUpData.userOffer}) npcOffer:(${followUpData.npcOffer})
             </div>
         `
 

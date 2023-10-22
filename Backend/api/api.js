@@ -13,18 +13,8 @@ const PORT = 3000
 
 app.use(cors()).use(express.json())
 
-const exampleState = {
-    npc: "thatch",
-    userMessage: "I'd like to trade for your rucksack",
-    chatHistory: [],
-    npcItems: ["cloth_rucksack", "apple_core", "tunnel_map"],
-    playerItems: ["silver_coin", "bottle_cap", "doll_fabric"],
-    currentTrade: [],
-    availableActions: ["do_nothing", "propose_trade", "end_conversation"],
-}
-
 app.post("/chat", async (req, res) => {
-    const model = new OpenAI({ temperature: 0.8, modelName: "gpt-3.5-turbo" })
+    const model = new OpenAI({ temperature: 0.8, modelName: "gpt-3.5-turbo", streaming: true })
 
     const targetCharacter = req.body.npc
     const personality = characters[targetCharacter].personality
@@ -46,19 +36,10 @@ app.post("/chat", async (req, res) => {
         ========
         Here's the user's message:
         {userMessage}
-        ========
-        You are able to take actions depending on the situation.
-        If you are still deciding what the trade should be, select "do_nothing".
-        If you and the player have offered items to trade and are bartering, select "propose_trade".
-        If you think you and the player have come to an agreement, select "end_conversation".
-        ========
-        ONLY RESPOND IN THIS FORMAT:
-        #message="(your text response to the player)"#
-        #action="(the action you want to take)"#
-        
+
         `
 
-    const tradeArrayTemplate = `
+    const followUpTemplate = `
         A player and and NPC are trading in a video game. You are given an array that represents the current trade and the most recent interaction between the player and the npc. It is your job to create an updated array based on how the interaction went. The trade array might not need to be changed and that is okay.  You are also given a list of the npc's items and players items to help make your selections.
         ========
         Here is the previous trade array:
@@ -70,89 +51,100 @@ app.post("/chat", async (req, res) => {
         Here are the player's items:
         {playerItems}
         ========
+        Here are the actions you are allowed to take:
+        {availableActions}
+        ========
         Here is the previous interaction between the player and the npc:
         {userMessage}
         {npcMessage}
         ========
+
         You MUST preserve the format of the trade. The trade is formatted as follows.
         If the user or npc is offering nothing, fill their array with the string "empty".
+        ========
+        You also need to pick an action based on the interaction.
+        If you are still deciding what the trade should be, select "do_nothing".
+        If you and the player have offered items to trade and are bartering, select "propose_trade".
+        If you think you and the player have come to an agreement, select "end_conversation".
+        ========
         You MUST preserve the format of the trade and you can ONLY respond in this format:
 
         #userOffer=[(items user wants to trade)]#
         #npcOffer=[(items npc wants to trade)]#
 
+        Once you have decided on the trade array, you will select your action in this format:
+        #action="(the action you want to take)"#
         `
 
     const QAprompt = new PromptTemplate({
         template: template,
-        inputVariables: [
-            "personality",
-            "chatHistory",
-            "npcItems",
-            "playerItems",
-            "currentTrade",
-            "userMessage",
-            "availableActions",
-        ],
+        inputVariables: ["personality", "chatHistory", "npcItems", "playerItems", "currentTrade", "userMessage"],
     })
 
     const QAchain = new LLMChain({ llm: model, prompt: QAprompt })
 
+    const followUpInsertion = new PromptTemplate({
+        template: followUpTemplate,
+        inputVariables: ["currentTrade", "userMessage", "npcMessage", "npcItems", "playerItems", "availableActions"],
+    })
+
+    const followUpChain = new LLMChain({ llm: model, prompt: followUpInsertion })
+
     const sanitizedQuestion = req.body.userMessage.trim().replaceAll("\n", " ")
 
-    const result = await QAchain.call({
+    const finalizeInteraction = async (message) => {
+        const followUp = await followUpChain.call({
+            currentTrade: req.body.currentTrade,
+            userMessage: sanitizedQuestion,
+            npcMessage: message,
+            npcItems: req.body.npcItems,
+            playerItems: req.body.playerItems,
+            availableActions: req.body.availableActions,
+        })
+
+        const npcOfferMatch = followUp.text.match(/#npcOffer=(.+?)#/)
+        const userOfferMatch = followUp.text.match(/#userOffer=(.+?)#/)
+        const actionMatch = followUp.text.match(/#action="([^"]+)"#/)
+
+        const followUpData = {
+            userOffer: userOfferMatch ? userOfferMatch[1].split(", ") : [],
+            npcOffer: npcOfferMatch ? npcOfferMatch[1].split(", ") : [],
+            action: actionMatch ? actionMatch[1] : null,
+        }
+
+        const followUpJSON = JSON.stringify({
+            userOffer: followUpData.userOffer,
+            npcOffer: followUpData.npcOffer,
+            action: followUpData.action,
+        })
+
+        res.write("[DONE]")
+        res.write(followUpJSON)
+        res.end() // End the response stream
+    }
+
+    let message = ""
+    const completion = await QAchain.call({
         personality: personality,
         chatHistory: req.body.chatHistory,
         npcItems: req.body.npcItems,
         playerItems: req.body.playerItems,
         currentTrade: req.body.currentTrade,
         userMessage: sanitizedQuestion,
-        availableActions: req.body.availableActions,
-    })
-
-    console.log(req.body.chatHistory)
-
-    console.log(result)
-
-    const messageMatch = result.text.match(/#message="([^"]+)"#/)
-    const actionMatch = result.text.match(/#action="([^"]+)"#/)
-
-    const parsedResult = {
-        message: messageMatch ? messageMatch[1] : null,
-        action: actionMatch ? actionMatch[1] : null,
-    }
-
-    const tradePrompt = new PromptTemplate({
-        template: tradeArrayTemplate,
-        inputVariables: ["currentTrade", "userMessage", "npcMessage", "npcItems", "playerItems"],
-    })
-
-    const tradeChain = new LLMChain({ llm: model, prompt: tradePrompt })
-
-    const updatedTrade = await tradeChain.call({
-        currentTrade: req.body.currentTrade,
-        userMessage: sanitizedQuestion,
-        npcMessage: parsedResult.message,
-        npcItems: req.body.npcItems,
-        playerItems: req.body.playerItems,
-    })
-
-    console.log(updatedTrade)
-
-    const npcOfferMatch = updatedTrade.text.match(/#npcOffer=(.+?)#/)
-    const userOfferMatch = updatedTrade.text.match(/#userOffer=(.+?)#/)
-
-    const tradeMatch = {
-        userOffer: userOfferMatch ? userOfferMatch[1].split(", ") : [],
-        npcOffer: npcOfferMatch ? npcOfferMatch[1].split(", ") : [],
-    }
-
-    console.log(tradeMatch)
-
-    res.json({
-        completion: parsedResult.message,
-        action: parsedResult.action,
-        updatedTrade: tradeMatch,
+        callbacks: [
+            {
+                handleLLMNewToken(token) {
+                    console.log(token)
+                    message += token
+                    res.write(token)
+                },
+            },
+            {
+                handleLLMEnd() {
+                    finalizeInteraction(message)
+                },
+            },
+        ],
     })
 })
 

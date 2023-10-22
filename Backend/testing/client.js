@@ -27,50 +27,45 @@ button.addEventListener("click", async () => {
             body: JSON.stringify(exampleState),
         })
 
-        let chunks = []
+        if (!res.ok) {
+            throw new Error(`API responded with ${res.status}`)
+        }
+
         const reader = res.body.getReader()
-        let decoder = new TextDecoder()
 
-        while (true) {
+        // Create a paragraph to hold the incoming data
+        const messageParagraph = document.createElement("p")
+        chatHistoryContainer.appendChild(messageParagraph)
+
+        // Read data from the stream
+        const readStream = async () => {
             const { done, value } = await reader.read()
-
             if (done) {
-                break
+                return
             }
 
-            chunks.push(value)
+            // Convert the Uint8Array to a string
+            let chunk = new TextDecoder().decode(value)
+
+            // Check for the [DONE] delimiter
+            if (chunk.includes("[DONE]")) {
+                const parts = chunk.split("[DONE]")
+                chunk = parts[0]
+
+                // Handle the token after [DONE]
+                const specialToken = parts[1]
+                const specialElement = document.createElement("div")
+                specialElement.textContent = specialToken
+                chatHistoryContainer.appendChild(specialElement)
+            }
+
+            messageParagraph.textContent += chunk
+
+            // Continue reading from the stream
+            readStream()
         }
 
-        let fullResponse = decoder.decode(Buffer.concat(chunks))
-        let splitResponse = fullResponse.split("#END_OF_CHAT_MESSAGE#")
-
-        const chatMessage = splitResponse[0]
-        const followUpData = JSON.parse(splitResponse[1])
-
-        exampleState.chatHistory.push({
-            userMessage: exampleState.userMessage,
-            npcMessage: chatMessage,
-        })
-
-        exampleState.currentTrade = {
-            userOffer: followUpData.userOffer,
-            npcOffer: followUpData.npcOffer,
-        }
-
-        const newMessage = document.createElement("div")
-        newMessage.innerHTML = `
-            <div>
-                <strong>Message: </strong> ${exampleState.userMessage}
-                <br>
-                <strong>Response:</strong> ${chatMessage}
-                <br>
-                <strong>Action:</strong> ${followUpData.action}
-                <br>
-                <strong>New Trade Array:</strong> userOffer:(${followUpData.userOffer}) npcOffer:(${followUpData.npcOffer})
-            </div>
-        `
-
-        chatHistoryContainer.appendChild(newMessage)
+        readStream()
     } catch (error) {
         console.log(error)
     }

@@ -119,7 +119,9 @@ app.post("/chat", async (req, res) => {
         })
 
         res.write("[DONE]")
+        console.log("[DONE]")
         res.write(followUpJSON)
+        console.log(followUpJSON)
         res.end() // End the response stream
     }
 

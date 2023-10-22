@@ -301,6 +301,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rp5b3"]
+size = Vector2(16, 20)
 
 [node name="bazooka_rat" type="CharacterBody2D"]
 script = ExtResource("1_882ci")

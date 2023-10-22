@@ -27,4 +27,4 @@ func _process(delta):
 	var collision_info = move_and_collide(Vector2(speed * direction, 0))
 	if collision_info:
 		queue_free()
-	
+

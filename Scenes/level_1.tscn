@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cfoyg6701upw8"]
+[gd_scene load_steps=24 format=3 uid="uid://da236sjk3i0d7"]
 
 [ext_resource type="Script" path="res://Scripts/camera.gd" id="1_bra2u"]
 [ext_resource type="PackedScene" uid="uid://dwpd2db14eq0y" path="res://Objects/player.tscn" id="2_oxfjw"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://1cs1v51ynm3" path="res://Sprites/city_background_2.png" id="8_6khn0"]
 [ext_resource type="Texture2D" uid="uid://djy176mdb4a1v" path="res://Sprites/sewer_lower.png" id="8_7f2kw"]
 [ext_resource type="PackedScene" uid="uid://ct5lnys0b1cr" path="res://Objects/pipe.tscn" id="9_lxu6d"]
+[ext_resource type="PackedScene" uid="uid://d1uer6a4vogbf" path="res://Objects/bazooka_rat.tscn" id="11_4d07k"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_dtwyj"]
 polygon = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)
@@ -270,3 +271,6 @@ offset_right = 1024.0
 offset_bottom = 512.0
 texture = ExtResource("8_6khn0")
 stretch_mode = 1
+
+[node name="bazooka_rat" parent="." instance=ExtResource("11_4d07k")]
+position = Vector2(266, 266)

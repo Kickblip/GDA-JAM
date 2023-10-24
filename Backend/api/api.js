@@ -16,6 +16,7 @@ app.use(cors()).use(express.json())
 
 app.post("/chat", async (req, res) => {
     const model = new OpenAI({ temperature: 0.8, modelName: "gpt-3.5-turbo", streaming: true })
+    const followUpModel = new OpenAI({ temperature: 0, modelName: "gpt-3.5-turbo", streaming: true })
 
     const targetCharacter = req.body.npc
     const personality = characters[targetCharacter].personality
@@ -29,10 +30,10 @@ app.post("/chat", async (req, res) => {
 
     const followUpInsertion = new PromptTemplate({
         template: followUpTemplate,
-        inputVariables: ["userOffer", "npcOffer", "userMessage", "npcMessage", "npcItems", "playerItems"],
+        inputVariables: ["currentTrade", "userOffer", "npcOffer", "userMessage", "npcMessage", "npcItems", "playerItems"],
     })
 
-    const followUpChain = new LLMChain({ llm: model, prompt: followUpInsertion })
+    const followUpChain = new LLMChain({ llm: followUpModel, prompt: followUpInsertion })
 
     const sanitizedQuestion = req.body.userMessage.trim().replaceAll("\n", " ")
 
@@ -43,11 +44,13 @@ app.post("/chat", async (req, res) => {
             npcMessage: message,
             npcItems: req.body.npcItems,
             playerItems: req.body.playerItems,
+            curretnTrade: req.body.currentTrade,
         })
 
         const followUp = await followUpChain.call({
             npcOffer: req.body.npcOffer,
             userOffer: req.body.userOffer,
+            currentTrade: req.body.currentTrade,
             userMessage: sanitizedQuestion,
             npcMessage: message,
             npcItems: req.body.npcItems,
@@ -55,7 +58,7 @@ app.post("/chat", async (req, res) => {
         })
 
         const npcOfferMatch = followUp.text.match(/#npcOffer=(.+?)#/)
-        const userOfferMatch = followUp.text.match(/#userOffer=(.+?)#/)
+        const userOfferMatch = followUp.text.match(/#playerOffer=(.+?)#/) // called 'player' in the template!
         const actionMatch = followUp.text.match(/#action="([^"]+)"#/)
 
         const followUpData = {

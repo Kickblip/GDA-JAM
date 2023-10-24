@@ -29,7 +29,7 @@ app.post("/chat", async (req, res) => {
 
     const followUpInsertion = new PromptTemplate({
         template: followUpTemplate,
-        inputVariables: ["userOffer", "npcOffer", "userMessage", "npcMessage", "npcItems", "playerItems", "availableActions"],
+        inputVariables: ["userOffer", "npcOffer", "userMessage", "npcMessage", "npcItems", "playerItems"],
     })
 
     const followUpChain = new LLMChain({ llm: model, prompt: followUpInsertion })
@@ -43,18 +43,15 @@ app.post("/chat", async (req, res) => {
             npcMessage: message,
             npcItems: req.body.npcItems,
             playerItems: req.body.playerItems,
-            availableActions: req.body.availableActions,
         })
 
         const followUp = await followUpChain.call({
             npcOffer: req.body.npcOffer,
             userOffer: req.body.userOffer,
-            // currentTrade: req.body.currentTrade,
             userMessage: sanitizedQuestion,
             npcMessage: message,
             npcItems: req.body.npcItems,
             playerItems: req.body.playerItems,
-            availableActions: req.body.availableActions,
         })
 
         const npcOfferMatch = followUp.text.match(/#npcOffer=(.+?)#/)

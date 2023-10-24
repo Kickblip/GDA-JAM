@@ -74,6 +74,17 @@ button.addEventListener("click", async () => {
                 })
 
                 console.log(exampleState)
+
+                console.log("Action: ", followUpJSON.action)
+
+                // if the action is end_interaction, end the interaction
+                if (followUpJSON.action === "end_conversation") {
+                    userMessageInput.disabled = true
+
+                    const finalMessage = document.createElement("div")
+                    finalMessage.textContent = `[CONVERSATION ENDED]`
+                    chatHistoryContainer.appendChild(finalMessage)
+                }
             }
 
             messageParagraph.textContent += chunk

@@ -163,6 +163,9 @@ func _process(delta):
 	
 	move_and_slide()
 
+func take_damage(damageTaken):
+	hp -= damageTaken
+
 func _on_sprite_animation_finished(): #go from transition animation to regular looped animation
 	if sprite.animation == "transition_toIdle_right":
 		sprite.play("idle_right")

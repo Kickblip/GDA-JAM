@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://djy176mdb4a1v" path="res://Sprites/sewer_lower.png" id="8_7f2kw"]
 [ext_resource type="PackedScene" uid="uid://ct5lnys0b1cr" path="res://Objects/pipe.tscn" id="9_lxu6d"]
 [ext_resource type="PackedScene" uid="uid://d1uer6a4vogbf" path="res://Objects/bazooka_rat.tscn" id="11_4d07k"]
-[ext_resource type="PackedScene" uid="uid://cqbgppc0dufxb" path="res://Objects/bat_enemy.tscn" id="12_k5q5q"]
+[ext_resource type="PackedScene" path="res://Objects/bat_enemy.tscn" id="12_k5q5q"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_dtwyj"]
 polygon = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)

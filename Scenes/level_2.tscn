@@ -185,7 +185,7 @@ shader_parameter/wave_speed = 1.0
 shader_parameter/wave_period = 0.05
 shader_parameter/noise = SubResource("NoiseTexture2D_x2hca")
 
-[node name="level_1" type="Node2D"]
+[node name="level_2" type="Node2D"]
 
 [node name="TileUpper" type="TileMap" parent="."]
 z_index = 99

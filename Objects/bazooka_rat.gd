@@ -14,7 +14,6 @@ var fireball = preload("res://Objects/fireball.tscn")
 @onready var rocket_timer = $Timer
 
 func _ready():
-	print("hello")
 	sprite.play("idle_right")
 	rocket_timer.wait_time = 3
 

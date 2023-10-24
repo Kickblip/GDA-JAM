@@ -7,6 +7,7 @@ var timer = 0
 
 func _ready():
 	scale = Vector2(3,3)
+	
 
 func _process(delta):
 	if hovering:
@@ -22,7 +23,6 @@ func _process(delta):
 
 func _on_mouse_entered():
 	hovering = true
-	print("entered")
 
 
 func _on_mouse_exited():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://7sbf4gja6vrb"]
+[gd_scene load_steps=30 format=3 uid="uid://7sbf4gja6vrb"]
 
 [ext_resource type="Texture2D" uid="uid://djy176mdb4a1v" path="res://Sprites/sewer_lower.png" id="1_h7wvq"]
 [ext_resource type="Texture2D" uid="uid://d0kxkw3ag27b5" path="res://Sprites/sewer_upper.png" id="2_huskn"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://sgnhpcdhgkfh" path="res://Objects/ui_level_select.tscn" id="14_cjegu"]
 [ext_resource type="PackedScene" uid="uid://d33mivdhnrmys" path="res://Objects/ui_inventory.tscn" id="15_kw0wy"]
 [ext_resource type="PackedScene" uid="uid://dg8mlgymg55mv" path="res://Objects/ui_hud.tscn" id="16_tju2s"]
+[ext_resource type="PackedScene" uid="uid://54il7j36yuv0" path="res://Objects/pickupable_item.tscn" id="16_vsdcp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cwila"]
 texture = ExtResource("1_h7wvq")
@@ -142,7 +143,7 @@ noise = SubResource("FastNoiseLite_33d0u")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5k0qd"]
 shader = ExtResource("7_v2kty")
 shader_parameter/scale = Vector2(13.2695, 1.04)
-shader_parameter/y_zoom = 2.51984
+shader_parameter/y_zoom = 0.793701
 shader_parameter/water_color = Color(0.121569, 0.443137, 0.4, 0.443137)
 shader_parameter/distortion_scale = Vector2(0.02, 0.5)
 shader_parameter/intensity = 0.01
@@ -160,6 +161,30 @@ shader_parameter/line_thickness = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3io8d"]
 size = Vector2(62, 4)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bhjhu"]
+resource_local_to_scene = true
+shader = ExtResource("11_gposw")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_un3yw"]
+resource_local_to_scene = true
+shader = ExtResource("11_gposw")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7wynx"]
+resource_local_to_scene = true
+shader = ExtResource("11_gposw")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_drlqw"]
+resource_local_to_scene = true
+shader = ExtResource("11_gposw")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 1.0
 
 [node name="level_home" type="Node2D"]
 
@@ -233,5 +258,21 @@ offset_top = -2.0
 offset_right = 9.0
 offset_bottom = 38.0
 scale = Vector2(1.5485, 0.116385)
+
+[node name="pickupable_item" parent="." instance=ExtResource("16_vsdcp")]
+material = SubResource("ShaderMaterial_bhjhu")
+position = Vector2(295, 264)
+
+[node name="pickupable_item2" parent="." instance=ExtResource("16_vsdcp")]
+material = SubResource("ShaderMaterial_un3yw")
+position = Vector2(397, 264)
+
+[node name="pickupable_item3" parent="." instance=ExtResource("16_vsdcp")]
+material = SubResource("ShaderMaterial_7wynx")
+position = Vector2(496, 264)
+
+[node name="pickupable_item4" parent="." instance=ExtResource("16_vsdcp")]
+material = SubResource("ShaderMaterial_drlqw")
+position = Vector2(516, 264)
 
 [connection signal="item_rect_changed" from="Water" to="Water" method="_on_item_rect_changed"]

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://deualvwtvq2e8" path="res://Sprites/nineslice_stone_right.png" id="2_72c8q"]
 [ext_resource type="Theme" uid="uid://5gr038ghhdfr" path="res://Fonts/theme.tres" id="3_v3ftu"]
 
-[node name="ui_inventory" type="Control" groups=["Inventory"]]
+[node name="ui_inventory" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -54,6 +54,7 @@ anchors_preset = 0
 mouse_filter = 2
 
 [node name="NoItems" type="Label" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 93.0
 offset_top = 210.0
@@ -66,5 +67,5 @@ theme_override_font_sizes/font_size = 16
 text = "No Items!
 
 Visit the pipe and scavenge 
-items for trading"
+for items to trade with"
 horizontal_alignment = 1

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dkme4yttsd5i5"
-path="res://.godot/imported/bazooka_rat_firing_right.png-091c0859e2a55fab7221c79801de9d32.ctex"
+uid="uid://ct222hrfy81el"
+path="res://.godot/imported/gem.png-01406b9bfb1e0e9b62c11477819d6acd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Items/bazooka_rat_firing_right.png"
-dest_files=["res://.godot/imported/bazooka_rat_firing_right.png-091c0859e2a55fab7221c79801de9d32.ctex"]
+source_file="res://Sprites/Items/gem.png"
+dest_files=["res://.godot/imported/gem.png-01406b9bfb1e0e9b62c11477819d6acd.ctex"]
 
 [params]
 

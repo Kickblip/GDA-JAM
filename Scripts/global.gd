@@ -10,14 +10,17 @@ func sin_range(mi, ma, t):
 #inventory will be an array filled with more arrays (each array specifying an item)
 #all items have to be specified in the inventory, with item counts changed to add and remove items
 
+#weight is chance to spawn in world
+
 var inventory = [
-	#name  value           spritepath           count
-	["Test Item",5,"res://Sprites/Items/testitem.png",10],
-	["Test Item",10,"res://Sprites/Items/testitem.png",1],
-	["Test Item",1,"res://Sprites/Items/testitem.png",15],
-	["Test Item",3,"res://Sprites/Items/testitem.png",1],
-	["Test Item",10,"res://Sprites/Items/testitem.png",11],
-	["Test Item",9,"res://Sprites/Items/testitem.png",1]
+	#name  value           spritepath           count  weight
+	["Gem",20,"res://Sprites/Items/gem.png",0,1],
+	["Ring",10,"res://Sprites/Items/ring.png",0,2],
+	["Coins",6,"res://Sprites/Items/coins.png",0,4],
+	["Cheese",4,"res://Sprites/Items/cheese.png",0,5],
+	["Fabric",3,"res://Sprites/Items/fabric.png",0,6],
+	["String",2,"res://Sprites/Items/string.png",0,7],
+	["Plastic Bottle Cap",1,"res://Sprites/Items/plastic_bottle_cap.png",0,8]
 ]
 
 func _process(delta):
@@ -26,3 +29,6 @@ func _process(delta):
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 		else:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+			
+	if Input.is_action_just_pressed("restart"):
+		get_tree().reload_current_scene()

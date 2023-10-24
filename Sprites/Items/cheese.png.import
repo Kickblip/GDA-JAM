@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dutylcfqtw2r7"
-path="res://.godot/imported/blue_fireball_left.png-37cf466a6c10b14d20af0899f0d50b60.ctex"
+uid="uid://dl3bvsbxmw7f2"
+path="res://.godot/imported/cheese.png-1c1b56488d3f8ff252421a7539763aa0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Items/blue_fireball_left.png"
-dest_files=["res://.godot/imported/blue_fireball_left.png-37cf466a6c10b14d20af0899f0d50b60.ctex"]
+source_file="res://Sprites/Items/cheese.png"
+dest_files=["res://.godot/imported/cheese.png-1c1b56488d3f8ff252421a7539763aa0.ctex"]
 
 [params]
 

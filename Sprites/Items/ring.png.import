@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b82w8r6ov456c"
-path="res://.godot/imported/blue_fireball_right.png-b318cda48a433491cea4ddf15cc354db.ctex"
+uid="uid://87yd0q8rbiun"
+path="res://.godot/imported/ring.png-a64f448bd5ec00a6f7b509a33b7c23e3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Items/blue_fireball_right.png"
-dest_files=["res://.godot/imported/blue_fireball_right.png-b318cda48a433491cea4ddf15cc354db.ctex"]
+source_file="res://Sprites/Items/ring.png"
+dest_files=["res://.godot/imported/ring.png-a64f448bd5ec00a6f7b509a33b7c23e3.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d238yfoe10fuc"
-path="res://.godot/imported/bazooka_rat_idle_left.png-ff46be933ae3b9f2640b62f6545efb0b.ctex"
+uid="uid://b82w8r6ov456c"
+path="res://.godot/imported/blue_fireball_right.png-fa3aac5332c2e170ec7c5bb020e29afc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Items/bazooka_rat_idle_left.png"
-dest_files=["res://.godot/imported/bazooka_rat_idle_left.png-ff46be933ae3b9f2640b62f6545efb0b.ctex"]
+source_file="res://Sprites/blue_fireball_right.png"
+dest_files=["res://.godot/imported/blue_fireball_right.png-fa3aac5332c2e170ec7c5bb020e29afc.ctex"]
 
 [params]
 

@@ -1,0 +1,65 @@
+[gd_scene load_steps=9 format=3 uid="uid://17jl0npyetv0"]
+
+[ext_resource type="Script" path="res://Objects/flea_enemy.gd" id="1_60yaq"]
+[ext_resource type="Texture2D" uid="uid://deafwdaxkh3k5" path="res://Sprites/flea_left.png" id="2_u6cpb"]
+[ext_resource type="Texture2D" uid="uid://3f8wij0vrnpb" path="res://Sprites/flea_right.png" id="3_1v2js"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_omsrl"]
+radius = 23.6352
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fa8vt"]
+atlas = ExtResource("2_u6cpb")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jawi1"]
+atlas = ExtResource("3_1v2js")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lkp1m"]
+atlas = ExtResource("3_1v2js")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6py6s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fa8vt")
+}],
+"loop": true,
+"name": &"idle_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jawi1")
+}],
+"loop": true,
+"name": &"idle_right",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"jump_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lkp1m")
+}],
+"loop": true,
+"name": &"jump_right",
+"speed": 5.0
+}]
+
+[node name="flea_enemy" type="CharacterBody2D"]
+script = ExtResource("1_60yaq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.25, -7.25)
+shape = SubResource("CircleShape2D_omsrl")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6py6s")
+animation = &"jump_right"
+
+[node name="Timer" type="Timer" parent="."]

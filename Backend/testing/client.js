@@ -7,9 +7,17 @@ const rootURL = "http://localhost:3000"
 const exampleState = {
     npc: "thatch",
     userMessage: userMessageInput.value,
-    chatHistory: [],
-    npcItems: ["cloth_rucksack", "apple_core", "tunnel_map"],
-    playerItems: ["silver_coin", "bottle_cap", "doll_fabric"],
+    chatSummary: "",
+    npcItems: {
+        cloth_rucksack: 35,
+        apple_core: 6,
+        tunnel_map: 21,
+    },
+    playerItems: {
+        silver_coin: 19,
+        bottle_cap: 9,
+        doll_fabric: 24,
+    },
     currentTrade: { userOffer: [], npcOffer: [] },
     availableActions: ["do_nothing", "end_conversation"],
 }
@@ -54,31 +62,18 @@ button.addEventListener("click", async () => {
                 chunk = parts[0]
 
                 // Handle the token after [DONE]
-                const specialToken = parts[1]
+                const finalToken = parts[1]
 
-                // parse the special token as JSON
-                const followUpJSON = JSON.parse(specialToken)
-
-                const additionalInformation = document.createElement("div")
-                additionalInformation.textContent = `NPC Offer: ${followUpJSON.npcOffer}, User Offer: ${followUpJSON.userOffer}`
-                chatHistoryContainer.appendChild(additionalInformation)
-
-                // Update the state with the follow-up data
-                exampleState.currentTrade.userOffer = followUpJSON.userOffer
-                exampleState.currentTrade.npcOffer = followUpJSON.npcOffer
+                const summaryData = JSON.parse(finalToken)
 
                 // Update the chat history
-                exampleState.chatHistory.push({
-                    npcMessage: npcMessage,
-                    userMessage: exampleState.userMessage,
-                })
+                exampleState.chatSummary = summaryData.summary
 
-                console.log(exampleState)
-
-                console.log("Action: ", followUpJSON.action)
+                console.log("Summary: ", summaryData.summary)
+                console.log("Action: ", summaryData.action)
 
                 // if the action is end_interaction, end the interaction
-                if (followUpJSON.action === "end_conversation") {
+                if (summaryData.action === "end_conversation") {
                     userMessageInput.disabled = true
 
                     const finalMessage = document.createElement("div")

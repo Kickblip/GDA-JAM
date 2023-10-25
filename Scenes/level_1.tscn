@@ -281,4 +281,4 @@ position = Vector2(266, 266)
 position = Vector2(557, 185)
 
 [node name="flea_enemy" parent="." instance=ExtResource("13_wipvr")]
-position = Vector2(596, 233)
+position = Vector2(108, 254)

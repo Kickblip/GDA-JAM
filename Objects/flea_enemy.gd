@@ -11,7 +11,7 @@ var aware_radius = 200 # max distance to notice player
 var direction = 1
 var sprite_direction = "_right"
 var action = "idle"
-var damage = 20
+var damage = 10
 
 var player
 
@@ -40,6 +40,10 @@ func _process(delta):
 		velocity.y += gravity * delta
 
 	move_and_slide()
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		if collision.get_collider().name == "player":
+			get_tree().call_group("Player","take_damage",damage)
 	sprite_direction = "_right" if direction == 1 else "_left"
 	sprite.play(action + sprite_direction)
 

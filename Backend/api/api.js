@@ -16,7 +16,7 @@ app.use(cors()).use(express.json())
 let message = ""
 
 app.post("/chat", async (req, res) => {
-    const QAModel = new OpenAI({ temperature: 0.8, modelName: "gpt-3.5-turbo", streaming: true })
+    const QAModel = new OpenAI({ temperature: 0.5, modelName: "gpt-3.5-turbo", streaming: true })
     const summaryModel = new OpenAI({ temperature: 0, modelName: "gpt-3.5-turbo", streaming: true })
 
     const targetCharacter = req.body.npc
@@ -98,9 +98,13 @@ app.post("/chat", async (req, res) => {
 app.post("/followup", async (req, res) => {
     const followUpModel = new OpenAI({ temperature: 0, modelName: "gpt-3.5-turbo", streaming: true })
 
+    // create an array of all the possible items (only keys)
+    const possibleItems = [...Object.keys(req.body.npcItems), ...Object.keys(req.body.playerItems)]
+    console.log(possibleItems)
+
     const followUpInsertion = new PromptTemplate({
         template: followUpTemplate,
-        inputVariables: ["currentSummary", "npcItems", "playerItems"],
+        inputVariables: ["currentSummary", "npcItems", "playerItems", "possibleItems"],
     })
 
     const followUpChain = new LLMChain({ llm: followUpModel, prompt: followUpInsertion })
@@ -108,17 +112,16 @@ app.post("/followup", async (req, res) => {
     const followUp = await followUpChain.call({
         npcItems: JSON.stringify(req.body.npcItems),
         playerItems: JSON.stringify(req.body.playerItems),
+        possibleItems: JSON.stringify(possibleItems),
         currentSummary: req.body.currentSummary,
     })
 
     const npcOfferMatch = followUp.text.match(/#npcOffer=(.+?)#/)
     const userOfferMatch = followUp.text.match(/#playerOffer=(.+?)#/) // called 'player' in the template!
-    const actionMatch = followUp.text.match(/#action="([^"]+)"#/)
 
     const followUpData = {
         userOffer: userOfferMatch ? userOfferMatch[1].split(", ") : [],
         npcOffer: npcOfferMatch ? npcOfferMatch[1].split(", ") : [],
-        action: actionMatch ? actionMatch[1] : null,
     }
 
     const followUpJSON = JSON.stringify({
@@ -126,7 +129,9 @@ app.post("/followup", async (req, res) => {
         npcOffer: followUpData.npcOffer,
     })
 
-    res.send(followUpJSON)
+    console.log("Followup JSON", followUpJSON)
+
+    res.json(followUpJSON)
 })
 
 app.listen(PORT, () => {

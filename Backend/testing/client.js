@@ -22,9 +22,36 @@ const exampleState = {
     availableActions: ["do_nothing", "end_conversation"],
 }
 
+const getFinalTrade = async () => {
+    try {
+        // get the final trade from the summaries
+        const followUp = await fetch(`${rootURL}/followup`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(exampleState),
+        })
+
+        const followUpData = await followUp.json()
+
+        // save the final trade
+        exampleState.currentTrade = { userOffer: followUpData.userOffer, npcOffer: followUpData.npcOffer }
+
+        console.log("Final trade: ", exampleState.currentTrade)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 button.addEventListener("click", async () => {
     exampleState.userMessage = userMessageInput.value
     userMessageInput.value = ""
+
+    // Add the user's message to the chat history
+    const userParagraph = document.createElement("p")
+    userParagraph.textContent = `[USER]: ${exampleState.userMessage}`
+    chatHistoryContainer.appendChild(userParagraph)
 
     try {
         const res = await fetch(`${rootURL}/chat`, {
@@ -43,6 +70,7 @@ button.addEventListener("click", async () => {
 
         // Create a paragraph to hold the incoming data
         const messageParagraph = document.createElement("p")
+        messageParagraph.textContent = `[NPC]: `
         chatHistoryContainer.appendChild(messageParagraph)
 
         let npcMessage = ""
@@ -80,17 +108,7 @@ button.addEventListener("click", async () => {
                     finalMessage.textContent = `[CONVERSATION ENDED]`
                     chatHistoryContainer.appendChild(finalMessage)
 
-                    // get the final trade from the summaries
-                    const res = await fetch(`${rootURL}/followup`, {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify(exampleState),
-                    })
-
-                    // save the final trade
-                    exampleState.currentTrade = { userOffer: res.body.userOffer, npcOffer: res.body.npcOffer }
+                    await getFinalTrade()
                 }
             }
 

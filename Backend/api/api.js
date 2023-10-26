@@ -15,23 +15,9 @@ const PORT = 3000
 app.use(cors()).use(express.json())
 let message = ""
 
-/*
-Messaging Model
-Input: Normal state
-Returns: NPC message
-
-Summary Model
-Input: NPC message + user message + Chat history + current summary
-Returns: Updated summary of trade chat history
-
-Array Model - seperate call
-Input: summary
-Returns: Updated trade array
-*/
-
 app.post("/chat", async (req, res) => {
     const QAModel = new OpenAI({ temperature: 0.8, modelName: "gpt-3.5-turbo", streaming: true })
-    const followUpModel = new OpenAI({ temperature: 0, modelName: "gpt-3.5-turbo", streaming: true })
+    const summaryModel = new OpenAI({ temperature: 0, modelName: "gpt-3.5-turbo", streaming: true })
 
     const targetCharacter = req.body.npc
     const personality = characters[targetCharacter].personality
@@ -56,7 +42,7 @@ app.post("/chat", async (req, res) => {
         inputVariables: ["npcMessage", "userMessage", "currentSummary"],
     })
 
-    const summaryChain = new LLMChain({ llm: followUpModel, prompt: summaryInsertion })
+    const summaryChain = new LLMChain({ llm: summaryModel, prompt: summaryInsertion })
 
     const sanitizedQuestion = req.body.userMessage.trim().replaceAll("\n", " ")
 
@@ -109,63 +95,40 @@ app.post("/chat", async (req, res) => {
     })
 })
 
-app.post("/followup", async (req, res) => {})
+app.post("/followup", async (req, res) => {
+    const followUpModel = new OpenAI({ temperature: 0, modelName: "gpt-3.5-turbo", streaming: true })
+
+    const followUpInsertion = new PromptTemplate({
+        template: followUpTemplate,
+        inputVariables: ["currentSummary", "npcItems", "playerItems"],
+    })
+
+    const followUpChain = new LLMChain({ llm: followUpModel, prompt: followUpInsertion })
+
+    const followUp = await followUpChain.call({
+        npcItems: JSON.stringify(req.body.npcItems),
+        playerItems: JSON.stringify(req.body.playerItems),
+        currentSummary: req.body.currentSummary,
+    })
+
+    const npcOfferMatch = followUp.text.match(/#npcOffer=(.+?)#/)
+    const userOfferMatch = followUp.text.match(/#playerOffer=(.+?)#/) // called 'player' in the template!
+    const actionMatch = followUp.text.match(/#action="([^"]+)"#/)
+
+    const followUpData = {
+        userOffer: userOfferMatch ? userOfferMatch[1].split(", ") : [],
+        npcOffer: npcOfferMatch ? npcOfferMatch[1].split(", ") : [],
+        action: actionMatch ? actionMatch[1] : null,
+    }
+
+    const followUpJSON = JSON.stringify({
+        userOffer: followUpData.userOffer,
+        npcOffer: followUpData.npcOffer,
+    })
+
+    res.send(followUpJSON)
+})
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`)
 })
-
-// const followUpInsertion = new PromptTemplate({
-//     template: followUpTemplate,
-//     inputVariables: [
-//         "possibleItems",
-//         "currentTrade",
-//         "userOffer",
-//         "npcOffer",
-//         "userMessage",
-//         "npcMessage",
-//         "npcItems",
-//         "playerItems",
-//     ],
-// })
-
-// add the npc items array and the player items array
-// const possibleItems = [...req.body.npcItems, ...req.body.playerItems]
-
-// console.log({
-//     npcOffer: JSON.stringify(req.body.npcOffer),
-//     userOffer: JSON.stringify(req.body.userOffer),
-//     currentTrade: JSON.stringify(req.body.currentTrade),
-//     userMessage: sanitizedQuestion,
-//     npcMessage: message,
-//     npcItems: JSON.stringify(req.body.npcItems),
-//     playerItems: JSON.stringify(req.body.playerItems),
-//     possibleItems: JSON.stringify(possibleItems),
-// })
-
-// const followUp = await followUpChain.call({
-//     npcOffer: JSON.stringify(req.body.npcOffer),
-//     userOffer: JSON.stringify(req.body.userOffer),
-//     currentTrade: JSON.stringify(req.body.currentTrade),
-//     userMessage: sanitizedQuestion,
-//     npcMessage: message,
-//     npcItems: JSON.stringify(req.body.npcItems),
-//     playerItems: JSON.stringify(req.body.playerItems),
-//     possibleItems: JSON.stringify(possibleItems),
-// })
-
-// const npcOfferMatch = followUp.text.match(/#npcOffer=(.+?)#/)
-// const userOfferMatch = followUp.text.match(/#playerOffer=(.+?)#/) // called 'player' in the template!
-// const actionMatch = followUp.text.match(/#action="([^"]+)"#/)
-
-// const followUpData = {
-//     userOffer: userOfferMatch ? userOfferMatch[1].split(", ") : [],
-//     npcOffer: npcOfferMatch ? npcOfferMatch[1].split(", ") : [],
-//     action: actionMatch ? actionMatch[1] : null,
-// }
-
-// const followUpJSON = JSON.stringify({
-//     userOffer: followUpData.userOffer,
-//     npcOffer: followUpData.npcOffer,
-//     action: followUpData.action,
-// })

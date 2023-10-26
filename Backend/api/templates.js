@@ -21,37 +21,30 @@ const QATemplate = `
     YOU MUST USE THE SUMMARY OF INTERACTIONS to determine what items are being offered.
     Your actions MUST align with the history of the chat summary.
     You are NOT allowed to change your mind from the chat summary.
+    You don't need to explain your reasoning, just maintain the character's personality.
+    If you think the conversation is over, just say goodbye.
 `
 
 const followUpTemplate = `
     A player and an NPC are trading in a video game. 
     ========
-    These are all the items that could be traded:
-    {possibleItems}
+    These are the NPC's items:
+    {npcItems}
     ========
-    This is the PREVIOUS trade array (if empty, no trade is currently being proposed):
-    {currentTrade}
-
-    The PLAYER's last message was:
-    {userMessage}
-
-    The NPC's last message was:
-    {npcMessage}
+    These are the PLAYER's items:
+    {playerItems}
     ========
-    It is your job to update the previous trade array based on the messages between the player and the NPC.
-
+    This is the summary of the interactions between the player and the npc:
+    {currentSummary}
+    ========
+    It is your job to generate a final trade array based on the messages between the player and the NPC.
     You MUST preserve the formatting of the item IDs.
-    ONLY remove an item from the trade array if the player or npc changed their trade in the messages.
-    ONLY add an item to the trade array if it is mentioned in the messages.
-    NEVER add an item to the trade array if the player or npc does not want to trade it.
     NEVER include the value numbers in the trade array.
     ONLY put the player's items in the playerOffer array and the npc's items in the npcOffer array. NEVER the other way around.
-    If you believe the interaction between the player and npc is over, fill action with "end_conversation".  Otherwise, fill it with "do_nothing".
     You MUST answer in only this format:
 
     #playerOffer=[(items the PLAYER is offering)]#
     #npcOffer=[(items the NPC is offering)]#
-    #action="(the action the npc should take)"#
 `
 
 const summaryTemplate = `

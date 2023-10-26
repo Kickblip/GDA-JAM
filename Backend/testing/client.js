@@ -79,6 +79,18 @@ button.addEventListener("click", async () => {
                     const finalMessage = document.createElement("div")
                     finalMessage.textContent = `[CONVERSATION ENDED]`
                     chatHistoryContainer.appendChild(finalMessage)
+
+                    // get the final trade from the summaries
+                    const res = await fetch(`${rootURL}/followup`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(exampleState),
+                    })
+
+                    // save the final trade
+                    exampleState.currentTrade = { userOffer: res.body.userOffer, npcOffer: res.body.npcOffer }
                 }
             }
 

@@ -15,6 +15,10 @@ const PORT = 3000
 app.use(cors()).use(express.json())
 let message = ""
 
+app.get("/", (req, res) => {
+    res.send("Online")
+})
+
 app.post("/chat", async (req, res) => {
     const QAModel = new OpenAI({ temperature: 0.5, modelName: "gpt-3.5-turbo", streaming: true })
     const summaryModel = new OpenAI({ temperature: 0, modelName: "gpt-3.5-turbo", streaming: true })

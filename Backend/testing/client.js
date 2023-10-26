@@ -2,7 +2,7 @@ const button = document.getElementById("requestButton")
 const userMessageInput = document.getElementById("userMessage")
 const chatHistoryContainer = document.getElementById("chatHistory")
 
-const rootURL = "http://localhost:3000"
+const rootURL = "https://gda-game.kickball.repl.co"
 
 const exampleState = {
     npc: "thatch",

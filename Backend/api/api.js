@@ -100,7 +100,6 @@ app.post("/followup", async (req, res) => {
 
     // create an array of all the possible items (only keys)
     const possibleItems = [...Object.keys(req.body.npcItems), ...Object.keys(req.body.playerItems)]
-    console.log(possibleItems)
 
     const followUpInsertion = new PromptTemplate({
         template: followUpTemplate,
@@ -109,11 +108,18 @@ app.post("/followup", async (req, res) => {
 
     const followUpChain = new LLMChain({ llm: followUpModel, prompt: followUpInsertion })
 
+    console.log({
+        npcItems: JSON.stringify(req.body.npcItems),
+        playerItems: JSON.stringify(req.body.playerItems),
+        possibleItems: JSON.stringify(possibleItems),
+        currentSummary: req.body.chatSummary,
+    })
+
     const followUp = await followUpChain.call({
         npcItems: JSON.stringify(req.body.npcItems),
         playerItems: JSON.stringify(req.body.playerItems),
         possibleItems: JSON.stringify(possibleItems),
-        currentSummary: req.body.currentSummary,
+        currentSummary: req.body.chatSummary,
     })
 
     const npcOfferMatch = followUp.text.match(/#npcOffer=(.+?)#/)
@@ -124,10 +130,10 @@ app.post("/followup", async (req, res) => {
         npcOffer: npcOfferMatch ? npcOfferMatch[1].split(", ") : [],
     }
 
-    const followUpJSON = JSON.stringify({
+    const followUpJSON = {
         userOffer: followUpData.userOffer,
         npcOffer: followUpData.npcOffer,
-    })
+    }
 
     console.log("Followup JSON", followUpJSON)
 

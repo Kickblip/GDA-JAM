@@ -39,6 +39,9 @@ const getFinalTrade = async () => {
         exampleState.currentTrade = { userOffer: followUpData.userOffer, npcOffer: followUpData.npcOffer }
 
         console.log("Final trade: ", exampleState.currentTrade)
+
+        // NEED TO RESET STATE AFTER TRADE IS COMPLETE
+        exampleState.chatSummary = ""
     } catch (error) {
         console.log(error)
     }

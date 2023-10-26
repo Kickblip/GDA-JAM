@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://da236sjk3i0d7"]
+[gd_scene load_steps=27 format=3 uid="uid://da236sjk3i0d7"]
 
 [ext_resource type="Script" path="res://Scripts/camera.gd" id="1_bra2u"]
 [ext_resource type="PackedScene" uid="uid://dwpd2db14eq0y" path="res://Objects/player.tscn" id="2_oxfjw"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://d1uer6a4vogbf" path="res://Objects/bazooka_rat.tscn" id="11_4d07k"]
 [ext_resource type="PackedScene" uid="uid://cqbgppc0dufxb" path="res://Objects/bat_enemy.tscn" id="12_k5q5q"]
 [ext_resource type="PackedScene" uid="uid://17jl0npyetv0" path="res://Objects/flea_enemy.tscn" id="13_wipvr"]
+[ext_resource type="PackedScene" uid="uid://bug7bb0mrgrej" path="res://Objects/wall_spider.tscn" id="14_0wa2n"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_dtwyj"]
 polygon = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)
@@ -282,3 +283,6 @@ position = Vector2(557, 185)
 
 [node name="flea_enemy" parent="." instance=ExtResource("13_wipvr")]
 position = Vector2(108, 254)
+
+[node name="wall_spider" parent="." instance=ExtResource("14_0wa2n")]
+position = Vector2(399, 421)

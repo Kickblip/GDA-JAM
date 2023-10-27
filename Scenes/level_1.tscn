@@ -10,10 +10,10 @@
 [ext_resource type="Texture2D" uid="uid://1cs1v51ynm3" path="res://Sprites/city_background_2.png" id="8_6khn0"]
 [ext_resource type="Texture2D" uid="uid://djy176mdb4a1v" path="res://Sprites/sewer_lower.png" id="8_7f2kw"]
 [ext_resource type="PackedScene" uid="uid://ct5lnys0b1cr" path="res://Objects/pipe.tscn" id="9_lxu6d"]
-[ext_resource type="PackedScene" uid="uid://d1uer6a4vogbf" path="res://Objects/bazooka_rat.tscn" id="11_4d07k"]
-[ext_resource type="PackedScene" uid="uid://cqbgppc0dufxb" path="res://Objects/bat_enemy.tscn" id="12_k5q5q"]
-[ext_resource type="PackedScene" uid="uid://17jl0npyetv0" path="res://Objects/flea_enemy.tscn" id="13_wipvr"]
-[ext_resource type="PackedScene" uid="uid://bug7bb0mrgrej" path="res://Objects/wall_spider.tscn" id="14_0wa2n"]
+[ext_resource type="PackedScene" uid="uid://bunimnjuownqp" path="res://Objects/bazooka_rat.tscn" id="11_4d07k"]
+[ext_resource type="PackedScene" uid="uid://rauxdv7tsdgi" path="res://Objects/bat_enemy.tscn" id="12_k5q5q"]
+[ext_resource type="PackedScene" uid="uid://bt054gpn3rlt1" path="res://Objects/flea_enemy.tscn" id="13_wipvr"]
+[ext_resource type="PackedScene" uid="uid://b4p5iw4u5ef2v" path="res://Objects/wall_spider.tscn" id="14_0wa2n"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_dtwyj"]
 polygon = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)

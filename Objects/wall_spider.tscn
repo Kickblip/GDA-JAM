@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bug7bb0mrgrej"]
+[gd_scene load_steps=16 format=3 uid="uid://b4p5iw4u5ef2v"]
 
 [ext_resource type="Script" path="res://Objects/wall_spider.gd" id="1_8bn3h"]
 [ext_resource type="Texture2D" uid="uid://b3g6mk7wr4rt8" path="res://Sprites/spider_left.png" id="1_kmkni"]
@@ -101,6 +101,7 @@ animations = [{
 }]
 
 [node name="wall_spider" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_8bn3h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

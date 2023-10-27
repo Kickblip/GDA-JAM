@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://17jl0npyetv0"]
+[gd_scene load_steps=10 format=3 uid="uid://bt054gpn3rlt1"]
 
 [ext_resource type="Script" path="res://Objects/flea_enemy.gd" id="1_60yaq"]
 [ext_resource type="Texture2D" uid="uid://deafwdaxkh3k5" path="res://Sprites/flea_left.png" id="2_u6cpb"]
@@ -59,6 +59,7 @@ animations = [{
 }]
 
 [node name="flea_enemy" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_60yaq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

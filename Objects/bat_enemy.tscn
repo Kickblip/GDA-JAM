@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cqbgppc0dufxb"]
+[gd_scene load_steps=14 format=3 uid="uid://rauxdv7tsdgi"]
 
 [ext_resource type="Script" path="res://Objects/bat_enemy.gd" id="1_trc31"]
 [ext_resource type="Texture2D" uid="uid://cw4uugqcicfah" path="res://Sprites/bat_fly_left.png" id="1_yh2r7"]
@@ -82,6 +82,7 @@ animations = [{
 }]
 
 [node name="bat_enemy" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_trc31")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

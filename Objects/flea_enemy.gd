@@ -31,10 +31,9 @@ func _process(delta):
 	var players = get_tree().get_nodes_in_group("Player")
 	if players.size() > 0:
 		player = players[0]
-		velocity.x = 0
 		if position.distance_to(player.global_position) < aware_radius:
 			max_speed = pursuit_speed
-			pursue_player()
+			pursue_player(delta)
 
 	if not is_on_floor():
 		action = "jump"
@@ -49,17 +48,19 @@ func _process(delta):
 	sprite.play(action + sprite_direction)
 
 
-func pursue_player(): #attack mode
+func pursue_player(delta): #attack mode
 	var player_hdist = position.x - player.global_position.x
 	
 	if (position.distance_to(player.position) > minDistance):
-		velocity.x = direction * pursuit_speed
+		#velocity.x = direction * pursuit_speed
 		direction = 1 if player_hdist < 0 else -1
 	
 	#jump
 	if is_on_floor():
+		velocity.x = 0
 		action = "idle"
 		if jump_timer.time_left < 0.05:
+			velocity.x = pursuit_speed * direction
 			velocity.y = -sqrt(2 * gravity * jump_height)
 			jump_timer.start()
 	

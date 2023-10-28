@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://sgnhpcdhgkfh" path="res://Objects/ui_level_select.tscn" id="14_cjegu"]
 [ext_resource type="PackedScene" uid="uid://d33mivdhnrmys" path="res://Objects/ui_inventory.tscn" id="15_kw0wy"]
 [ext_resource type="PackedScene" uid="uid://dg8mlgymg55mv" path="res://Objects/ui_hud.tscn" id="16_tju2s"]
-[ext_resource type="PackedScene" path="res://Objects/pickupable_item.tscn" id="16_vsdcp"]
+[ext_resource type="PackedScene" uid="uid://54il7j36yuv0" path="res://Objects/pickupable_item.tscn" id="16_vsdcp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cwila"]
 texture = ExtResource("1_h7wvq")
@@ -162,25 +162,25 @@ shader_parameter/line_thickness = 1.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3io8d"]
 size = Vector2(62, 4)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bg6xm"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hdnks"]
 resource_local_to_scene = true
 shader = ExtResource("11_gposw")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gprr6"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i7r1l"]
 resource_local_to_scene = true
 shader = ExtResource("11_gposw")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_f7lcu"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gcd3p"]
 resource_local_to_scene = true
 shader = ExtResource("11_gposw")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gsxpi"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5kjr0"]
 resource_local_to_scene = true
 shader = ExtResource("11_gposw")
 shader_parameter/line_color = Color(1, 1, 1, 1)
@@ -260,19 +260,19 @@ offset_bottom = 38.0
 scale = Vector2(1.5485, 0.116385)
 
 [node name="pickupable_item" parent="." instance=ExtResource("16_vsdcp")]
-material = SubResource("ShaderMaterial_bg6xm")
+material = SubResource("ShaderMaterial_hdnks")
 position = Vector2(295, 264)
 
 [node name="pickupable_item2" parent="." instance=ExtResource("16_vsdcp")]
-material = SubResource("ShaderMaterial_gprr6")
+material = SubResource("ShaderMaterial_i7r1l")
 position = Vector2(397, 264)
 
 [node name="pickupable_item3" parent="." instance=ExtResource("16_vsdcp")]
-material = SubResource("ShaderMaterial_f7lcu")
+material = SubResource("ShaderMaterial_gcd3p")
 position = Vector2(496, 264)
 
 [node name="pickupable_item4" parent="." instance=ExtResource("16_vsdcp")]
-material = SubResource("ShaderMaterial_gsxpi")
+material = SubResource("ShaderMaterial_5kjr0")
 position = Vector2(516, 264)
 
 [connection signal="item_rect_changed" from="Water" to="Water" method="_on_item_rect_changed"]

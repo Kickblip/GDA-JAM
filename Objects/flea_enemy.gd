@@ -61,7 +61,7 @@ func pursue_player(delta): #attack mode
 		action = "idle"
 		if jump_timer.time_left < 0.05:
 			velocity.x = pursuit_speed * direction
-			velocity.y = -sqrt(2 * gravity * jump_height)
+			velocity.y = -sqrt(2 * gravity * jump_height) * (position.distance_to(player.global_position) * delta * .25)
 			jump_timer.start()
 	
 

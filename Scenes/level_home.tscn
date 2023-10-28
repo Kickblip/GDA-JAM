@@ -162,25 +162,25 @@ shader_parameter/line_thickness = 1.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3io8d"]
 size = Vector2(62, 4)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hdnks"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h4y12"]
 resource_local_to_scene = true
 shader = ExtResource("11_gposw")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_i7r1l"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qc3yi"]
 resource_local_to_scene = true
 shader = ExtResource("11_gposw")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gcd3p"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vnv54"]
 resource_local_to_scene = true
 shader = ExtResource("11_gposw")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5kjr0"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c35i0"]
 resource_local_to_scene = true
 shader = ExtResource("11_gposw")
 shader_parameter/line_color = Color(1, 1, 1, 1)
@@ -260,19 +260,19 @@ offset_bottom = 38.0
 scale = Vector2(1.5485, 0.116385)
 
 [node name="pickupable_item" parent="." instance=ExtResource("16_vsdcp")]
-material = SubResource("ShaderMaterial_hdnks")
+material = SubResource("ShaderMaterial_h4y12")
 position = Vector2(295, 264)
 
 [node name="pickupable_item2" parent="." instance=ExtResource("16_vsdcp")]
-material = SubResource("ShaderMaterial_i7r1l")
+material = SubResource("ShaderMaterial_qc3yi")
 position = Vector2(397, 264)
 
 [node name="pickupable_item3" parent="." instance=ExtResource("16_vsdcp")]
-material = SubResource("ShaderMaterial_gcd3p")
+material = SubResource("ShaderMaterial_vnv54")
 position = Vector2(496, 264)
 
 [node name="pickupable_item4" parent="." instance=ExtResource("16_vsdcp")]
-material = SubResource("ShaderMaterial_5kjr0")
+material = SubResource("ShaderMaterial_c35i0")
 position = Vector2(516, 264)
 
 [connection signal="item_rect_changed" from="Water" to="Water" method="_on_item_rect_changed"]

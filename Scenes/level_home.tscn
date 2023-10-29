@@ -144,7 +144,7 @@ noise = SubResource("FastNoiseLite_33d0u")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5k0qd"]
 shader = ExtResource("7_v2kty")
 shader_parameter/scale = Vector2(13.2695, 1.04)
-shader_parameter/y_zoom = 0.5
+shader_parameter/y_zoom = 1.14082
 shader_parameter/water_color = Color(0.121569, 0.443137, 0.4, 0.443137)
 shader_parameter/distortion_scale = Vector2(0.02, 0.5)
 shader_parameter/intensity = 0.01
@@ -163,25 +163,25 @@ shader_parameter/line_thickness = 1.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3io8d"]
 size = Vector2(62, 4)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_u0pu0"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_er17u"]
 resource_local_to_scene = true
 shader = ExtResource("11_gposw")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_io5ps"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wbgma"]
 resource_local_to_scene = true
 shader = ExtResource("11_gposw")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_t8y2j"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yf3p8"]
 resource_local_to_scene = true
 shader = ExtResource("11_gposw")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_71bv2"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mktwa"]
 resource_local_to_scene = true
 shader = ExtResource("11_gposw")
 shader_parameter/line_color = Color(1, 1, 1, 1)
@@ -261,19 +261,19 @@ offset_bottom = 38.0
 scale = Vector2(1.5485, 0.116385)
 
 [node name="pickupable_item" parent="." instance=ExtResource("16_vsdcp")]
-material = SubResource("ShaderMaterial_u0pu0")
+material = SubResource("ShaderMaterial_er17u")
 position = Vector2(295, 264)
 
 [node name="pickupable_item2" parent="." instance=ExtResource("16_vsdcp")]
-material = SubResource("ShaderMaterial_io5ps")
+material = SubResource("ShaderMaterial_wbgma")
 position = Vector2(397, 264)
 
 [node name="pickupable_item3" parent="." instance=ExtResource("16_vsdcp")]
-material = SubResource("ShaderMaterial_t8y2j")
+material = SubResource("ShaderMaterial_yf3p8")
 position = Vector2(496, 264)
 
 [node name="pickupable_item4" parent="." instance=ExtResource("16_vsdcp")]
-material = SubResource("ShaderMaterial_71bv2")
+material = SubResource("ShaderMaterial_mktwa")
 position = Vector2(516, 264)
 
 [node name="APIRequest" type="HTTPRequest" parent="."]

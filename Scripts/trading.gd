@@ -32,6 +32,33 @@ func _ready():
 	request(url, custom_headers, HTTPClient.METHOD_POST, json_body)
 
 	connect("request_completed", Callable(self, "_on_request_completed"))
+	
+func _make_followup_request():
+	var followupUrl = "https://gda-game.kickball.repl.co/followup"
+
+	# Convert the dictionary to a string
+	var json_body = JSON.stringify(exampleState)
+
+	var custom_headers = [
+		"Content-Type: application/json",
+	]
+	
+	request(followupUrl, custom_headers, HTTPClient.METHOD_POST, json_body)
+
+	connect("request_completed", Callable(self, "_finalize_trade"))
+
+func _finalize_trade(result, response_code, headers, body):
+	if response_code == 200:
+		var json = JSON.new()
+		json.parse(body.get_string_from_utf8())
+		var response = json.get_data()
+		
+		var userOffer = response.userTrade
+		var npcOffer = response.npcOffer
+		
+		# cancel trade and send the final offer to the user
+		
+		
 
 func _on_request_completed(result, response_code, headers, body):
 	if response_code == 200:
@@ -54,6 +81,13 @@ func _on_request_completed(result, response_code, headers, body):
 			
 			print("Message:", message)
 			print("Parsed Dictionary:", response)
+			
+			exampleState.chatSummary = response.summary
+			
+			if response.action == "end_conversation":
+				_make_followup_request()
+			
+		
 			
 		else:
 			print("Error: Unexpected response format")

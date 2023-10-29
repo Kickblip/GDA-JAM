@@ -6,7 +6,7 @@ const rootURL = "https://gda-game.kickball.repl.co"
 
 const exampleState = {
     npc: "thatch",
-    userMessage: userMessageInput.value,
+    userMessage: "Hello there!",
     chatSummary: "",
     npcItems: {
         cloth_rucksack: 35,

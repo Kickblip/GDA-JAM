@@ -7,6 +7,9 @@ var colors = ["red", "white", "blue"]
 var origin
 var max_dist = 1000
 var damage = 20
+var exploded = false
+
+var player
 
 @onready var sprite = $Sprite
 @onready var audio = $Audio
@@ -23,14 +26,18 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	var players = get_tree().get_nodes_in_group("Player")
+	if players.size() > 0:
+		player = players[0]
+		if position.distance_to(player.global_position) < 5 and not exploded:
+			get_tree().call_group("Player","take_damage",damage)
+			audio.play()
+			sprite.queue_free()
+			exploded = true
 	if abs(origin.x - position.x) > max_dist:
 		queue_free()
 	move_local_x(speed * direction)
-	var collision_info = move_and_collide(Vector2(speed * direction, 0))
-	if collision_info:
-		if collision_info.get_collider().name == "player":
-			#player takes damage
-			get_tree().call_group("Player","take_damage",damage)
-		audio.play()
-		queue_free()
+	
+func _on_audio_finished():
+	queue_free()
 

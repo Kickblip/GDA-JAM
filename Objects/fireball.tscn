@@ -273,3 +273,5 @@ shape = SubResource("CircleShape2D_4fnj7")
 
 [node name="Audio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_66i5u")
+
+[connection signal="finished" from="Audio" to="." method="_on_audio_finished"]

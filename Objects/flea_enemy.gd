@@ -14,6 +14,8 @@ var action = "idle"
 var damage = 10
 var minDistance = 5
 
+var hit_player = true
+
 var player
 
 @onready var sprite = $Sprite
@@ -60,7 +62,11 @@ func pursue_player(delta): #attack mode
 	if is_on_floor():
 		velocity.x = 0
 		action = "idle"
+		if position.distance_to(player.global_position) < 10 and hit_player:
+			get_tree().call_group("Player","take_damage",damage)
+			hit_player = false
 		if jump_timer.time_left < 0.05:
+			hit_player = true
 			velocity.x = pursuit_speed * direction
 			velocity.y = -sqrt(2 * gravity * jump_height) * (position.distance_to(player.global_position) * delta * .25)
 			audio.play()

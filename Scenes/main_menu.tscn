@@ -1,11 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://dnrjvcnv74e37"]
+[gd_scene load_steps=8 format=3 uid="uid://dnrjvcnv74e37"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_0wrky"]
+[ext_resource type="Theme" uid="uid://5gr038ghhdfr" path="res://Fonts/theme.tres" id="2_r8kyf"]
 [ext_resource type="PackedScene" uid="uid://dqsh0fi036trd" path="res://Objects/fade.tscn" id="2_t7n72"]
+[ext_resource type="Texture2D" uid="uid://cssshqa35r6rj" path="res://Sprites/back_arrow.png" id="3_ug4j1"]
+[ext_resource type="Script" path="res://Scenes/Back.gd" id="4_k8b1q"]
+[ext_resource type="Script" path="res://Scenes/audio_slider.gd" id="5_iye8h"]
+[ext_resource type="AudioStream" uid="uid://cxjb1jdnptl3w" path="res://Sounds/Music/title_screen.wav" id="7_6ruql"]
 
 [node name="main_menu" type="Node2D"]
 
 [node name="Main" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -15,25 +21,42 @@ script = ExtResource("1_0wrky")
 [node name="Play" type="Button" parent="Main"]
 layout_mode = 0
 offset_left = 709.0
-offset_top = 293.0
+offset_top = 432.0
 offset_right = 1201.0
-offset_bottom = 403.0
-text = "PLAY"
+offset_bottom = 542.0
+theme = ExtResource("2_r8kyf")
+theme_override_font_sizes/font_size = 80
+text = "Play"
 
 [node name="Options" type="Button" parent="Main"]
 layout_mode = 0
 offset_left = 709.0
-offset_top = 484.0
+offset_top = 562.0
 offset_right = 1201.0
-offset_bottom = 594.0
-text = "OPTIONS"
+offset_bottom = 672.0
+theme = ExtResource("2_r8kyf")
+theme_override_font_sizes/font_size = 80
+text = "Options"
+
+[node name="Credits" type="Button" parent="Main"]
+layout_mode = 0
+offset_left = 710.0
+offset_top = 686.0
+offset_right = 1202.0
+offset_bottom = 796.0
+theme = ExtResource("2_r8kyf")
+theme_override_font_sizes/font_size = 80
+text = "Credits
+"
 
 [node name="Quit" type="Button" parent="Main"]
 layout_mode = 0
-offset_left = 709.0
-offset_top = 675.0
-offset_right = 1201.0
-offset_bottom = 785.0
+offset_left = 710.0
+offset_top = 813.0
+offset_right = 1202.0
+offset_bottom = 923.0
+theme = ExtResource("2_r8kyf")
+theme_override_font_sizes/font_size = 80
 text = "Quit
 "
 
@@ -43,13 +66,207 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="Back2" type="Button" parent="Options" node_paths=PackedStringArray("show")]
+texture_filter = 1
+layout_mode = 0
+offset_left = 406.0
+offset_top = 111.0
+offset_right = 446.0
+offset_bottom = 151.0
+scale = Vector2(3, 3)
+icon = ExtResource("3_ug4j1")
+icon_alignment = 1
+script = ExtResource("4_k8b1q")
+show = NodePath("../../Main")
+
+[node name="Master" type="HSlider" parent="Options"]
+layout_mode = 0
+offset_left = 672.0
+offset_top = 320.0
+offset_right = 1272.0
+offset_bottom = 336.0
+max_value = 1.0
+step = 0.001
+script = ExtResource("5_iye8h")
+
+[node name="Label" type="Label" parent="Options/Master"]
+layout_mode = 0
+offset_left = -300.0
+offset_top = -14.0
+offset_right = -36.0
+offset_bottom = 29.0
+theme = ExtResource("2_r8kyf")
+theme_override_font_sizes/font_size = 40
+text = "Master Volume"
+horizontal_alignment = 2
+
+[node name="Music" type="HSlider" parent="Options"]
+layout_mode = 0
+offset_left = 672.0
+offset_top = 425.0
+offset_right = 1272.0
+offset_bottom = 441.0
+max_value = 1.0
+step = 0.001
+script = ExtResource("5_iye8h")
+audio_bus_name = "Music"
+
+[node name="Label" type="Label" parent="Options/Music"]
+layout_mode = 0
+offset_left = -300.0
+offset_top = -14.0
+offset_right = -36.0
+offset_bottom = 29.0
+theme = ExtResource("2_r8kyf")
+theme_override_font_sizes/font_size = 40
+text = "Music Volume"
+horizontal_alignment = 2
+
+[node name="Sounds" type="HSlider" parent="Options"]
+layout_mode = 0
+offset_left = 674.0
+offset_top = 542.0
+offset_right = 1274.0
+offset_bottom = 558.0
+max_value = 1.0
+step = 0.001
+script = ExtResource("5_iye8h")
+audio_bus_name = "Sounds"
+
+[node name="Label" type="Label" parent="Options/Sounds"]
+layout_mode = 0
+offset_left = -300.0
+offset_top = -14.0
+offset_right = -36.0
+offset_bottom = 29.0
+theme = ExtResource("2_r8kyf")
+theme_override_font_sizes/font_size = 40
+text = "Sound Volume"
+horizontal_alignment = 2
+
+[node name="Label" type="Label" parent="Options"]
+layout_mode = 0
+offset_left = 814.0
+offset_top = 125.0
+offset_right = 1132.0
+offset_bottom = 224.0
+theme = ExtResource("2_r8kyf")
+theme_override_font_sizes/font_size = 96
+text = "Options"
+
+[node name="Credits" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Credits"]
+layout_mode = 0
+offset_left = 684.0
+offset_top = 117.0
+offset_right = 1264.0
+offset_bottom = 283.0
+theme = ExtResource("2_r8kyf")
+theme_override_font_sizes/font_size = 80
+text = "Jesse 
+(Big Boy Games)"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="Credits/Label"]
+modulate = Color(0.698039, 0.698039, 0.698039, 1)
+layout_mode = 0
+offset_left = -52.0
+offset_top = 181.0
+offset_right = 843.0
+offset_bottom = 347.0
+scale = Vector2(0.75, 0.75)
+theme = ExtResource("2_r8kyf")
+theme_override_font_sizes/font_size = 80
+text = "Art, Programming, Sound"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="Credits"]
+layout_mode = 0
+offset_left = 646.0
+offset_top = 434.0
+offset_right = 1301.59
+offset_bottom = 600.0
+theme = ExtResource("2_r8kyf")
+theme_override_font_sizes/font_size = 80
+text = "Tyler
+(19tylermalone94)"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="Credits/Label4"]
+modulate = Color(0.698039, 0.698039, 0.698039, 1)
+layout_mode = 0
+offset_left = -9.0
+offset_top = 181.0
+offset_right = 871.0
+offset_bottom = 347.0
+scale = Vector2(0.75, 0.75)
+theme = ExtResource("2_r8kyf")
+theme_override_font_sizes/font_size = 80
+text = "Art, Programming, Sound"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Credits"]
+layout_mode = 0
+offset_left = 679.0
+offset_top = 743.0
+offset_right = 1259.0
+offset_bottom = 909.0
+theme = ExtResource("2_r8kyf")
+theme_override_font_sizes/font_size = 80
+text = "Wyatt
+(Kickblip)"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="Credits/Label2"]
+modulate = Color(0.698039, 0.698039, 0.698039, 1)
+layout_mode = 0
+offset_left = -15.0
+offset_top = 169.0
+offset_right = 780.0
+offset_bottom = 335.0
+scale = Vector2(0.75, 0.75)
+theme = ExtResource("2_r8kyf")
+theme_override_font_sizes/font_size = 80
+text = "Backend Programming"
+horizontal_alignment = 1
+
+[node name="Back" type="Button" parent="Credits" node_paths=PackedStringArray("show")]
+texture_filter = 1
+layout_mode = 0
+offset_left = 406.0
+offset_top = 111.0
+offset_right = 446.0
+offset_bottom = 151.0
+scale = Vector2(3, 3)
+icon = ExtResource("3_ug4j1")
+icon_alignment = 1
+script = ExtResource("4_k8b1q")
+show = NodePath("../../Main")
+
 [node name="fade" parent="." instance=ExtResource("2_t7n72")]
 offset_left = -658.0
 offset_top = -244.0
 offset_right = 2342.0
 offset_bottom = 1256.0
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_6ruql")
+autoplay = true
+bus = &"Music"
+
 [connection signal="pressed" from="Main/Play" to="Main" method="_on_play_pressed"]
 [connection signal="pressed" from="Main/Play" to="Main" method="_on_button_pressed"]
 [connection signal="pressed" from="Main/Options" to="Main" method="_on_options_pressed"]
+[connection signal="pressed" from="Main/Credits" to="Main" method="_on_credits_pressed"]
 [connection signal="pressed" from="Main/Quit" to="Main" method="_on_quit_pressed"]
+[connection signal="pressed" from="Options/Back2" to="Options/Back2" method="_on_pressed"]
+[connection signal="value_changed" from="Options/Master" to="Options/Master" method="_on_value_changed"]
+[connection signal="value_changed" from="Options/Music" to="Options/Music" method="_on_value_changed"]
+[connection signal="value_changed" from="Options/Sounds" to="Options/Sounds" method="_on_value_changed"]
+[connection signal="pressed" from="Credits/Back" to="Credits/Back" method="_on_pressed"]

@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends Node2D
 
 var speed = 1
 var direction = 1
@@ -24,11 +24,9 @@ func _ready():
 func _process(delta):
 	if abs(origin.x - position.x) > max_dist:
 		queue_free()
-	move_local_x(speed * direction)
-	var collision_info = move_and_collide(Vector2(speed * direction, 0))
-	if collision_info:
-		if collision_info.get_collider().name == "player":
-			#player takes damage
-			get_tree().call_group("Player","take_damage",damage)
-		queue_free()
+	position.x += (speed * direction)
 
+func _on_area_2d_body_entered(body):
+	if body.name == "player":
+		get_tree().call_group("Player","take_damage",damage)
+		queue_free()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cscffgc4d5o6h"]
+[gd_scene load_steps=15 format=3 uid="uid://yn3clsvmmwst"]
 
 [ext_resource type="Texture2D" uid="uid://d0kxkw3ag27b5" path="res://Sprites/sewer_upper.png" id="2_diivo"]
 [ext_resource type="PackedScene" uid="uid://dwpd2db14eq0y" path="res://Objects/player.tscn" id="3_kk2uo"]
@@ -174,7 +174,7 @@ noise = SubResource("FastNoiseLite_5s162")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qnaop"]
 shader = ExtResource("5_hvfhx")
 shader_parameter/scale = Vector2(2.0625, 1.19531)
-shader_parameter/y_zoom = 0.5
+shader_parameter/y_zoom = 1.12246
 shader_parameter/water_color = Color(0.121569, 0.443137, 0.4, 0.443137)
 shader_parameter/distortion_scale = Vector2(0.02, 0.5)
 shader_parameter/intensity = 0.01

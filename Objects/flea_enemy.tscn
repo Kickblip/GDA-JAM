@@ -1,12 +1,9 @@
 [gd_scene load_steps=11 format=3 uid="uid://bt054gpn3rlt1"]
 
 [ext_resource type="Script" path="res://Objects/flea_enemy.gd" id="1_60yaq"]
-
 [ext_resource type="Texture2D" uid="uid://b1mkufhxg6m2r" path="res://Sprites/flea_left_2.png" id="2_euqb3"]
 [ext_resource type="Texture2D" uid="uid://do6yr8l8oqi87" path="res://Sprites/flea_right_2.png" id="3_7su4k"]
-
 [ext_resource type="AudioStream" uid="uid://c87dnroyp0835" path="res://Sound/SFX/flea.wav" id="4_thpcy"]
-
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vim75"]
 size = Vector2(24, 20)
@@ -72,7 +69,6 @@ shape = SubResource("RectangleShape2D_vim75")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_6py6s")
-
 animation = &"idle_-1"
 
 [node name="Audio" type="AudioStreamPlayer2D" parent="."]

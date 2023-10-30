@@ -42,7 +42,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[connection signal="pressed" from="Main/Play" to="Main" method="_on_button_pressed"]
 [connection signal="pressed" from="Main/Play" to="Main" method="_on_play_pressed"]
+[connection signal="pressed" from="Main/Play" to="Main" method="_on_button_pressed"]
 [connection signal="pressed" from="Main/Options" to="Main" method="_on_options_pressed"]
 [connection signal="pressed" from="Main/Quit" to="Main" method="_on_quit_pressed"]

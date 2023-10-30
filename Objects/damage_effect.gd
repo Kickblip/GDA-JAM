@@ -6,7 +6,6 @@ var rng = RandomNumberGenerator.new()
 func _ready():
 	rotation = randf_range(-360,360)
 	scale = Vector2(randf_range(0.5,1), randf_range(0.5,1))
-	print("IM HERE")
 	
 	$Hit.pitch_scale = rng.randf_range(0.5,1.25)
 

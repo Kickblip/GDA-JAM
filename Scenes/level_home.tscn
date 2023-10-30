@@ -1,10 +1,11 @@
-[gd_scene load_steps=27 format=3 uid="uid://7sbf4gja6vrb"]
+[gd_scene load_steps=28 format=3 uid="uid://7sbf4gja6vrb"]
 
 [ext_resource type="Texture2D" uid="uid://djy176mdb4a1v" path="res://Sprites/sewer_lower.png" id="1_h7wvq"]
 [ext_resource type="Texture2D" uid="uid://d0kxkw3ag27b5" path="res://Sprites/sewer_upper.png" id="2_huskn"]
 [ext_resource type="PackedScene" uid="uid://dwpd2db14eq0y" path="res://Objects/player.tscn" id="2_t5ois"]
 [ext_resource type="Script" path="res://Scripts/camera.gd" id="3_ytnuk"]
 [ext_resource type="PackedScene" uid="uid://cf5xwk5aelcaj" path="res://Objects/metal_can.tscn" id="5_4vdf3"]
+[ext_resource type="PackedScene" uid="uid://dqsh0fi036trd" path="res://Objects/fade.tscn" id="5_ojcra"]
 [ext_resource type="PackedScene" uid="uid://bbro4e1t30oja" path="res://Objects/house.tscn" id="6_347kv"]
 [ext_resource type="Shader" path="res://Shaders/water.gdshader" id="7_v2kty"]
 [ext_resource type="Texture2D" uid="uid://b10p2v4cjw26w" path="res://icon.svg" id="8_uwwcw"]
@@ -144,7 +145,7 @@ noise = SubResource("FastNoiseLite_33d0u")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5k0qd"]
 shader = ExtResource("7_v2kty")
 shader_parameter/scale = Vector2(13.2695, 1.04)
-shader_parameter/y_zoom = 14.2544
+shader_parameter/y_zoom = 2.0
 shader_parameter/water_color = Color(0.121569, 0.443137, 0.4, 0.443137)
 shader_parameter/distortion_scale = Vector2(0.02, 0.5)
 shader_parameter/intensity = 0.01
@@ -187,6 +188,8 @@ position = Vector2(362, 249)
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)
 script = ExtResource("3_ytnuk")
+
+[node name="fade" parent="Camera2D" instance=ExtResource("5_ojcra")]
 
 [node name="Darkness" type="CanvasModulate" parent="."]
 color = Color(0.188235, 0.188235, 0.188235, 1)

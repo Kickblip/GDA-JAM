@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://dwpd2db14eq0y"]
+[gd_scene load_steps=54 format=3 uid="uid://dwpd2db14eq0y"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_jawjb"]
 [ext_resource type="Texture2D" uid="uid://bvnthgnln45c" path="res://Sprites/rat_air_down_left.png" id="2_ed3bx"]
@@ -9,8 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://tc5u8cixrjk5" path="res://Sprites/rat_air_up_right.png" id="4_el8xm"]
 [ext_resource type="Texture2D" uid="uid://ciycfossoyd71" path="res://Sprites/rat_move_right.png" id="5_3p41w"]
 [ext_resource type="Texture2D" uid="uid://ccys15ts1f5ty" path="res://Sprites/rat_air_up_left.png" id="5_40uq6"]
+[ext_resource type="Texture2D" uid="uid://bg2ei4suxlchl" path="res://Sprites/rat_dead_left.png" id="6_01jp1"]
 [ext_resource type="Texture2D" uid="uid://dkomc8vu4md6d" path="res://Sprites/light2.png" id="6_6axe2"]
 [ext_resource type="Texture2D" uid="uid://cwp8wngke3cpx" path="res://Sprites/rat_toMove_left.png" id="6_lijpm"]
+[ext_resource type="Texture2D" uid="uid://ch3hb33ckh463" path="res://Sprites/rat_dead_right.png" id="7_3nt73"]
 [ext_resource type="Texture2D" uid="uid://yf2fnusk4g5o" path="res://Sprites/rat_toWalk_left.png" id="7_ibqpe"]
 [ext_resource type="Texture2D" uid="uid://bm0un5y31chkx" path="res://Sprites/rat_toWalk_right.png" id="8_0lwl4"]
 [ext_resource type="Texture2D" uid="uid://dvlahyhfk10bm" path="res://Sprites/rat_toMove_right.png" id="9_vyyec"]
@@ -186,7 +188,18 @@ animations = [{
 "name": &"air_up_right",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_01jp1")
+}],
+"loop": true,
+"name": &"dead_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_3nt73")
+}],
 "loop": true,
 "name": &"dead_right",
 "speed": 5.0
@@ -336,7 +349,7 @@ script = ExtResource("1_jawjb")
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_ila7k")
-animation = &"dead_right"
+animation = &"dead_left"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 9)

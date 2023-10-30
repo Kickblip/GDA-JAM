@@ -22,7 +22,7 @@ var update = false #setting to true will update direction and animations regardl
 var canMove = true; #whether player can move or not
 
 var hVel; #-1 for moving left, 0 for none, and 1 for moving right
-var lastHVel = 0 #the hVel from the previous frame
+var lastHVel = 0 #the hVel from the prev-ious frame
 
 var vVel = 0
 
@@ -35,6 +35,8 @@ var wallDirection = 0 #current touching wall (-1 for left, 0 for none, 1 for rig
 @onready var rightray = $Rright
 @onready var leftray = $Rleft
 
+var dead = false
+
 func _update_weapon(weapon): #ran in instantiation and equpping a new weapon
 	damage = weapon.damage
 	attackSpeed = weapon.attackSpeed
@@ -44,8 +46,18 @@ func _ready():
 	sprite.play("idle_right")
 
 func _process(delta): 
-	#if Input.is_action_just_pressed("escape"):
-	#	hp -= 10
+	if hp <= 0:
+		dead = true
+		
+	if dead:
+		canMove = false
+		var fade = get_node("../Camera2D/fade")
+		fade.fade = true
+		
+		if dir == 1:
+			sprite.play("dead_right")
+		else:
+			sprite.play("dead_left")
 	
 	if is_on_floor() && Input.is_action_pressed("down"):
 		position.y += 1

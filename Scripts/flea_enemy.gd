@@ -1,11 +1,10 @@
-extends CharacterBody2D
+extends "res://Scripts/enemy_damagable.gd"
 
 var gravity = 480
 
 var jump_height = 100  # you can adjust this value
 var aware_radius = 200 # max distance to notice player
 
-var damage = 5
 var minDistance = 10
 
 var jumpTimer = 1 #seconds for time between jumps
@@ -18,6 +17,10 @@ var player = null
 
 var dir = 1
 var jump = false
+
+func _ready():
+	hp = 10
+	damage = 5
 
 func _process(delta):
 	var players = get_tree().get_nodes_in_group("Player")

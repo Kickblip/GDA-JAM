@@ -1,6 +1,6 @@
 extends Node2D
 
-var speed = 1
+var speed = 120
 var direction = 1
 var sprite_direction
 var colors = ["red", "white", "blue"]
@@ -36,7 +36,9 @@ func _process(delta):
 			exploded = true
 	if abs(origin.x - position.x) > max_dist:
 		queue_free()
-	position.x += (speed * direction)
+		
+	#move every frame
+	position.x += (speed * direction) * delta
 	
 func _on_audio_finished():
 	queue_free()

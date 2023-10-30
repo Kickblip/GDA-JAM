@@ -11,7 +11,7 @@ var terminalVelocityChange = terminalVelocity #will change if player is on wall
 #-----player attributes
 var hpMax = 100.0
 var hp = hpMax
-var damage = 10 #damage done to enemies each hit
+var damage = 5 #damage done to enemies each hit
 var attackSpeed = 1 #seconds in between each attack
 var currentWeapon = null
 
@@ -29,6 +29,8 @@ var vVel = 0
 var onWall = false #whether the player is wall jumping or not
 var wallDirection = 0 #current touching wall (-1 for left, 0 for none, 1 for right)
 
+var weaponDistance = 0
+
 @onready var sprite = $Sprite
 @onready var audio = $Audio
 
@@ -36,6 +38,8 @@ var wallDirection = 0 #current touching wall (-1 for left, 0 for none, 1 for rig
 @onready var leftray = $Rleft
 
 var dead = false
+@onready var weaponObject = $Weapon
+var canHit = false
 
 func _update_weapon(weapon): #ran in instantiation and equpping a new weapon
 	damage = weapon.damage
@@ -46,6 +50,25 @@ func _ready():
 	sprite.play("idle_right")
 
 func _process(delta): 
+	
+	if weaponDistance > 0:
+		weaponDistance -= 32*attackSpeed*delta
+		
+	if weaponDistance < 16:
+		canHit = false
+	
+	if Input.is_action_pressed("rightclick"):
+		
+		weaponObject.visible = true
+		weaponObject.rotation = position.angle_to_point(get_global_mouse_position())+1.5708
+		weaponObject.position = Vector2(1,0).rotated(weaponObject.rotation-1.5708) * weaponDistance
+		if Input.is_action_just_pressed("leftclick") && weaponDistance <= 0:
+			weaponDistance = 32
+			canHit = true
+	else:	
+		weaponObject.visible = false
+	
+	#dying logic-------------
 	if hp <= 0:
 		dead = true
 		
@@ -58,6 +81,7 @@ func _process(delta):
 			sprite.play("dead_right")
 		else:
 			sprite.play("dead_left")
+	#-------------------
 	
 	if is_on_floor() && Input.is_action_pressed("down"):
 		position.y += 1
@@ -195,3 +219,11 @@ func _on_sprite_animation_finished(): #go from transition animation to regular l
 		sprite.play("move_right")
 	elif sprite.animation == "transition_toMove_left":
 		sprite.play("move_left")
+
+
+func _on_weapon_body_entered(body):
+	#attack enemy
+	if body is EnemyDamageable:
+		if canHit:
+			body.take_damage(damage)
+			canHit = false

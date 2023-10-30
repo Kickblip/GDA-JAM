@@ -379,8 +379,6 @@ bus = &"Sounds"
 
 [node name="Weapon" type="Area2D" parent="."]
 position = Vector2(0, 9)
-collision_layer = 2
-collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Weapon"]
 shape = SubResource("RectangleShape2D_t0qfa")
@@ -389,4 +387,3 @@ shape = SubResource("RectangleShape2D_t0qfa")
 texture = ExtResource("20_347ps")
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]
-[connection signal="body_entered" from="Weapon" to="." method="_on_weapon_body_entered"]

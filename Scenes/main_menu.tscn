@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dnrjvcnv74e37"]
+[gd_scene load_steps=12 format=3 uid="uid://dnrjvcnv74e37"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_0wrky"]
 [ext_resource type="Theme" uid="uid://5gr038ghhdfr" path="res://Fonts/theme.tres" id="2_r8kyf"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Scenes/Back.gd" id="4_k8b1q"]
 [ext_resource type="Script" path="res://Scenes/audio_slider.gd" id="5_iye8h"]
 [ext_resource type="AudioStream" uid="uid://cxjb1jdnptl3w" path="res://Sounds/Music/title_screen.wav" id="7_6ruql"]
+[ext_resource type="Script" path="res://Objects/fade_in.gd" id="9_d5mnh"]
 [ext_resource type="Texture2D" uid="uid://bwew5mmy0ws1i" path="res://Sprites/city_background_1.png" id="9_upoh5"]
 [ext_resource type="Texture2D" uid="uid://1cs1v51ynm3" path="res://Sprites/city_background_2.png" id="10_bbgfr"]
 
@@ -268,6 +269,7 @@ offset_bottom = 1256.0
 stream = ExtResource("7_6ruql")
 autoplay = true
 bus = &"Music"
+script = ExtResource("9_d5mnh")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 z_index = -100

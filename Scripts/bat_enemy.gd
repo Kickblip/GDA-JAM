@@ -1,20 +1,21 @@
-extends CharacterBody2D
+extends "res://Scripts/enemy_damagable.gd"
 
 var gravity = 480
 var init_pos
 var hover_height = 2 # intensity of up and down hover
 var flap_force = hover_height * 2
-var acceleration = 5
+var acceleration = 5*60
 var pursuit_speed = 200
 var idle_speed = 20
 var max_speed = idle_speed
+
 var height_from_player = 40 # distance to hover above player during pursuit
 var aware_radius = 200 # max distance to notice player
+
 var hover_pos
 var direction = 1
 var sprite_direction = "_right"
 var action = "fly"
-var damage = 5
 
 var player
 
@@ -27,6 +28,11 @@ func _ready():
 	velocity.x += acceleration
 	init_pos = position
 	pace_timer.wait_time = 5
+	
+	#override parent variables
+	damage = 5
+	hp = 20
+	#----------------
 
 func _process(delta):
 	var players = get_tree().get_nodes_in_group("Player")
@@ -38,12 +44,12 @@ func _process(delta):
 			hover_pos = player.global_position
 			hover_pos.y -= height_from_player
 			max_speed = pursuit_speed
-			pursue_player()
+			pursue_player(delta)
 		else:
 			hover_pos = init_pos
 			max_speed = idle_speed
 			velocity.x = max_speed
-			pace()
+			pace(delta)
 
 	if position.y - hover_pos.y > hover_height:
 		velocity.y -= flap_force
@@ -64,16 +70,16 @@ func _process(delta):
 	sprite_direction = "_right" if direction == 1 else "_left"
 	sprite.play(action + sprite_direction)
 
-func pace():
+func pace(delta):
 	if pace_timer.time_left < 0.05:
 		direction = 1 if direction == -1 else -1
 		pace_timer.start()
-	velocity.x += acceleration * direction
+	velocity.x += (acceleration * direction)*delta
 
-func pursue_player():
+func pursue_player(delta):
 	var player_hdist = position.x - player.global_position.x
 	direction = 1 if player_hdist < 0 else -1
-	velocity.x += acceleration * direction
+	velocity.x += (acceleration * direction)*delta
 	if pace_timer.time_left < 2:
 		audio.play()
 		pace_timer.start()

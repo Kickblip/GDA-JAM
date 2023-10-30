@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://rauxdv7tsdgi"]
 
-[ext_resource type="Script" path="res://Scripts/bat_enemy.gd" id="1_trc31"]
+[ext_resource type="Script" path="res://Scripts/bat_enemy.gd" id="1_qlxi6"]
 [ext_resource type="Texture2D" uid="uid://cw4uugqcicfah" path="res://Sprites/bat_fly_left.png" id="1_yh2r7"]
 [ext_resource type="Texture2D" uid="uid://csyfgbfw7mc7n" path="res://Sprites/bat_fly_right.png" id="2_jvr48"]
 [ext_resource type="AudioStream" uid="uid://c3oi0usso7oqh" path="res://Sounds/SFX/bat.wav" id="4_5201x"]
@@ -84,7 +84,7 @@ animations = [{
 
 [node name="bat_enemy" type="CharacterBody2D"]
 collision_layer = 2
-script = ExtResource("1_trc31")
+script = ExtResource("1_qlxi6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -2)

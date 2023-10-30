@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends "res://Scripts/enemy_damagable.gd"
 
 var gravity = 480
 var terminalVelocity = 500
@@ -53,5 +53,6 @@ func fire_rocket():
 		var rocket_instance = fireball.instantiate()
 		rocket_instance.position = rocket_pos
 		rocket_instance.direction = rocket_direction
+		rocket_instance.damage = damage
 		get_tree().root.add_child(rocket_instance)
 		rocket_timer.start()

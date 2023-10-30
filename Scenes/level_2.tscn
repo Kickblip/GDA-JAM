@@ -239,7 +239,7 @@ noise = SubResource("FastNoiseLite_5s162")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qnaop"]
 shader = ExtResource("5_hvfhx")
 shader_parameter/scale = Vector2(2.0625, 1.19531)
-shader_parameter/y_zoom = 0.561231
+shader_parameter/y_zoom = 0.5
 shader_parameter/water_color = Color(0.121569, 0.443137, 0.4, 0.443137)
 shader_parameter/distortion_scale = Vector2(0.02, 0.5)
 shader_parameter/intensity = 0.01
@@ -284,9 +284,6 @@ texture = ExtResource("6_xg31k")
 offset = Vector2(0.484863, -63.1635)
 script = ExtResource("7_1d6rn")
 
-[node name="Darkness" type="CanvasModulate" parent="Water"]
-color = Color(0.392157, 0.423529, 0.529412, 1)
-
 [node name="wall_spider" parent="." instance=ExtResource("11_qn4db")]
 position = Vector2(1334, 493)
 
@@ -313,5 +310,10 @@ visible = false
 [node name="ui_inventory" parent="CanvasLayer" instance=ExtResource("16_0o6gf")]
 
 [node name="ui_hud" parent="CanvasLayer" instance=ExtResource("17_wx1oi")]
+
+[node name="Darkness" type="CanvasModulate" parent="."]
+position = Vector2(1019, 455)
+scale = Vector2(2.0625, 1.19531)
+color = Color(0.196078, 0.215686, 0.286275, 1)
 
 [connection signal="item_rect_changed" from="Water" to="Water" method="_on_item_rect_changed"]

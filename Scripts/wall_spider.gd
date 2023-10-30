@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends "res://Scripts/enemy_damagable.gd"
 
 var jump_wait = 5 # random within this range
 var gravity = 480
@@ -9,7 +9,6 @@ var vertical_range = 50 # max distance from initial position
 var direction = 1
 var sprite_direction = "_right"
 var action = "move"
-var damage = 10
 
 @onready var sprite = $Sprite
 @onready var jump_timer = $Timer
@@ -18,6 +17,8 @@ func _ready():
 	sprite.play("move_right")
 	init_pos = position
 	jump_timer.wait_time = 2
+	
+	damage = 5
 
 
 func _process(delta):

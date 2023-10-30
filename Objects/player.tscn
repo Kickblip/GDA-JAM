@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://dwpd2db14eq0y"]
+[gd_scene load_steps=52 format=3 uid="uid://dwpd2db14eq0y"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_jawjb"]
 [ext_resource type="Texture2D" uid="uid://bvnthgnln45c" path="res://Sprites/rat_air_down_left.png" id="2_ed3bx"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://dvlahyhfk10bm" path="res://Sprites/rat_toMove_right.png" id="9_vyyec"]
 [ext_resource type="Texture2D" uid="uid://bcwuvjsx0qyi8" path="res://Sprites/wall_jump_left.png" id="12_v1ffr"]
 [ext_resource type="Texture2D" uid="uid://buksmo68hk7al" path="res://Sprites/wall_jump_right.png" id="13_h1wpa"]
+[ext_resource type="AudioStream" uid="uid://dg4uv6w7sbkkm" path="res://Sound/SFX/hurt.wav" id="17_mtdjy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6edh8"]
 atlas = ExtResource("2_ed3bx")
@@ -354,5 +355,8 @@ target_position = Vector2(14, 0)
 [node name="Rleft" type="RayCast2D" parent="."]
 position = Vector2(0, 9)
 target_position = Vector2(-14, 0)
+
+[node name="Audio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("17_mtdjy")
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]

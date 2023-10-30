@@ -12,6 +12,7 @@ var fireball = preload("res://Objects/fireball.tscn")
 
 @onready var sprite = $Sprite
 @onready var rocket_timer = $Timer
+@onready var audio = $Audio
 
 func _ready():
 	sprite.play("idle_right")
@@ -40,7 +41,7 @@ func _process(delta):
 func fire_rocket():
 	
 	if rocket_timer.time_left < 0.05:
-		
+		audio.play()
 		var rocket_pos = position
 		var x_offset = 14
 		var y_offset = 2

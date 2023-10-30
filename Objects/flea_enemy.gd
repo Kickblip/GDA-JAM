@@ -11,6 +11,11 @@ var minDistance = 10
 var jumpTimer = 1 #seconds for time between jumps
 var attackTimer = 0.5 #seconds between attacks if close enough to player
 
+var player
+
+@onready var sprite = $Sprite
+@onready var audio = $Audio
+
 var player = null
 
 var dir = 1
@@ -53,10 +58,9 @@ func pursue_player(delta): #attack mode
 				dir = -1
 			velocity.y = -jump_height
 			velocity.x = jump_height*dir
+      audio.play()
 	else: #enter attack mode
 		if attackTimer <= 0:
 			attackTimer = 0.5
 			get_tree().call_group("Player","take_damage",damage)
-			
-	
 

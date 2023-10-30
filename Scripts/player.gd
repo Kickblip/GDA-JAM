@@ -30,6 +30,7 @@ var onWall = false #whether the player is wall jumping or not
 var wallDirection = 0 #current touching wall (-1 for left, 0 for none, 1 for right)
 
 @onready var sprite = $Sprite
+@onready var audio = $Audio
 
 @onready var rightray = $Rright
 @onready var leftray = $Rleft
@@ -164,6 +165,7 @@ func _process(delta):
 	move_and_slide()
 
 func take_damage(damageTaken):
+	audio.play()
 	hp -= damageTaken
 	var camera = get_node("../Camera2D")
 	camera.shake = 75

@@ -20,6 +20,7 @@ var player
 
 @onready var sprite = $Sprite
 @onready var pace_timer = $Timer
+@onready var audio = $Audio
 
 func _ready():
 	sprite.play("fly_right")
@@ -31,7 +32,8 @@ func _process(delta):
 	var players = get_tree().get_nodes_in_group("Player")
 	if players.size() > 0:
 		player = players[0]
-
+		if position.distance_to(player.global_position) < 5:
+			get_tree().call_group("Player","take_damage",damage)
 		if position.distance_to(player.global_position) < aware_radius:
 			hover_pos = player.global_position
 			hover_pos.y -= height_from_player
@@ -71,6 +73,8 @@ func pace():
 func pursue_player():
 	var player_hdist = position.x - player.global_position.x
 	direction = 1 if player_hdist < 0 else -1
-
 	velocity.x += acceleration * direction
+	if pace_timer.time_left < 2:
+		audio.play()
+		pace_timer.start()
 

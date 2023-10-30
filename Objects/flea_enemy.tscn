@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Objects/flea_enemy.gd" id="1_60yaq"]
 [ext_resource type="Texture2D" uid="uid://b1mkufhxg6m2r" path="res://Sprites/flea_left_2.png" id="2_euqb3"]
 [ext_resource type="Texture2D" uid="uid://do6yr8l8oqi87" path="res://Sprites/flea_right_2.png" id="3_7su4k"]
-[ext_resource type="AudioStream" uid="uid://c87dnroyp0835" path="res://Sound/SFX/flea.wav" id="4_thpcy"]
+[ext_resource type="AudioStream" uid="uid://c87dnroyp0835" path="res://Sounds/SFX/flea.wav" id="4_lonya"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vim75"]
 size = Vector2(24, 20)
@@ -72,4 +72,4 @@ sprite_frames = SubResource("SpriteFrames_6py6s")
 animation = &"idle_-1"
 
 [node name="Audio" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_thpcy")
+stream = ExtResource("4_lonya")

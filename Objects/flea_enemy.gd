@@ -41,7 +41,6 @@ func _process(delta):
 
 
 func pursue_player(delta): #attack mode
-	
 	jumpTimer -= 1*delta
 	attackTimer -= 1*delta
 	

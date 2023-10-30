@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Objects/damage_effect.gd" id="1_23ngk"]
 [ext_resource type="Texture2D" uid="uid://cjg3l3k5ywqct" path="res://Sprites/hit_effect.png" id="2_4juct"]
-[ext_resource type="AudioStream" uid="uid://e7q4i3io8p7b" path="res://Sounds/hitsound.wav" id="3_q1uyk"]
+[ext_resource type="AudioStream" uid="uid://e7q4i3io8p7b" path="res://Sounds/SFX/hitsound.wav" id="3_8adjt"]
 
 [node name="damage_effect" type="Node2D"]
 modulate = Color(1, 0.356863, 0.290196, 1)
@@ -14,6 +14,6 @@ z_index = 170
 texture = ExtResource("2_4juct")
 
 [node name="Hit" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_q1uyk")
+stream = ExtResource("3_8adjt")
 autoplay = true
 bus = &"Sounds"

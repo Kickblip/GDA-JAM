@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://sgnhpcdhgkfh"]
 
 [ext_resource type="Texture2D" uid="uid://c64c2knmk3yx4" path="res://Sprites/nineslice_stone.png" id="1_322m5"]
-[ext_resource type="Script" path="res://Objects/ui_level_select.gd" id="1_lkjbp"]
+[ext_resource type="Script" path="res://Scripts/ui_level_select.gd" id="1_nv5ev"]
 [ext_resource type="Theme" uid="uid://5gr038ghhdfr" path="res://Fonts/theme.tres" id="1_w1ps2"]
 
 [node name="ui_level_select" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_lkjbp")
+script = ExtResource("1_nv5ev")
 
 [node name="Label" type="Label" parent="."]
 z_index = 1

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://d33mivdhnrmys"]
 
-[ext_resource type="Script" path="res://Objects/ui_inventory.gd" id="1_15w7r"]
+[ext_resource type="Script" path="res://Scripts/ui_inventory.gd" id="1_ek8w6"]
 [ext_resource type="Texture2D" uid="uid://deualvwtvq2e8" path="res://Sprites/nineslice_stone_right.png" id="2_72c8q"]
 [ext_resource type="Theme" uid="uid://5gr038ghhdfr" path="res://Fonts/theme.tres" id="3_v3ftu"]
 
@@ -14,7 +14,7 @@ offset_right = -750.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("1_15w7r")
+script = ExtResource("1_ek8w6")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 modulate = Color(0.392157, 0.392157, 0.431373, 0.862745)

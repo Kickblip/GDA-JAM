@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dqsh0fi036trd"]
 
-[ext_resource type="Script" path="res://Objects/fade.gd" id="1_w8fed"]
+[ext_resource type="Script" path="res://Scripts/fade.gd" id="1_m8fst"]
 
 [node name="fade" type="ColorRect"]
 visible = false
@@ -12,4 +12,4 @@ offset_bottom = 750.0
 pivot_offset = Vector2(1500, 750)
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
-script = ExtResource("1_w8fed")
+script = ExtResource("1_m8fst")

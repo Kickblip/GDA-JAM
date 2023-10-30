@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dnrjvcnv74e37"]
 
-[ext_resource type="Script" path="res://Scenes/Main.gd" id="1_qkulo"]
+[ext_resource type="Script" path="res://Scripts/Main.gd" id="1_0wrky"]
 [ext_resource type="PackedScene" uid="uid://dqsh0fi036trd" path="res://Objects/fade.tscn" id="2_t7n72"]
 
 [node name="main_menu" type="Node2D"]
@@ -10,7 +10,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("1_qkulo")
+script = ExtResource("1_0wrky")
 
 [node name="Play" type="Button" parent="Main"]
 layout_mode = 0

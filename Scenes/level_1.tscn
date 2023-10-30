@@ -7,9 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://d33mivdhnrmys" path="res://Objects/ui_inventory.tscn" id="4_cq2aw"]
 [ext_resource type="PackedScene" uid="uid://dg8mlgymg55mv" path="res://Objects/ui_hud.tscn" id="5_d23pt"]
 [ext_resource type="Texture2D" uid="uid://bwew5mmy0ws1i" path="res://Sprites/city_background_1.png" id="6_pwd3d"]
-[ext_resource type="Script" path="res://Scenes/parallax.gd" id="7_0doch"]
 [ext_resource type="Texture2D" uid="uid://1cs1v51ynm3" path="res://Sprites/city_background_2.png" id="8_6khn0"]
 [ext_resource type="Texture2D" uid="uid://djy176mdb4a1v" path="res://Sprites/sewer_lower.png" id="8_7f2kw"]
+[ext_resource type="Script" path="res://Scripts/parallax.gd" id="9_eodui"]
 [ext_resource type="PackedScene" uid="uid://ct5lnys0b1cr" path="res://Objects/pipe.tscn" id="9_lxu6d"]
 [ext_resource type="PackedScene" uid="uid://bunimnjuownqp" path="res://Objects/bazooka_rat.tscn" id="11_4d07k"]
 [ext_resource type="PackedScene" uid="uid://rauxdv7tsdgi" path="res://Objects/bat_enemy.tscn" id="12_k5q5q"]
@@ -254,7 +254,7 @@ position = Vector2(282, 467)
 [node name="City1" type="Node2D" parent="."]
 z_index = -5
 position = Vector2(0, -223.1)
-script = ExtResource("7_0doch")
+script = ExtResource("9_eodui")
 
 [node name="image" type="TextureRect" parent="City1"]
 offset_left = -1024.0
@@ -265,7 +265,7 @@ texture = ExtResource("6_pwd3d")
 stretch_mode = 1
 
 [node name="City2" type="Node2D" parent="."]
-script = ExtResource("7_0doch")
+script = ExtResource("9_eodui")
 moveFactor = 1.1
 
 [node name="image" type="TextureRect" parent="City2"]

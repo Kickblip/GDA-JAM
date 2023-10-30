@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dbslfecum4fqx"]
 
-[ext_resource type="Script" path="res://Objects/Inventory/inventory_item.gd" id="1_k7g8h"]
+[ext_resource type="Script" path="res://Scripts/inventory_item.gd" id="1_fssap"]
 [ext_resource type="Texture2D" uid="uid://bx31ewt84rpb0" path="res://Sprites/inventory cell.png" id="2_ejof7"]
 [ext_resource type="Theme" uid="uid://5gr038ghhdfr" path="res://Fonts/theme.tres" id="3_2w87k"]
 
@@ -14,7 +14,7 @@ offset_bottom = 16.0
 pivot_offset = Vector2(16, 16)
 size_flags_horizontal = 8
 size_flags_vertical = 8
-script = ExtResource("1_k7g8h")
+script = ExtResource("1_fssap")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1

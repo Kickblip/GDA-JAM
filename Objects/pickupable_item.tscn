@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://54il7j36yuv0"]
 
 [ext_resource type="Shader" path="res://Shaders/outline.gdshader" id="1_5mat2"]
-[ext_resource type="Script" path="res://Objects/pickupable_item.gd" id="1_v5hts"]
 [ext_resource type="Texture2D" uid="uid://ct222hrfy81el" path="res://Sprites/Items/gem.png" id="2_laaui"]
+[ext_resource type="Script" path="res://Scripts/pickupable_item.gd" id="2_t77bn"]
 [ext_resource type="Texture2D" uid="uid://dfmn1e0t2h6qs" path="res://Sprites/circular_progress.png" id="4_0um10"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_inft0"]
@@ -13,7 +13,7 @@ shader_parameter/line_thickness = 1.0
 
 [node name="pickupable_item" type="Node2D"]
 material = SubResource("ShaderMaterial_inft0")
-script = ExtResource("1_v5hts")
+script = ExtResource("2_t77bn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 use_parent_material = true

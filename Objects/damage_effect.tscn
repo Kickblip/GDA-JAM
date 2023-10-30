@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://cppxyh653xtgj"]
 
-[ext_resource type="Script" path="res://Objects/damage_effect.gd" id="1_23ngk"]
+[ext_resource type="Script" path="res://Scripts/damage_effect.gd" id="1_3cbnl"]
 [ext_resource type="Texture2D" uid="uid://cjg3l3k5ywqct" path="res://Sprites/hit_effect.png" id="2_4juct"]
 [ext_resource type="AudioStream" uid="uid://e7q4i3io8p7b" path="res://Sounds/SFX/hitsound.wav" id="3_8adjt"]
 
 [node name="damage_effect" type="Node2D"]
 modulate = Color(1, 0.356863, 0.290196, 1)
 z_index = 50
-script = ExtResource("1_23ngk")
+script = ExtResource("1_3cbnl")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 170

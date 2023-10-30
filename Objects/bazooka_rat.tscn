@@ -1,6 +1,6 @@
 [gd_scene load_steps=47 format=3 uid="uid://bunimnjuownqp"]
 
-[ext_resource type="Script" path="res://Objects/bazooka_rat.gd" id="1_882ci"]
+[ext_resource type="Script" path="res://Scripts/bazooka_rat.gd" id="1_4oo80"]
 [ext_resource type="Texture2D" uid="uid://devqo3q0m4uy6" path="res://Sprites/bazooka_rat_firing_left.png" id="1_o1nji"]
 [ext_resource type="Texture2D" uid="uid://dkme4yttsd5i5" path="res://Sprites/bazooka_rat_firing_right.png" id="2_oqv1a"]
 [ext_resource type="Texture2D" uid="uid://d238yfoe10fuc" path="res://Sprites/bazooka_rat_idle_left.png" id="3_ap4xn"]
@@ -306,7 +306,7 @@ size = Vector2(16, 20)
 
 [node name="bazooka_rat" type="CharacterBody2D"]
 collision_layer = 2
-script = ExtResource("1_882ci")
+script = ExtResource("1_4oo80")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_q51d3")

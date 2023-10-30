@@ -18,6 +18,7 @@ var player
 
 @onready var sprite = $Sprite
 @onready var jump_timer = $Timer
+@onready var audio = $Audio
 
 
 func _ready():
@@ -62,6 +63,7 @@ func pursue_player(delta): #attack mode
 		if jump_timer.time_left < 0.05:
 			velocity.x = pursuit_speed * direction
 			velocity.y = -sqrt(2 * gravity * jump_height) * (position.distance_to(player.global_position) * delta * .25)
+			audio.play()
 			jump_timer.start()
 	
 

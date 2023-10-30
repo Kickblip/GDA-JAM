@@ -20,6 +20,7 @@ var player
 
 @onready var sprite = $Sprite
 @onready var pace_timer = $Timer
+@onready var audio = $Audio
 
 func _ready():
 	sprite.play("fly_right")
@@ -71,6 +72,8 @@ func pace():
 func pursue_player():
 	var player_hdist = position.x - player.global_position.x
 	direction = 1 if player_hdist < 0 else -1
-
 	velocity.x += acceleration * direction
+	if pace_timer.time_left < 2:
+		audio.play()
+		pace_timer.start()
 

@@ -9,6 +9,7 @@ var max_dist = 1000
 var damage = 20
 
 @onready var sprite = $Sprite
+@onready var audio = $Audio
 
 
 # Called when the node enters the scene tree for the first time.
@@ -30,5 +31,6 @@ func _process(delta):
 		if collision_info.get_collider().name == "player":
 			#player takes damage
 			get_tree().call_group("Player","take_damage",damage)
+		audio.play()
 		queue_free()
 

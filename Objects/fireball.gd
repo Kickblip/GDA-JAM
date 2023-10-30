@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends Node2D
 
 var speed = 1
 var direction = 1
@@ -36,8 +36,12 @@ func _process(delta):
 			exploded = true
 	if abs(origin.x - position.x) > max_dist:
 		queue_free()
-	move_local_x(speed * direction)
+	position.x += (speed * direction)
 	
 func _on_audio_finished():
 	queue_free()
 
+func _on_area_2d_body_entered(body):
+	if body.name == "player":
+		get_tree().call_group("Player","take_damage",damage)
+		queue_free()

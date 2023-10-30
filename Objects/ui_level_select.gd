@@ -24,10 +24,17 @@ func _process(delta):
 		if !open:
 			open = true
 
+func _on_home_pressed():
+	get_tree().change_scene_to_file("res://Scenes/level_home.tscn")
 
-func _on_button_pressed():
+
+func _on_abandoned_city_pressed():
 	get_tree().change_scene_to_file("res://Scenes/level_1.tscn")
 
 
-func _on_button_2_pressed():
+func _on_ancient_sewer_pressed():
+	get_tree().change_scene_to_file("res://Scenes/level_2.tscn")
+
+
+func _on_boss_pressed():
 	pass # Replace with function body.

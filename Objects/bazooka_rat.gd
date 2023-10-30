@@ -46,8 +46,10 @@ func fire_rocket():
 		var x_offset = 14
 		var y_offset = 2
 		var rocket_direction = 1 if direction == "_right" else -1
+		
 		rocket_pos.x += 14 * rocket_direction
 		rocket_pos.y -= y_offset
+		
 		var rocket_instance = fireball.instantiate()
 		rocket_instance.position = rocket_pos
 		rocket_instance.direction = rocket_direction

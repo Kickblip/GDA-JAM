@@ -11,14 +11,10 @@ var sprite_direction = "_right"
 var action = "move"
 var damage = 10
 
-var player
-
 @onready var sprite = $Sprite
 @onready var jump_timer = $Timer
 
-
 func _ready():
-	randomize()
 	sprite.play("move_right")
 	init_pos = position
 	jump_timer.wait_time = 2
@@ -42,9 +38,6 @@ func _process(delta):
 		var random_direction = 1 if randi() % 2 == 0 else -1
 		velocity.y += (randi() % vertical_speed) * random_direction * delta
 	
-
-	
-
 	move_and_slide()
 	if (get_slide_collision_count()):
 		velocity.x = gravity * delta * direction

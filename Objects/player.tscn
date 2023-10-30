@@ -186,6 +186,11 @@ animations = [{
 "name": &"air_up_right",
 "speed": 5.0
 }, {
+"frames": [],
+"loop": true,
+"name": &"dead_right",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_t6upd")
@@ -331,7 +336,7 @@ script = ExtResource("1_jawjb")
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_ila7k")
-animation = &"air_down_left"
+animation = &"dead_right"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 9)

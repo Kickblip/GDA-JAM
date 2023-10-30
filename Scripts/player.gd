@@ -167,6 +167,12 @@ func _process(delta):
 func take_damage(damageTaken):
 	audio.play()
 	hp -= damageTaken
+	var camera = get_node("../Camera2D")
+	camera.shake = 75
+	var damageEffect = load("res://Objects/damage_effect.tscn").instantiate()
+	damageEffect.position = position
+	get_tree().root.add_child(damageEffect)
+	
 
 func _on_sprite_animation_finished(): #go from transition animation to regular looped animation
 	if sprite.animation == "transition_toIdle_right":

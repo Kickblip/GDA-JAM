@@ -1,61 +1,64 @@
 [gd_scene load_steps=11 format=3 uid="uid://bt054gpn3rlt1"]
 
 [ext_resource type="Script" path="res://Objects/flea_enemy.gd" id="1_60yaq"]
-[ext_resource type="Texture2D" uid="uid://deafwdaxkh3k5" path="res://Sprites/flea_left.png" id="2_u6cpb"]
-[ext_resource type="Texture2D" uid="uid://3f8wij0vrnpb" path="res://Sprites/flea_right.png" id="3_1v2js"]
+
+[ext_resource type="Texture2D" uid="uid://b1mkufhxg6m2r" path="res://Sprites/flea_left_2.png" id="2_euqb3"]
+[ext_resource type="Texture2D" uid="uid://do6yr8l8oqi87" path="res://Sprites/flea_right_2.png" id="3_7su4k"]
+
 [ext_resource type="AudioStream" uid="uid://c87dnroyp0835" path="res://Sound/SFX/flea.wav" id="4_thpcy"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_omsrl"]
-radius = 23.6352
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fa8vt"]
-atlas = ExtResource("2_u6cpb")
-region = Rect2(64, 0, 64, 64)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vim75"]
+size = Vector2(24, 20)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jawi1"]
-atlas = ExtResource("3_1v2js")
-region = Rect2(0, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ha0pv"]
+atlas = ExtResource("2_euqb3")
+region = Rect2(0, 0, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ye60p"]
-atlas = ExtResource("2_u6cpb")
-region = Rect2(0, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_fpn8s"]
+atlas = ExtResource("3_7su4k")
+region = Rect2(0, 0, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lkp1m"]
-atlas = ExtResource("3_1v2js")
-region = Rect2(64, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_d4jtx"]
+atlas = ExtResource("2_euqb3")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31yi4"]
+atlas = ExtResource("3_7su4k")
+region = Rect2(24, 0, 24, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6py6s"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fa8vt")
+"texture": SubResource("AtlasTexture_ha0pv")
 }],
 "loop": true,
-"name": &"idle_left",
+"name": &"idle_-1",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jawi1")
+"texture": SubResource("AtlasTexture_fpn8s")
 }],
 "loop": true,
-"name": &"idle_right",
+"name": &"idle_1",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ye60p")
+"texture": SubResource("AtlasTexture_d4jtx")
 }],
 "loop": true,
-"name": &"jump_left",
+"name": &"jump_-1",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lkp1m")
+"texture": SubResource("AtlasTexture_31yi4")
 }],
 "loop": true,
-"name": &"jump_right",
+"name": &"jump_1",
 "speed": 5.0
 }]
 
@@ -64,14 +67,13 @@ collision_layer = 2
 script = ExtResource("1_60yaq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.25, -7.25)
-shape = SubResource("CircleShape2D_omsrl")
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_vim75")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_6py6s")
-animation = &"jump_left"
 
-[node name="Timer" type="Timer" parent="."]
+animation = &"idle_-1"
 
 [node name="Audio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_thpcy")

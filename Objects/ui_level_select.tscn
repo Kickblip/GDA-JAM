@@ -39,14 +39,48 @@ patch_margin_bottom = 32
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
 
-[node name="Button" type="Button" parent="."]
-layout_mode = 0
-offset_left = 648.0
-offset_top = 645.0
-offset_right = 1194.0
-offset_bottom = 800.0
+[node name="Home" type="Button" parent="."]
+offset_left = 642.0
+offset_top = 302.0
+offset_right = 1307.0
+offset_bottom = 412.0
 theme = ExtResource("1_w1ps2")
-theme_override_font_sizes/font_size = 146
-text = "LEVEL 1"
+theme_override_font_sizes/font_size = 71
+text = "Home"
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[node name="Abandoned City" type="Button" parent="."]
+layout_mode = 0
+offset_left = 642.0
+offset_top = 464.0
+offset_right = 1307.0
+offset_bottom = 574.0
+theme = ExtResource("1_w1ps2")
+theme_override_font_sizes/font_size = 71
+text = "Abandoned City"
+
+[node name="Ancient Sewer" type="Button" parent="."]
+offset_left = 642.0
+offset_top = 623.0
+offset_right = 1307.0
+offset_bottom = 733.0
+theme = ExtResource("1_w1ps2")
+theme_override_font_sizes/font_size = 71
+text = "Ancient Sewer"
+
+[node name="Boss" type="Button" parent="."]
+offset_left = 642.0
+offset_top = 783.0
+offset_right = 1307.0
+offset_bottom = 893.0
+theme = ExtResource("1_w1ps2")
+theme_override_font_sizes/font_size = 71
+text = "Boss"
+
+[connection signal="pressed" from="Home" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Home" to="." method="_on_home_pressed"]
+[connection signal="pressed" from="Abandoned City" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Abandoned City" to="." method="_on_abandoned_city_pressed"]
+[connection signal="pressed" from="Ancient Sewer" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Ancient Sewer" to="." method="_on_ancient_sewer_pressed"]
+[connection signal="pressed" from="Boss" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Boss" to="." method="_on_boss_pressed"]

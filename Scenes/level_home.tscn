@@ -163,25 +163,25 @@ shader_parameter/line_thickness = 1.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3io8d"]
 size = Vector2(62, 4)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lwds8"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k5tgm"]
 resource_local_to_scene = true
 shader = ExtResource("11_gposw")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0lv1y"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yxhkv"]
 resource_local_to_scene = true
 shader = ExtResource("11_gposw")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1w433"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e5p6j"]
 resource_local_to_scene = true
 shader = ExtResource("11_gposw")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_aaubr"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f6t6k"]
 resource_local_to_scene = true
 shader = ExtResource("11_gposw")
 shader_parameter/line_color = Color(1, 1, 1, 1)
@@ -261,19 +261,19 @@ offset_bottom = 38.0
 scale = Vector2(1.5485, 0.116385)
 
 [node name="pickupable_item" parent="." instance=ExtResource("16_vsdcp")]
-material = SubResource("ShaderMaterial_lwds8")
+material = SubResource("ShaderMaterial_k5tgm")
 position = Vector2(295, 264)
 
 [node name="pickupable_item2" parent="." instance=ExtResource("16_vsdcp")]
-material = SubResource("ShaderMaterial_0lv1y")
+material = SubResource("ShaderMaterial_yxhkv")
 position = Vector2(397, 264)
 
 [node name="pickupable_item3" parent="." instance=ExtResource("16_vsdcp")]
-material = SubResource("ShaderMaterial_1w433")
+material = SubResource("ShaderMaterial_e5p6j")
 position = Vector2(496, 264)
 
 [node name="pickupable_item4" parent="." instance=ExtResource("16_vsdcp")]
-material = SubResource("ShaderMaterial_aaubr")
+material = SubResource("ShaderMaterial_f6t6k")
 position = Vector2(516, 264)
 
 [node name="APIRequest" type="HTTPRequest" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cscffgc4d5o6h"]
+[gd_scene load_steps=29 format=3 uid="uid://cscffgc4d5o6h"]
 
 [ext_resource type="Texture2D" uid="uid://d0kxkw3ag27b5" path="res://Sprites/sewer_upper.png" id="2_diivo"]
 [ext_resource type="PackedScene" uid="uid://dwpd2db14eq0y" path="res://Objects/player.tscn" id="3_kk2uo"]
@@ -14,6 +14,9 @@
 [ext_resource type="PackedScene" uid="uid://b4p5iw4u5ef2v" path="res://Objects/wall_spider.tscn" id="11_qn4db"]
 [ext_resource type="PackedScene" uid="uid://rauxdv7tsdgi" path="res://Objects/bat_enemy.tscn" id="12_fku3x"]
 [ext_resource type="PackedScene" uid="uid://bt054gpn3rlt1" path="res://Objects/flea_enemy.tscn" id="13_p0uks"]
+[ext_resource type="PackedScene" uid="uid://sgnhpcdhgkfh" path="res://Objects/ui_level_select.tscn" id="15_754fm"]
+[ext_resource type="PackedScene" uid="uid://d33mivdhnrmys" path="res://Objects/ui_inventory.tscn" id="16_0o6gf"]
+[ext_resource type="PackedScene" uid="uid://dg8mlgymg55mv" path="res://Objects/ui_hud.tscn" id="17_wx1oi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8t8qp"]
 texture = ExtResource("2_diivo")
@@ -236,7 +239,7 @@ noise = SubResource("FastNoiseLite_5s162")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qnaop"]
 shader = ExtResource("5_hvfhx")
 shader_parameter/scale = Vector2(2.0625, 1.19531)
-shader_parameter/y_zoom = 0.374577
+shader_parameter/y_zoom = 0.561231
 shader_parameter/water_color = Color(0.121569, 0.443137, 0.4, 0.443137)
 shader_parameter/distortion_scale = Vector2(0.02, 0.5)
 shader_parameter/intensity = 0.01
@@ -301,5 +304,14 @@ position = Vector2(2130, 704)
 
 [node name="flea_enemy" parent="." instance=ExtResource("13_p0uks")]
 position = Vector2(1606, 254)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ui_level_select" parent="CanvasLayer" instance=ExtResource("15_754fm")]
+visible = false
+
+[node name="ui_inventory" parent="CanvasLayer" instance=ExtResource("16_0o6gf")]
+
+[node name="ui_hud" parent="CanvasLayer" instance=ExtResource("17_wx1oi")]
 
 [connection signal="item_rect_changed" from="Water" to="Water" method="_on_item_rect_changed"]

@@ -1,17 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://dnrjvcnv74e37"]
+[gd_scene load_steps=11 format=3 uid="uid://dnrjvcnv74e37"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_0wrky"]
 [ext_resource type="Theme" uid="uid://5gr038ghhdfr" path="res://Fonts/theme.tres" id="2_r8kyf"]
 [ext_resource type="PackedScene" uid="uid://dqsh0fi036trd" path="res://Objects/fade.tscn" id="2_t7n72"]
 [ext_resource type="Texture2D" uid="uid://cssshqa35r6rj" path="res://Sprites/back_arrow.png" id="3_ug4j1"]
+[ext_resource type="Texture2D" uid="uid://qt7ml45ljugj" path="res://Sprites/logo.png" id="3_v18bq"]
 [ext_resource type="Script" path="res://Scenes/Back.gd" id="4_k8b1q"]
 [ext_resource type="Script" path="res://Scenes/audio_slider.gd" id="5_iye8h"]
 [ext_resource type="AudioStream" uid="uid://cxjb1jdnptl3w" path="res://Sounds/Music/title_screen.wav" id="7_6ruql"]
+[ext_resource type="Texture2D" uid="uid://bwew5mmy0ws1i" path="res://Sprites/city_background_1.png" id="9_upoh5"]
+[ext_resource type="Texture2D" uid="uid://1cs1v51ynm3" path="res://Sprites/city_background_2.png" id="10_bbgfr"]
 
 [node name="main_menu" type="Node2D"]
 
 [node name="Main" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -60,7 +62,14 @@ theme_override_font_sizes/font_size = 80
 text = "Quit
 "
 
+[node name="Logo" type="Sprite2D" parent="Main"]
+texture_filter = 1
+position = Vector2(961, 227)
+scale = Vector2(10, 10)
+texture = ExtResource("3_v18bq")
+
 [node name="Options" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -259,6 +268,38 @@ offset_bottom = 1256.0
 stream = ExtResource("7_6ruql")
 autoplay = true
 bus = &"Music"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -100
+offset_left = -38.0
+offset_top = 31.0
+offset_right = 986.0
+offset_bottom = 1055.0
+scale = Vector2(2, 2)
+mouse_filter = 2
+texture = ExtResource("9_upoh5")
+stretch_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.478431)
+z_index = -101
+offset_left = 16.0
+offset_top = -95.0
+offset_right = 1040.0
+offset_bottom = 929.0
+scale = Vector2(2, 2)
+mouse_filter = 2
+texture = ExtResource("10_bbgfr")
+stretch_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1000
+offset_left = -927.0
+offset_top = -349.0
+offset_right = 3073.0
+offset_bottom = 1651.0
+mouse_filter = 2
+color = Color(0.368627, 0.462745, 0.458824, 1)
 
 [connection signal="pressed" from="Main/Play" to="Main" method="_on_play_pressed"]
 [connection signal="pressed" from="Main/Play" to="Main" method="_on_button_pressed"]

@@ -26,14 +26,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var players = get_tree().get_nodes_in_group("Player")
-	if players.size() > 0:
-		player = players[0]
-		if position.distance_to(player.global_position) < 5 and not exploded:
-			get_tree().call_group("Player","take_damage",damage)
-			audio.play()
-			sprite.queue_free()
-			exploded = true
 	if abs(origin.x - position.x) > max_dist:
 		queue_free()
 		
@@ -46,4 +38,7 @@ func _on_audio_finished():
 func _on_area_2d_body_entered(body):
 	if body.name == "player":
 		get_tree().call_group("Player","take_damage",damage)
-		queue_free()
+		if not exploded:
+			audio.play()
+			sprite.queue_free()
+			exploded = true

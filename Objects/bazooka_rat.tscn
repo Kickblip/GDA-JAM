@@ -321,4 +321,5 @@ wait_time = 2.024
 
 [node name="Audio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_o6w5o")
+max_distance = 256.0
 bus = &"Sounds"

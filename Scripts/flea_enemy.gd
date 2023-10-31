@@ -1,4 +1,4 @@
-extends "res://Scripts/enemy_damagable.gd"
+extends EnemyDamageable
 
 var gravity = 480
 
@@ -61,4 +61,3 @@ func pursue_player(delta): #attack mode
 		if attackTimer <= 0:
 			attackTimer = 0.5
 			get_tree().call_group("Player","take_damage",damage)
-

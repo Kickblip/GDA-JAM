@@ -1,5 +1,5 @@
-class_name EnemyDamageable
 extends CharacterBody2D
+class_name EnemyDamageable
 
 var damage = 10
 var hp = 50

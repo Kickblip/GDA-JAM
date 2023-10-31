@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://Scenes/Back.gd" id="4_k8b1q"]
 [ext_resource type="Script" path="res://Scenes/audio_slider.gd" id="5_iye8h"]
 [ext_resource type="AudioStream" uid="uid://cxjb1jdnptl3w" path="res://Sounds/Music/title_screen.wav" id="7_6ruql"]
-[ext_resource type="Script" path="res://Objects/fade_in.gd" id="9_d5mnh"]
+[ext_resource type="Script" path="res://Scripts/fade_in.gd" id="9_rqijn"]
 [ext_resource type="Texture2D" uid="uid://bwew5mmy0ws1i" path="res://Sprites/city_background_1.png" id="9_upoh5"]
 [ext_resource type="Texture2D" uid="uid://1cs1v51ynm3" path="res://Sprites/city_background_2.png" id="10_bbgfr"]
 
@@ -269,7 +269,7 @@ offset_bottom = 1256.0
 stream = ExtResource("7_6ruql")
 autoplay = true
 bus = &"Music"
-script = ExtResource("9_d5mnh")
+script = ExtResource("9_rqijn")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 z_index = -100
@@ -303,8 +303,8 @@ offset_bottom = 1651.0
 mouse_filter = 2
 color = Color(0.368627, 0.462745, 0.458824, 1)
 
-[connection signal="pressed" from="Main/Play" to="Main" method="_on_button_pressed"]
 [connection signal="pressed" from="Main/Play" to="Main" method="_on_play_pressed"]
+[connection signal="pressed" from="Main/Play" to="Main" method="_on_button_pressed"]
 [connection signal="pressed" from="Main/Options" to="Main" method="_on_options_pressed"]
 [connection signal="pressed" from="Main/Credits" to="Main" method="_on_credits_pressed"]
 [connection signal="pressed" from="Main/Quit" to="Main" method="_on_quit_pressed"]

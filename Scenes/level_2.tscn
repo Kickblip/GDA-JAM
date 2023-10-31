@@ -310,6 +310,7 @@ position = Vector2(178, 248)
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("17_4jmvl")
+bus = &"Music"
 script = ExtResource("18_mg4ve")
 
 [node name="bazooka_rat" parent="." instance=ExtResource("19_8gmd3")]

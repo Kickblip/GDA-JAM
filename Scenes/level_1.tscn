@@ -294,6 +294,7 @@ position = Vector2(399, 421)
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_ltcu2")
+bus = &"Music"
 script = ExtResource("17_q53pn")
 
 [connection signal="finished" from="Music" to="Music" method="_on_finished"]

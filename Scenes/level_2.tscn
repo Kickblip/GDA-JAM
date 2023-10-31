@@ -207,7 +207,7 @@ noise = SubResource("FastNoiseLite_5s162")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qnaop"]
 shader = ExtResource("5_hvfhx")
 shader_parameter/scale = Vector2(2.0625, 1.19531)
-shader_parameter/y_zoom = 1.25992
+shader_parameter/y_zoom = 0.5
 shader_parameter/water_color = Color(0.121569, 0.443137, 0.4, 0.443137)
 shader_parameter/distortion_scale = Vector2(0.02, 0.5)
 shader_parameter/intensity = 0.01
@@ -267,29 +267,29 @@ position = Vector2(1899, 701)
 [node name="bat_enemy4" parent="." instance=ExtResource("12_fku3x")]
 position = Vector2(2130, 704)
 
+[node name="flea_enemy8" parent="." instance=ExtResource("13_p0uks")]
+position = Vector2(2026.4, 753.039)
+
+[node name="flea_enemy7" parent="." instance=ExtResource("13_p0uks")]
+position = Vector2(602.498, 481.593)
+
+[node name="flea_enemy6" parent="." instance=ExtResource("13_p0uks")]
+position = Vector2(943.789, 699.861)
+
+[node name="flea_enemy5" parent="." instance=ExtResource("13_p0uks")]
+position = Vector2(392.96, 256.182)
+
+[node name="flea_enemy4" parent="." instance=ExtResource("13_p0uks")]
+position = Vector2(542.97, -0.976929)
+
+[node name="flea_enemy3" parent="." instance=ExtResource("13_p0uks")]
+position = Vector2(1652, 257)
+
+[node name="flea_enemy2" parent="." instance=ExtResource("13_p0uks")]
+position = Vector2(1986, 91)
+
 [node name="flea_enemy" parent="." instance=ExtResource("13_p0uks")]
 position = Vector2(1606, 254)
-
-[node name="flea_enemy" parent="flea_enemy" instance=ExtResource("13_p0uks")]
-position = Vector2(380, -163)
-
-[node name="flea_enemy" parent="flea_enemy/flea_enemy" instance=ExtResource("13_p0uks")]
-position = Vector2(-334, 166)
-
-[node name="flea_enemy" parent="flea_enemy/flea_enemy/flea_enemy" instance=ExtResource("13_p0uks")]
-position = Vector2(-1109.03, -257.977)
-
-[node name="flea_enemy" parent="flea_enemy/flea_enemy/flea_enemy/flea_enemy" instance=ExtResource("13_p0uks")]
-position = Vector2(-150.009, 257.159)
-
-[node name="flea_enemy" parent="flea_enemy/flea_enemy/flea_enemy/flea_enemy/flea_enemy" instance=ExtResource("13_p0uks")]
-position = Vector2(550.828, 443.679)
-
-[node name="flea_enemy" parent="flea_enemy/flea_enemy/flea_enemy/flea_enemy/flea_enemy/flea_enemy" instance=ExtResource("13_p0uks")]
-position = Vector2(-341.291, -218.268)
-
-[node name="flea_enemy" parent="flea_enemy/flea_enemy/flea_enemy/flea_enemy/flea_enemy/flea_enemy/flea_enemy" instance=ExtResource("13_p0uks")]
-position = Vector2(1423.9, 271.446)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://dwpd2db14eq0y"]
+[gd_scene load_steps=57 format=3 uid="uid://dwpd2db14eq0y"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_jawjb"]
 [ext_resource type="Texture2D" uid="uid://bvnthgnln45c" path="res://Sprites/rat_air_down_left.png" id="2_ed3bx"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://buksmo68hk7al" path="res://Sprites/wall_jump_right.png" id="13_h1wpa"]
 [ext_resource type="AudioStream" uid="uid://dg4uv6w7sbkkm" path="res://Sounds/SFX/hurt.wav" id="17_a2tae"]
 [ext_resource type="Texture2D" uid="uid://j6qtf16it52t" path="res://Sprites/spear.png" id="20_347ps"]
+[ext_resource type="AudioStream" uid="uid://df0ll248w4gek" path="res://Sounds/SFX/step.wav" id="21_spmle"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6edh8"]
 atlas = ExtResource("2_ed3bx")
@@ -353,7 +354,7 @@ script = ExtResource("1_jawjb")
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_ila7k")
-animation = &"dead_left"
+animation = &"move_right"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 9)
@@ -373,7 +374,7 @@ target_position = Vector2(14, 0)
 position = Vector2(0, 9)
 target_position = Vector2(-14, 0)
 
-[node name="Audio" type="AudioStreamPlayer2D" parent="."]
+[node name="Audio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("17_a2tae")
 bus = &"Sounds"
 
@@ -388,5 +389,12 @@ shape = SubResource("RectangleShape2D_t0qfa")
 [node name="Sprite2D" type="Sprite2D" parent="Weapon"]
 texture = ExtResource("20_347ps")
 
+[node name="Footsteps" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("21_spmle")
+max_polyphony = 10
+bus = &"Sounds"
+
 [connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]
+[connection signal="animation_looped" from="Sprite" to="." method="_on_sprite_animation_looped"]
 [connection signal="body_entered" from="Weapon" to="." method="_on_weapon_body_entered"]
+[connection signal="frame_changed" from="Weapon/Sprite2D" to="." method="_on_sprite_2d_frame_changed"]

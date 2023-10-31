@@ -41,6 +41,9 @@ var dead = false
 @onready var weaponObject = $Weapon
 var canHit = false
 
+var rng = RandomNumberGenerator.new()
+var lastFrame = 0
+
 func _update_weapon(weapon): #ran in instantiation and equpping a new weapon
 	damage = weapon.damage
 	attackSpeed = weapon.attackSpeed
@@ -197,6 +200,15 @@ func _process(delta):
 		if checkLanding: #player has landed (can play sounds here)
 			checkLanding = false
 			update = true
+	
+	if sprite.animation == "move_right" || sprite.animation == "move_left":
+		if sprite.frame == 0 || sprite.frame == 2:
+			if sprite.frame != lastFrame:
+				var footsteps = $Footsteps
+				footsteps.play()
+				footsteps.pitch_scale = rng.randf_range(0.5,2)
+				footsteps.volume_db = rng.randf_range(-20,-10)
+		lastFrame = sprite.frame
 	
 	move_and_slide()
 

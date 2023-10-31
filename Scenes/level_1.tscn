@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://da236sjk3i0d7"]
+[gd_scene load_steps=30 format=3 uid="uid://da236sjk3i0d7"]
 
 [ext_resource type="Script" path="res://Scripts/camera.gd" id="1_bra2u"]
 [ext_resource type="PackedScene" uid="uid://dqsh0fi036trd" path="res://Objects/fade.tscn" id="2_8qrlh"]
@@ -15,6 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://rauxdv7tsdgi" path="res://Objects/bat_enemy.tscn" id="12_k5q5q"]
 [ext_resource type="PackedScene" uid="uid://bt054gpn3rlt1" path="res://Objects/flea_enemy.tscn" id="13_wipvr"]
 [ext_resource type="PackedScene" uid="uid://b4p5iw4u5ef2v" path="res://Objects/wall_spider.tscn" id="14_0wa2n"]
+[ext_resource type="AudioStream" uid="uid://bmu3hyyjjup3i" path="res://Sounds/Music/level_1.wav" id="16_ltcu2"]
+[ext_resource type="Script" path="res://Scenes/Music.gd" id="17_q53pn"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_dtwyj"]
 polygon = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)
@@ -289,3 +291,10 @@ position = Vector2(108, 254)
 
 [node name="wall_spider" parent="." instance=ExtResource("14_0wa2n")]
 position = Vector2(399, 421)
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_ltcu2")
+bus = &"Music"
+script = ExtResource("17_q53pn")
+
+[connection signal="finished" from="Music" to="Music" method="_on_finished"]

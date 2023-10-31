@@ -303,8 +303,8 @@ offset_bottom = 1651.0
 mouse_filter = 2
 color = Color(0.368627, 0.462745, 0.458824, 1)
 
-[connection signal="pressed" from="Main/Play" to="Main" method="_on_play_pressed"]
 [connection signal="pressed" from="Main/Play" to="Main" method="_on_button_pressed"]
+[connection signal="pressed" from="Main/Play" to="Main" method="_on_play_pressed"]
 [connection signal="pressed" from="Main/Options" to="Main" method="_on_options_pressed"]
 [connection signal="pressed" from="Main/Credits" to="Main" method="_on_credits_pressed"]
 [connection signal="pressed" from="Main/Quit" to="Main" method="_on_quit_pressed"]

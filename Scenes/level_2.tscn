@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cscffgc4d5o6h"]
+[gd_scene load_steps=29 format=3 uid="uid://cscffgc4d5o6h"]
 
 [ext_resource type="Texture2D" uid="uid://d0kxkw3ag27b5" path="res://Sprites/sewer_upper.png" id="2_diivo"]
 [ext_resource type="PackedScene" uid="uid://dwpd2db14eq0y" path="res://Objects/player.tscn" id="3_kk2uo"]
@@ -14,8 +14,11 @@
 [ext_resource type="PackedScene" uid="uid://bt054gpn3rlt1" path="res://Objects/flea_enemy.tscn" id="13_p0uks"]
 [ext_resource type="PackedScene" uid="uid://sgnhpcdhgkfh" path="res://Objects/ui_level_select.tscn" id="15_754fm"]
 [ext_resource type="PackedScene" uid="uid://d33mivdhnrmys" path="res://Objects/ui_inventory.tscn" id="16_0o6gf"]
+[ext_resource type="AudioStream" uid="uid://smw05s3vtw2b" path="res://Sounds/Music/level_2.wav" id="17_4jmvl"]
 [ext_resource type="PackedScene" uid="uid://dg8mlgymg55mv" path="res://Objects/ui_hud.tscn" id="17_wx1oi"]
 [ext_resource type="PackedScene" uid="uid://ct5lnys0b1cr" path="res://Objects/pipe.tscn" id="18_e7nw3"]
+[ext_resource type="Script" path="res://Scenes/Music.gd" id="18_mg4ve"]
+[ext_resource type="PackedScene" uid="uid://bunimnjuownqp" path="res://Objects/bazooka_rat.tscn" id="19_8gmd3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8t8qp"]
 texture = ExtResource("2_diivo")
@@ -204,7 +207,7 @@ noise = SubResource("FastNoiseLite_5s162")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qnaop"]
 shader = ExtResource("5_hvfhx")
 shader_parameter/scale = Vector2(2.0625, 1.19531)
-shader_parameter/y_zoom = 0.840896
+shader_parameter/y_zoom = 0.5
 shader_parameter/water_color = Color(0.121569, 0.443137, 0.4, 0.443137)
 shader_parameter/distortion_scale = Vector2(0.02, 0.5)
 shader_parameter/intensity = 0.01
@@ -264,6 +267,27 @@ position = Vector2(1899, 701)
 [node name="bat_enemy4" parent="." instance=ExtResource("12_fku3x")]
 position = Vector2(2130, 704)
 
+[node name="flea_enemy8" parent="." instance=ExtResource("13_p0uks")]
+position = Vector2(2026.4, 753.039)
+
+[node name="flea_enemy7" parent="." instance=ExtResource("13_p0uks")]
+position = Vector2(602.498, 481.593)
+
+[node name="flea_enemy6" parent="." instance=ExtResource("13_p0uks")]
+position = Vector2(943.789, 699.861)
+
+[node name="flea_enemy5" parent="." instance=ExtResource("13_p0uks")]
+position = Vector2(392.96, 256.182)
+
+[node name="flea_enemy4" parent="." instance=ExtResource("13_p0uks")]
+position = Vector2(542.97, -0.976929)
+
+[node name="flea_enemy3" parent="." instance=ExtResource("13_p0uks")]
+position = Vector2(1652, 257)
+
+[node name="flea_enemy2" parent="." instance=ExtResource("13_p0uks")]
+position = Vector2(1986, 91)
+
 [node name="flea_enemy" parent="." instance=ExtResource("13_p0uks")]
 position = Vector2(1606, 254)
 
@@ -284,4 +308,19 @@ color = Color(0.196078, 0.215686, 0.286275, 1)
 [node name="pipe" parent="." instance=ExtResource("18_e7nw3")]
 position = Vector2(178, 248)
 
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_4jmvl")
+bus = &"Music"
+script = ExtResource("18_mg4ve")
+
+[node name="bazooka_rat" parent="." instance=ExtResource("19_8gmd3")]
+position = Vector2(2134, 748)
+
+[node name="bazooka_rat2" parent="." instance=ExtResource("19_8gmd3")]
+position = Vector2(705, 704)
+
+[node name="bazooka_rat3" parent="." instance=ExtResource("19_8gmd3")]
+position = Vector2(1239, 256)
+
 [connection signal="item_rect_changed" from="Water" to="Water" method="_on_item_rect_changed"]
+[connection signal="finished" from="Music" to="Music" method="_on_finished"]

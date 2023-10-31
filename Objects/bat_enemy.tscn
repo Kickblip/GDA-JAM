@@ -98,3 +98,4 @@ animation = &"fly_right"
 
 [node name="Audio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_5201x")
+bus = &"Sounds"

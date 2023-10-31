@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://da236sjk3i0d7"]
+[gd_scene load_steps=45 format=3 uid="uid://da236sjk3i0d7"]
 
 [ext_resource type="Script" path="res://Scripts/camera.gd" id="1_bra2u"]
 [ext_resource type="PackedScene" uid="uid://dqsh0fi036trd" path="res://Objects/fade.tscn" id="2_8qrlh"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" path="res://Scenes/Music.gd" id="17_q53pn"]
 [ext_resource type="PackedScene" uid="uid://54il7j36yuv0" path="res://Objects/pickupable_item.tscn" id="19_nx0ah"]
 [ext_resource type="Shader" path="res://Shaders/outline.gdshader" id="20_58apn"]
+[ext_resource type="PackedScene" uid="uid://bpdsfv355o0j6" path="res://Objects/key_item.tscn" id="20_ko6bq"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_dtwyj"]
 polygon = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)
@@ -215,61 +216,61 @@ occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_f3btq")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qfx5f"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xelhy"]
 resource_local_to_scene = true
 shader = ExtResource("20_58apn")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jq1xu"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gv3xq"]
 resource_local_to_scene = true
 shader = ExtResource("20_58apn")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_kp068"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dycal"]
 resource_local_to_scene = true
 shader = ExtResource("20_58apn")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_h642u"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_om54q"]
 resource_local_to_scene = true
 shader = ExtResource("20_58apn")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4bc6u"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sk7ke"]
 resource_local_to_scene = true
 shader = ExtResource("20_58apn")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4j8df"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yekn8"]
 resource_local_to_scene = true
 shader = ExtResource("20_58apn")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1ksw6"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hd0iv"]
 resource_local_to_scene = true
 shader = ExtResource("20_58apn")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_fr6xa"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wpeay"]
 resource_local_to_scene = true
 shader = ExtResource("20_58apn")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_kljrw"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6mccr"]
 resource_local_to_scene = true
 shader = ExtResource("20_58apn")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7kcjs"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jrkiv"]
 resource_local_to_scene = true
 shader = ExtResource("20_58apn")
 shader_parameter/line_color = Color(1, 1, 1, 1)
@@ -385,43 +386,39 @@ position = Vector2(1652, 210)
 position = Vector2(1432, 79)
 
 [node name="pickupable_item" parent="." instance=ExtResource("19_nx0ah")]
-material = SubResource("ShaderMaterial_qfx5f")
+material = SubResource("ShaderMaterial_xelhy")
 position = Vector2(1489, 95)
 
 [node name="pickupable_item2" parent="." instance=ExtResource("19_nx0ah")]
-material = SubResource("ShaderMaterial_jq1xu")
+material = SubResource("ShaderMaterial_gv3xq")
 position = Vector2(1568, 95)
 
 [node name="pickupable_item3" parent="." instance=ExtResource("19_nx0ah")]
-material = SubResource("ShaderMaterial_kp068")
+material = SubResource("ShaderMaterial_dycal")
 position = Vector2(675, 166)
 
 [node name="pickupable_item4" parent="." instance=ExtResource("19_nx0ah")]
-material = SubResource("ShaderMaterial_h642u")
+material = SubResource("ShaderMaterial_om54q")
 position = Vector2(695, 166)
 
 [node name="pickupable_item5" parent="." instance=ExtResource("19_nx0ah")]
-material = SubResource("ShaderMaterial_4bc6u")
+material = SubResource("ShaderMaterial_sk7ke")
 position = Vector2(659, 166)
 
 [node name="pickupable_item6" parent="." instance=ExtResource("19_nx0ah")]
-material = SubResource("ShaderMaterial_4j8df")
+material = SubResource("ShaderMaterial_yekn8")
 position = Vector2(-1172, 407)
 
 [node name="pickupable_item7" parent="." instance=ExtResource("19_nx0ah")]
-material = SubResource("ShaderMaterial_1ksw6")
+material = SubResource("ShaderMaterial_hd0iv")
 position = Vector2(-1025, 479)
 
-[node name="pickupable_item8" parent="." instance=ExtResource("19_nx0ah")]
-material = SubResource("ShaderMaterial_fr6xa")
-position = Vector2(-1010, 479)
-
 [node name="pickupable_item9" parent="." instance=ExtResource("19_nx0ah")]
-material = SubResource("ShaderMaterial_kljrw")
+material = SubResource("ShaderMaterial_wpeay")
 position = Vector2(-978, 479)
 
 [node name="pickupable_item10" parent="." instance=ExtResource("19_nx0ah")]
-material = SubResource("ShaderMaterial_7kcjs")
+material = SubResource("ShaderMaterial_6mccr")
 position = Vector2(-1104, 263)
 
 [node name="flea_enemy" parent="." instance=ExtResource("13_wipvr")]
@@ -441,5 +438,9 @@ position = Vector2(-1055, 246)
 
 [node name="flea_enemy6" parent="." instance=ExtResource("13_wipvr")]
 position = Vector2(1572, 417)
+
+[node name="key_item" parent="." instance=ExtResource("20_ko6bq")]
+material = SubResource("ShaderMaterial_jrkiv")
+position = Vector2(-1002, 473)
 
 [connection signal="finished" from="Music" to="Music" method="_on_finished"]

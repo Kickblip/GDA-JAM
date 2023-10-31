@@ -1,5 +1,10 @@
 extends Control
 
+func _ready():
+	if Global.won:
+		visible = false
+		get_node("../Win").visible = true
+
 func _on_play_pressed():
 	get_tree().change_scene_to_file("res://Scenes/level_home.tscn")
 

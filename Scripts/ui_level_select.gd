@@ -37,4 +37,6 @@ func _on_ancient_sewer_pressed():
 
 
 func _on_boss_pressed():
-	pass # Replace with function body.
+	print("go")
+	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+	Global.won = true

@@ -23,6 +23,10 @@ var inventory = [
 	["Plastic Bottle Cap",1,"res://Sprites/Items/plastic_bottle_cap.png",0,8]
 ]
 
+var keysGotten = []
+var keyCount = 0
+var won = false
+
 func _process(delta):
 	if Input.is_action_just_pressed("fullscreen"):
 		if DisplayServer.window_get_mode() != 3:

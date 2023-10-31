@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://bpdsfv355o0j6"]
+
+[ext_resource type="Shader" path="res://Shaders/outline.gdshader" id="1_60kmj"]
+[ext_resource type="Script" path="res://Objects/key_item.gd" id="2_7h0hn"]
+[ext_resource type="Texture2D" uid="uid://c50pk01rkhaon" path="res://Sprites/key.png" id="3_lrvh8"]
+[ext_resource type="Texture2D" uid="uid://dfmn1e0t2h6qs" path="res://Sprites/circular_progress.png" id="4_xonrg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_inft0"]
+resource_local_to_scene = true
+shader = ExtResource("1_60kmj")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 1.0
+
+[node name="key_item" type="Node2D"]
+material = SubResource("ShaderMaterial_inft0")
+script = ExtResource("2_7h0hn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+use_parent_material = true
+texture = ExtResource("3_lrvh8")
+offset = Vector2(0, -6)
+
+[node name="Progress" type="TextureProgressBar" parent="."]
+z_index = 100
+offset_left = 3.0
+offset_top = -3.0
+offset_right = 43.0
+offset_bottom = 37.0
+step = 0.01
+fill_mode = 4
+texture_under = ExtResource("4_xonrg")
+texture_progress = ExtResource("4_xonrg")
+tint_under = Color(0, 0, 0, 0.392157)
+tint_over = Color(0.439216, 0.439216, 0.439216, 0)
+tint_progress = Color(0.0509804, 0.588235, 1, 1)

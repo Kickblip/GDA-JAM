@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://sgnhpcdhgkfh"]
+[gd_scene load_steps=5 format=3 uid="uid://sgnhpcdhgkfh"]
 
 [ext_resource type="Texture2D" uid="uid://c64c2knmk3yx4" path="res://Sprites/nineslice_stone.png" id="1_322m5"]
 [ext_resource type="Script" path="res://Scripts/ui_level_select.gd" id="1_nv5ev"]
 [ext_resource type="Theme" uid="uid://5gr038ghhdfr" path="res://Fonts/theme.tres" id="1_w1ps2"]
+[ext_resource type="Script" path="res://Objects/Boss.gd" id="4_kiqv1"]
 
 [node name="ui_level_select" type="Control"]
 layout_mode = 3
@@ -77,7 +78,17 @@ offset_right = 1307.0
 offset_bottom = 893.0
 theme = ExtResource("1_w1ps2")
 theme_override_font_sizes/font_size = 71
-text = "Boss"
+text = "Exit"
+script = ExtResource("4_kiqv1")
+
+[node name="Label" type="Label" parent="Boss"]
+layout_mode = 0
+offset_left = -232.0
+offset_top = 32.0
+offset_right = -11.0
+offset_bottom = 67.0
+theme_override_font_sizes/font_size = 31
+text = "Find more keys!"
 
 [connection signal="pressed" from="Home" to="." method="_on_home_pressed"]
 [connection signal="pressed" from="Home" to="." method="_on_button_pressed"]
@@ -86,4 +97,3 @@ text = "Boss"
 [connection signal="pressed" from="Ancient Sewer" to="." method="_on_ancient_sewer_pressed"]
 [connection signal="pressed" from="Ancient Sewer" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Boss" to="." method="_on_boss_pressed"]
-[connection signal="pressed" from="Boss" to="." method="_on_button_pressed"]

@@ -259,6 +259,49 @@ icon_alignment = 1
 script = ExtResource("4_k8b1q")
 show = NodePath("../../Main")
 
+[node name="Win" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Back" type="Button" parent="Win" node_paths=PackedStringArray("show")]
+texture_filter = 1
+layout_mode = 0
+offset_left = 406.0
+offset_top = 111.0
+offset_right = 446.0
+offset_bottom = 151.0
+scale = Vector2(3, 3)
+icon = ExtResource("3_ug4j1")
+icon_alignment = 1
+script = ExtResource("4_k8b1q")
+show = NodePath("../../Main")
+
+[node name="Label" type="Label" parent="Win"]
+layout_mode = 0
+offset_left = 638.0
+offset_top = 128.0
+offset_right = 1388.0
+offset_bottom = 238.0
+theme = ExtResource("2_r8kyf")
+theme_override_font_sizes/font_size = 106
+text = "Congratulations!"
+
+[node name="Label2" type="Label" parent="Win"]
+layout_mode = 0
+offset_left = 436.0
+offset_top = 348.0
+offset_right = 1539.0
+offset_bottom = 558.0
+theme = ExtResource("2_r8kyf")
+theme_override_font_sizes/font_size = 66
+text = "You managed to find all the keys
+and escape this dangerous city
+to somewhere society can start anew."
+horizontal_alignment = 1
+
 [node name="fade" parent="." instance=ExtResource("2_t7n72")]
 offset_left = -658.0
 offset_top = -244.0
@@ -313,3 +356,4 @@ color = Color(0.368627, 0.462745, 0.458824, 1)
 [connection signal="value_changed" from="Options/Music" to="Options/Music" method="_on_value_changed"]
 [connection signal="value_changed" from="Options/Sounds" to="Options/Sounds" method="_on_value_changed"]
 [connection signal="pressed" from="Credits/Back" to="Credits/Back" method="_on_pressed"]
+[connection signal="pressed" from="Win/Back" to="Win/Back" method="_on_pressed"]

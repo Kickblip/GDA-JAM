@@ -13,6 +13,7 @@ var player
 
 @onready var sprite = $Sprite
 @onready var audio = $Audio
+@onready var light = $PointLight2D
 
 
 # Called when the node enters the scene tree for the first time.
@@ -40,5 +41,6 @@ func _on_area_2d_body_entered(body):
 		get_tree().call_group("Player","take_damage",damage)
 		if not exploded:
 			audio.play()
+			light.queue_free()
 			sprite.queue_free()
 			exploded = true

@@ -13,6 +13,10 @@ var action = "move"
 @onready var sprite = $Sprite
 @onready var jump_timer = $Timer
 
+var hitTimer = 1
+
+var sharedDelta = 1
+
 func _ready():
 	sprite.play("move_right")
 	init_pos = position
@@ -22,6 +26,9 @@ func _ready():
 
 
 func _process(delta):
+	hitTimer -= 1*delta
+	sharedDelta = delta
+	
 	if jump_timer.time_left < 0.05:
 		direction *= -1;
 		velocity.x = jump_speed * direction
@@ -39,13 +46,15 @@ func _process(delta):
 		var random_direction = 1 if randi() % 2 == 0 else -1
 		velocity.y += (randi() % vertical_speed) * random_direction * delta
 	
-	move_and_slide()
-	if (get_slide_collision_count()):
-		velocity.x = gravity * delta * direction
-	for i in get_slide_collision_count():
-		var collision = get_slide_collision(i)
-		if collision.get_collider().name == "player":
-			get_tree().call_group("Player","take_damage",damage)
 	sprite_direction = "_right" if direction == 1 else "_left"
 	sprite.play(action + sprite_direction)
+	
+	move_and_slide()
 
+
+func _on_area_2d_body_entered(body):
+	if hitTimer < 0:
+		if body.name == "player":
+			get_tree().call_group("Player","take_damage",damage)
+			#velocity.x = gravity * sharedDelta * direction
+			hitTimer = 1

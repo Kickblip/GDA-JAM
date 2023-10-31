@@ -204,7 +204,7 @@ noise = SubResource("FastNoiseLite_5s162")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qnaop"]
 shader = ExtResource("5_hvfhx")
 shader_parameter/scale = Vector2(2.0625, 1.19531)
-shader_parameter/y_zoom = 0.66742
+shader_parameter/y_zoom = 0.840896
 shader_parameter/water_color = Color(0.121569, 0.443137, 0.4, 0.443137)
 shader_parameter/distortion_scale = Vector2(0.02, 0.5)
 shader_parameter/intensity = 0.01
@@ -277,7 +277,6 @@ visible = false
 [node name="ui_hud" parent="CanvasLayer" instance=ExtResource("17_wx1oi")]
 
 [node name="Darkness" type="CanvasModulate" parent="."]
-visible = false
 position = Vector2(1019, 455)
 scale = Vector2(2.0625, 1.19531)
 color = Color(0.196078, 0.215686, 0.286275, 1)

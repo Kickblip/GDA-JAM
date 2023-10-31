@@ -1,6 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://b4p5iw4u5ef2v"]
+[gd_scene load_steps=17 format=3 uid="uid://b4p5iw4u5ef2v"]
 
-[ext_resource type="Script" path="res://Scripts/wall_spider.gd" id="1_8bn3h"]
+[ext_resource type="Script" path="res://Scripts/wall_spider.gd" id="1_cm4km"]
 [ext_resource type="Texture2D" uid="uid://b3g6mk7wr4rt8" path="res://Sprites/spider_left.png" id="1_kmkni"]
 [ext_resource type="Texture2D" uid="uid://dd18xm2gshmih" path="res://Sprites/spider_right.png" id="2_76isr"]
 
@@ -100,11 +100,15 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ick6q"]
+size = Vector2(12, 30)
+
 [node name="wall_spider" type="CharacterBody2D"]
 collision_layer = 2
-script = ExtResource("1_8bn3h")
+script = ExtResource("1_cm4km")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_me138")
 
@@ -113,3 +117,13 @@ sprite_frames = SubResource("SpriteFrames_m6s2l")
 animation = &"idle_right"
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-2, 0)
+shape = SubResource("RectangleShape2D_ick6q")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
